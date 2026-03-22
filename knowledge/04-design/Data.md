@@ -7,7 +7,7 @@ status: draft
 
 # Data Documentation
 
-**Version:** 1.0
+**Version:** 2.0 (M17 — scenario_d.json hinzugefügt)
 **Purpose:** Schema documentation for all JSON data files. Single source of truth for data structure.
 
 ---
@@ -23,7 +23,10 @@ status: draft
 | `data/examples/scenario_a.json` | Account book scenario | 4 persons, 4 transactions |
 | `data/examples/scenario_b.json` | Prosopographic scenario | 5 sources, 4 persons |
 | `data/examples/scenario_c.json` | Text edition scenario | 4 witnesses, 1 text passage |
+| `data/examples/scenario_d.json` | Guild dispute scenario | 5 sources, 3 categorizations, 1 event |
 | `data/examples/requirement_examples.json` | Requirement → example mapping | 24 entries |
+
+**Note:** `derivation_graph.json` and `evaluation_matrix.json` sind weiterhin valide Theorie-Daten, werden aber von der aktuellen Website (M17) nicht direkt visualisiert. Sie werden vom DataLoader geladen und stehen für zukünftige Erweiterungen bereit.
 
 ---
 
@@ -133,22 +136,7 @@ status: draft
       }
     }
   },
-  coverage: {
-    equal_weight: {
-      [approach_id]: {
-        structural: number
-        metadata: number
-        absent: number
-        percentage: number      // = (structural + metadata) / 24 * 100
-      }
-    },
-    scoring_method: string
-    domain_profiles: {
-      textual_sources: {
-        weights: { [requirement_id]: number }  // C=3, R=2, M=1
-      }
-    }
-  }
+  coverage: { ... }
 }
 ```
 
@@ -169,7 +157,7 @@ Key data modeling decisions:
 
 ## Schema: scenario_b.json
 
-Prosopographic scenario. Top-level keys: `id`, `title_en/de`, `setting`, `sources[]`, `persons[]`, `epistemic_distance_example`, `monotonicity_example`.
+Prosopographic scenario. Top-level keys: `id`, `title_en/de`, `setting`, `sources[]`, `persons[]`, `epistemic_distance_example`, `cross_references`, `monotonicity_example`.
 
 Key data modeling decisions:
 - **Systematic omissions:** Modeled on source objects: `source.systematic_omission = { excluded_category, reason, requirement }`.
@@ -179,6 +167,7 @@ Key data modeling decisions:
 - **Identifications:** `person.identifications[]` with researcher, year, framework, confidence, evidence.
 - **Perspective relations:** `person.perspective_relations` with typed relations (tension, independence).
 - **Absence from sources:** `person.absence_from_sources` tracking which sources omit the person and why.
+- **Cross-references:** `cross_references.scenario_d` links Johann Meier's 1702 council appearance to the guild dispute in Scenario D.
 
 ## Schema: scenario_c.json
 
@@ -190,6 +179,18 @@ Key data modeling decisions:
 - **Text variants** per witness: `text_diplomatic` and `text_normalized` as parallel strings.
 - **Variant analysis** distinguishes orthographic from substantive variants.
 
+## Schema: scenario_d.json
+
+Guild dispute scenario (NEU in M17). Top-level keys: `id`, `title_en/de`, `setting`, `event`, `sources[]`, `categorizations[]`, `interpretive_chain[]`, `perspective_comparisons[]`, `cross_references`.
+
+Key data modeling decisions:
+- **Event as hub:** `event` object with `id`, `label_en/de`, `date`, `place`, `participants[]`, `intersection` (what all sources agree on).
+- **5 Sources spanning 3 centuries:** Each source has `level` (primary/secondary/tertiary), `perspective`, `text_diplomatic`, `text_normalized`, `text_translation`, `event_characterization`, `meier_characterization`, `blind_spots[]`, `temporal_layers`.
+- **Categorizations:** 3 objects showing semantic drift: `label_original`, `framework` (emic/etic), `framework_type`, `connotation`.
+- **Interpretive chain:** 3 levels with `information_dimensions` count and `what_is_preserved`/`what_is_lost`/`what_is_added` arrays.
+- **Perspective comparisons:** Pre-computed comparison objects for source pairs with `agreement`, `unique_to_a`, `unique_to_b`, `contradiction`, `tension`.
+- **Cross-references:** Link to scenario_b (Johann Meier's council appearance is this event).
+
 ## Schema: requirement_examples.json
 
 ```
@@ -198,16 +199,16 @@ Key data modeling decisions:
     {
       requirement_id: string       // Must exist in requirements.json
       title_en: string
-      scenario: string             // "scenario_a" | "scenario_b" | "scenario_c"
+      scenario: string             // "scenario_a" | "scenario_b" | "scenario_c" | "scenario_d"
       data_path: string            // JSON path within scenario file
       description_en: string
       with_requirement: {
         description: string
-        visual: string             // Description of visualization when requirement is fulfilled
+        visual: string
       }
       without_requirement: {
         description: string
-        visual: string             // Description of visualization when requirement is NOT fulfilled
+        visual: string
       }
     }
   ]
@@ -217,7 +218,8 @@ Key data modeling decisions:
 **Invariants:**
 - Exactly 24 entries, one per requirement
 - All `requirement_id` values exist in `requirements.json`
-- All `scenario` values are valid scenario IDs
+- All `scenario` values are valid scenario IDs (a, b, c, d)
+- R-A2 (Event-Centricity) and R-E5.1 (Temporal Categorization) reference scenario_d
 
 ## Cross-File References
 
@@ -228,6 +230,8 @@ Key data modeling decisions:
 | requirement_examples.json | `requirement_id` | requirements.json | `requirements[].id` |
 | requirement_examples.json | `scenario` | scenario_*.json | `id` |
 | scenario_b.json | `sources[].systematic_omission.requirement` | requirements.json | `requirements[].id` |
+| scenario_b.json | `cross_references.scenario_d` | scenario_d.json | person/event |
+| scenario_d.json | `cross_references.scenario_b` | scenario_b.json | person/appearance |
 
 ## Related
 

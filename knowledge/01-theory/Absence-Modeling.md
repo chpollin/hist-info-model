@@ -63,12 +63,14 @@ Thaller's approach treats incompleteness as a system-level concern, not an excep
 
 ## Visual Language for Absence
 
-The website's lacuna visualization uses three distinct visual metaphors:
-1. **Known unknowns:** Hollow circles with dashed borders (the shape exists because the entity existed, but the fill is empty)
-2. **Systematic omissions:** Shaded void regions (a category-level absence, not a point absence)
-3. **Transmission gaps:** Torn/faded timeline segments (temporal destruction of continuous records)
+The website's Person Tracer (Station 2: "Tracing") visualizes all three absence types in an interactive person × sources grid:
+1. **Known unknowns:** Hollow circles with dashed borders (the shape exists because the entity existed, but the fill is empty). Johann Meier's birth date at the destroyed parish register row.
+2. **Systematic omissions:** Shaded void regions with dashed borders (a category-level absence, not a point absence). Anna Meier's guild register row marked as "Systematically excluded: women."
+3. **Transmission gaps:** Torn-pattern overlay on the destroyed parish register row (1600–1680). Fire scar at 1681 on the timeline.
 
-The key interaction: toggling absence modeling off makes all three types *invisible* — demonstrating that standard models cannot show what they cannot represent.
+The key interaction: the "Hide Absences" toggle removes all structured absence markers — demonstrating that standard models cannot show what they cannot represent. When toggled off, the data looks complete and the gaps become invisible.
+
+The Model Mirror (Station 5: "Reflecting") shows the cumulative effect: all absence-related dimensions disappear when moving from the full HI model to a relational database or spreadsheet.
 
 ## Related
 

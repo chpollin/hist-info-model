@@ -10,7 +10,7 @@ status: active
 Navigations-Dokument für den Research Vault des Projekts "Foundations for a Data Model of Historical Information".
 
 **Vault-Statistik:** 20 Markdown-Dateien (9 Theory, 4 Approaches, 2 Evidence/Examples, 2 Design, 1 Paper, 2 Process).
-**Letzte Konsolidierung:** 2026-03-22 (M16).
+**Letztes Update:** 2026-03-22 (M17 — datengetriebene Visualisierungen).
 
 ## Theory (01-theory/)
 
@@ -39,15 +39,15 @@ Navigations-Dokument für den Research Vault des Projekts "Foundations for a Dat
 
 | Dokument | Inhalt | Status |
 |----------|--------|--------|
-| [[Examples-Overview]] | 3 synthetische Szenarien (Rechnungsbuch, Prosopographie, Edition), alle 24 Requirements | draft |
+| [[Examples-Overview]] | 4 synthetische Szenarien (Rechnungsbuch, Prosopographie, Edition, Zunftstreit), alle 24 Requirements | draft |
 | [[Project-Evidence]] | 4 echte Projekte konsolidiert: DEPCHA, SuGW, M³GIM, ZBZ | stub |
 
 ## Design (04-design/)
 
 | Dokument | Inhalt | Status |
 |----------|--------|--------|
-| [[Design]] | Website-Architektur: 6 Sektionen, 5 Visualisierungstypen, D3.js | draft |
-| [[Data]] | JSON-Schema-Dokumentation: 8 Dateien, Invarianten | draft |
+| [[Design]] | Website-Architektur: 5 Stationen (Reading, Tracing, Comparing, Reconstructing, Reflecting), D3.js | draft |
+| [[Data]] | JSON-Schema-Dokumentation: 9 Dateien (inkl. scenario_d.json), Invarianten | draft |
 
 ## Paper (05-paper/)
 

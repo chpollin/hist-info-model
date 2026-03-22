@@ -298,3 +298,42 @@ Kritische Analyse des Vault-Zustands: 31 Dateien mit hoher struktureller Vollst�
 - LLM-gestützte KG-Konstruktion (ATR4CH) ist keine Modellierung, aber eine zunehmend relevante Popuierungsmethode
 
 **Vault-Statistik nach M16:** 20 Markdown-Dateien im Research Vault (9 Theory, 4 Approaches, 2 Evidence/Examples, 2 Design, 1 Paper, 2 Process). Reduktion um 35% bei gleichzeitiger Verdichtung der Information und Erweiterung um 8 neue Ansätze
+
+### M17: Datengetriebene Informationsvisualisierungen
+
+Grundlegender Umbau der Website von abstrakten Theorie-Diagrammen zu interaktiven historischen Datenvisualisierungen. Die alte Website visualisierte *Metadaten über die Theorie* (Derivation Graph, Evaluation Heatmap, Radar Chart). Die neue Website macht *historische Information selbst* erfahrbar.
+
+**Neuer narrativer Fluss — 5 Stationen als scholarly tasks:**
+
+1. **Lesen** (Source Reading Table) — Schichten eines einzelnen Quelleneintrags mit abschaltbaren Layern: diplomatisch/normalisiert, temporale Schichten, Referenzsysteme, emic/etic-Kategorien, Unsicherheit
+2. **Verfolgen** (Person Tracer) — Person über Quellen hinweg: Erscheinungen als Punkte, strukturierte Abwesenheiten (Known Unknown, Systematic Omission, Transmission Gap), Identitätsstreit, Feuernarbe 1681
+3. **Vergleichen** (Witness Comparator) — 4 Textzeugen synoptisch: Stemma-Diagramm, Varianten-Highlighting, Material-Features-Panel, Diplomatisch/Carrier-Toggle
+4. **Rekonstruieren** (Event Reconstructor) — 5 Quellen über den Zunftstreit 1702: radiale Quellenanordnung, Kategorienwandel-Timeline 1702→1905→2020, epistemische Distanz-Kette, Perspektivenvergleich
+5. **Reflektieren** (Model Mirror) — Dasselbe Datum in drei Modellen (volles HI-Modell → relationale DB → Spreadsheet): Informationsverlust-Zähler, Geister-Overlay für verlorene Dimensionen
+
+**Neue Dateien:**
+- `data/examples/scenario_d.json` — Szenario D: Der Zunftstreit von 1702, 5 Quellen (Gilderegister, Ratsprotokoll, Privatbrief, Lokalhistorie 1905, Datenbank 2020), 3 Kategorisierungen, 3-stufige epistemische Distanzkette, Perspektivenvergleiche
+- `site/js/viz/source-reader.js` — Viz 1
+- `site/js/viz/person-tracer.js` — Viz 2
+- `site/js/viz/witness-comparator.js` — Viz 3
+- `site/js/viz/event-reconstructor.js` — Viz 4
+- `site/js/viz/model-mirror.js` — Viz 5
+
+**Modifizierte Dateien:**
+- `data-loader.js` — Lädt scenario_d.json, erweitert `getScenario()`
+- `requirement_examples.json` — R-A2 (Event-Centricity) und R-E5.1 (Temporal Categorization) auf Szenario D aktualisiert
+- `scenario_b.json` — Cross-Referenz zu Szenario D ergänzt
+- `index.html` — Komplett neu: 5 Stationen + Hero + About
+- `style.css` — ~500 Zeilen neue Komponentenstile für alle 5 Vizs
+- `app.js` — Neue Architektur mit Lazy-Initialisierung via IntersectionObserver
+- `validate_data.py` — Validiert scenario_d.json, akzeptiert 4 Szenarien
+
+**Leitfrage der Seite:** "Was passiert, wenn man eine historische Quelle in Daten übersetzen will?"
+
+**Architektonische Entscheidungen:**
+- Lazy Loading: Visualisierungen erst bei Sichtbarkeit initialisiert (IntersectionObserver)
+- Alte Visualisierungsdateien (derivation-graph.js, heatmap.js, radar-chart.js, requirement-selector.js, lacuna-viz.js) bleiben im Repository, werden aber nicht mehr importiert
+- Scholar-centered Design: Jede Station entspricht einem Forschungsschritt
+- Daten vor Diagrammen: Die Eigenschaften historischer Information emergieren aus der Erfahrung, nicht aus Labels
+
+**Validierung:** `python scripts/validate_data.py` → ALL CHECKS PASSED (9 JSON-Dateien, 24 Requirements, 168 Ratings, 4 Szenarien)

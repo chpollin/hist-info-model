@@ -7,45 +7,53 @@ status: draft
 
 # Design Document: Historical Information Web Interface
 
-**Version:** 1.0
+**Version:** 2.0 (M17 — datengetriebene Visualisierungen)
 **Technology:** Static HTML/CSS/Vanilla JS + D3.js v7 (local copy, no CDN)
 
 ---
 
 ## 1 Page Structure
 
-Single-page application with scroll-based navigation. Six sections:
+Single-page application with scroll-based navigation. Seven sections structured as five scholarly "stations" plus introduction and about:
 
 ```
 ┌──────────────────────────────────────────┐
 │  Header / Navigation Bar (sticky)        │
 ├──────────────────────────────────────────┤
 │  §1 Introduction                         │
-│  Three Primitives overview               │
+│  Leitfrage + Three Primitives overview   │
 ├──────────────────────────────────────────┤
-│  §2 Derivation Graph                     │
-│  Interactive DAG: P → E/M/S (→ R)        │
+│  §2 Reading (Station 1)                  │
+│  Source Reading Table — Viz 1            │
 ├──────────────────────────────────────────┤
-│  §3 Evaluation Matrix                    │
-│  Heatmap + Radar Charts                  │
+│  §3 Tracing (Station 2)                 │
+│  Person Tracer — Viz 2                   │
 ├──────────────────────────────────────────┤
-│  §4 Requirement Explorer                 │
-│  Split-screen scenario visualizations    │
+│  §4 Comparing (Station 3)               │
+│  Witness Comparator — Viz 3              │
 ├──────────────────────────────────────────┤
-│  §5 Absence Modeling                     │
-│  Lacuna visualization + Thaller compare  │
+│  §5 Reconstructing (Station 4)           │
+│  Event Reconstructor — Viz 4             │
 ├──────────────────────────────────────────┤
-│  §6 About / Methodology                  │
+│  §6 Reflecting (Station 5)              │
+│  Model Mirror — Viz 5                    │
+├──────────────────────────────────────────┤
+│  §7 About / Methodology                  │
 │  Promptotyping as method, references     │
 └──────────────────────────────────────────┘
 ```
 
+**Leitfrage der Seite:** "Was passiert, wenn man eine historische Quelle in Daten übersetzen will?"
+
+**Narrativer Fluss:** Jede Station entspricht einem scholarly task. Die Eigenschaften historischer Information emergieren aus den Daten, nicht aus Labels.
+
 ## 2 Navigation
 
-- Sticky top bar with section links
+- Sticky top bar with section links (7 links: Introduction, Reading, Tracing, Comparing, Reconstructing, Reflecting, About)
 - Active section highlighted during scroll (Intersection Observer API)
 - Smooth scroll on click
-- Breadcrumb-style context indicator when inside deep views (e.g., specific requirement)
+- Hamburger menu on mobile (≤767px)
+- Scroll progress bar (3px gradient top)
 
 ## 3 Color System
 
@@ -59,240 +67,184 @@ Single-page application with scroll-based navigation. Six sections:
 | Semiotic | Rose | `--color-semiotic` | `#e11d48` |
 | Structural | Slate | `--color-structural` | `#475569` |
 
-### Rating Palette (Evaluation)
+### Rating Palette (used in Model Mirror)
 
 | Level | Color | CSS Variable | Hex |
 |-------|-------|-------------|-----|
 | Structural (dedicated) | Green | `--color-rating-structural` | `#16a34a` |
 | Metadata (generic) | Yellow | `--color-rating-metadata` | `#ca8a04` |
-| Absent | Red/Gray | `--color-rating-absent` | `#dc2626` |
+| Absent | Red | `--color-rating-absent` | `#dc2626` |
 
-### Systemic Gap Indicator
+### Systemic Gap / Absence Indicator
 
-- Pulsing border animation (`--color-gap`: `#7c3aed`, purple)
-- Used on DAG nodes, heatmap rows, requirement cards
+- Purple (`--color-gap`: `#7c3aed`)
+- Used for absence markers, known unknowns, systematic omissions, transmission gaps
 
 ### Accessibility
 
 - All color pairs meet WCAG AA contrast ratio (4.5:1 minimum)
 - Patterns/icons supplement color for colorblind users
-- Rating cells use pattern fills in addition to color: structural = solid, metadata = hatched, absent = dotted
 
 ## 4 Typography
 
-- **Headings:** System font stack (`-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`)
-- **Body:** Same system stack, 16px base, 1.6 line height
-- **Code/Formal:** `'JetBrains Mono', 'Fira Code', monospace` for formal notation
-- **Scale:** 1.25 ratio (h1: 2.441rem, h2: 1.953rem, h3: 1.563rem, h4: 1.25rem)
+- **Headings:** Inter (Google Fonts) + system fallback stack
+- **Body:** Inter, 16px base, 1.65 line height
+- **Code/Formal:** `'JetBrains Mono', 'Fira Code', 'Consolas', monospace`
+- **Scale:** 1.25 ratio (h1: 2.75rem, h2: 2rem, h3: 1.5rem, h4: 1.2rem)
 
 ## 5 Layout Grid
 
 - Max width: 1200px, centered
-- 12-column grid for flexibility
-- Responsive breakpoints: 1200px (desktop), 768px (tablet), 375px (mobile)
-- Side panels: 400px fixed width on desktop, full-width overlay on mobile
+- Responsive breakpoints: 1200px (desktop), 768px (tablet/mobile)
+- Viz containers: min-height 500px for station vizs
+- Scroll reveal animations on `.reveal` class elements (0.7s cubic-bezier)
 
 ## 6 Visualization Specifications
 
-### 6.1 Derivation Graph (§2)
+### 6.1 Source Reading Table (§2 — Station 1: "Reading")
 
-**D3 Component:** Custom hierarchical layout (NOT force-directed — the three-tier structure P→E/M/S is too important to leave to physics simulation)
+**"Was sagt ein einzelner Eintrag wirklich?"**
 
-**Layout:**
-```
-Layer 0 (top):     P1        P2        P3
-                    |    ╱  ╱╲╲╲  ╲    ╱ ╲
-Layer 1 (middle):  E1 E5 S1 E2 M1 M3 M4 S2 E3 E4 S3 M2
-                   (property nodes, grouped by type)
-Layer 2 (bottom):  R-nodes (shown on click/expand, not by default)
-```
+- **Module:** `site/js/viz/source-reader.js`
+- **Data:** `scenario_a.json` (Fugger-Transaktionen), `scenario_c.json` (Chronikpassage)
+- **Entry-Tabs:** Pfefferhandel | Darlehen | Mitgift | Chronikpassage
+- **Layer-Toggles:** Diplomatisch/Normalisiert, Temporale Schichten, Referenzsysteme, Kategorien (emic/etic), Unsicherheit
+- **D3-Einsatz:** SVG swimlanes für temporale Schichten (Event/Recording/Interpretation Time)
+- **DOM-Pattern:** HTML für Text (besseres Wrapping), D3 nur für Balken/Timeline
+- **HI emergiert durch:** Schimmernder Split-Betrag (2000/2500), emic/etic-Split, drei Zeitebenen für dasselbe Ereignis
 
-**Node Rendering:**
-- Primitives: large circles (r=40), filled with group color, bold label
-- Properties: medium circles (r=28), filled with group color, smaller label
-- Requirements: small rectangles (when expanded), showing ID + short label
-- Systemic gap requirements: purple pulsing border
+### 6.2 Person Tracer (§3 — Station 2: "Tracing")
 
-**Edge Rendering:**
-- Single derivation: solid line, 2px, slightly curved
-- Combined derivation: dashed line from each source, meeting at target. Two lines converge.
-- Arrowheads at target end
+**"Was wissen wir wirklich über Johann Meier?"**
 
-**Interactions:**
-- Hover on node: highlight node + all connected edges + connected nodes. Dim everything else.
-- Click on node: open side panel with full definition, formal notation, and list of requirements
-- Click on P2: should highlight 7 connected properties (demonstrating it is the most productive primitive)
+- **Module:** `site/js/viz/person-tracer.js`
+- **Data:** `scenario_b.json` (Prosopographie mit Abwesenheiten)
+- **Person-Selector:** Johann | Anna | Peter | Hans — jede Person erzählt eine andere Abwesenheitsgeschichte
+- **Grid:** x=Zeit (1650–1750), y=Quellen (5 Zeilen), Schnittpunkte = Erscheinungen/Abwesenheiten
+- **Zell-Typen:**
+  - Gefüllter Kreis (teal) = Person erscheint
+  - Gestrichelter Hohlkreis (lila) = Known Unknown (Quelle zerstört)
+  - Schattierte Fläche (lila) = Systematische Auslassung (by design)
+  - Leer = nicht erwähnt
+- **Feuernarbe:** 1681 Markierung auf Timeline mit torn-pattern
+- **Characterization-Callouts:** Hover → "ehrbarer Meister" vs. "streitbarer Weber"
+- **Identity-Fork:** Hans Weber → Gabelung mit "?" und zwei Forscher-Interpretationen
+- **Absence Toggle:** Hide/Show aller strukturierten Abwesenheitsmarker
+- **HI emergiert durch:** Johanns Geburt als Hohlkreis, Annas Gilde-Spalte als strukturelle Leere, Feuernarbe als viszeraler Verlust
 
-**Data Source:** `data/derivation_graph.json`
+### 6.3 Witness Comparator (§4 — Station 3: "Comparing")
 
-### 6.2 Evaluation Heatmap (§3)
+**"Ist das derselbe Text?"**
 
-**D3 Component:** SVG grid with rect elements
+- **Module:** `site/js/viz/witness-comparator.js`
+- **Data:** `scenario_c.json` (4 Textzeugen, Stemma, Varianten)
+- **Stemma-Diagramm:** D3 tree (Original → Archetypus → A/β → B/C/D), hypothetische Knoten gestrichelt
+- **Synoptische Text-Spalten:** 2–4 Spalten je nach Auswahl, diplomatisch mit Toggle für Normalisierung
+- **Varianten-Highlighting:** Orthographische Varianten (amber underline via CSS), substantive Varianten (rose border-left)
+- **Material-Features-Panel:** Pro Textzeuge: Material, Schrift, Schäden, Wasserzeichen, Tintenfarbe
+- **Carrier/Content Toggle:** "Trägermaterial" an/aus
+- **HI emergiert durch:** Diplomatisch→Normalisiert zeigt Transkription als Interpretation; rote Tinte als Information über die Handschrift
 
-**Layout:**
-```
-           Thaller  SDHSS  CRM  Book. Fact. STAR PROV-O
-           (79%)    (67%)  (63%) (38%) (33%) (33%) (17%)
-R-E1.1     [■]      [▒]    [▒]   [▒]   [▒]   [░]   [░]
-R-E1.2     [■]      [▒]    [▒]   [░]   [■]   [░]   [░]
-...
-(24 rows, grouped by epistemic/medial/semiotic/structural)
-```
+### 6.4 Event Reconstructor (§5 — Station 4: "Reconstructing")
 
-**Cell Size:** 48x32px, with 2px gap
-**Row Groups:** Separated by horizontal divider lines with group label
+**"Fünf Berichte über einen Streit"**
 
-**Interactions:**
-- Hover on cell: tooltip with rating level + justification
-- Click on cell: expanded panel with full justification
-- Toggle: equal weight / textual domain weighting (updates column header percentages)
-- Filter buttons: All | Epistemic | Medial | Semiotic | Structural | Systemic Gaps
-- Click on requirement label (row header): navigate to Requirement Explorer §4
-- Systemic gap rows: highlighted with purple left border
+- **Module:** `site/js/viz/event-reconstructor.js`
+- **Data:** `scenario_d.json` (Zunftstreit 1702, 5 Quellen)
+- **Event-Hub:** D3 radiale Anordnung — zentraler Ereignisknoten, 5 Quellen trigonometrisch verteilt
+- **Quellen-Karten:** Klick auf 2 Quellen → Perspektivenvergleich (Übereinstimmung/nur A/nur B/Widerspruch/Spannung)
+- **Kategorienwandel-Timeline:** 1702→1905→2020 mit 3 Knoten ("Handwerkerehre"→"Zunftzwang"→"labor_dispute")
+- **Epistemische Distanz-Kette:** 3 Stufen mit abnehmender Opazität und Dimensionszähler (17→8→4)
+- **HI emergiert durch:** Fünf Quellen, fünf Wahrheiten, ein Ereignis; Kategorienwandel als semantischer Drift; Widerspruch Täter vs. Opfer
 
-**Data Source:** `data/evaluation_matrix.json`
+### 6.5 Model Mirror (§6 — Station 5: "Reflecting")
 
-### 6.3 Radar Chart (§3, below heatmap)
+**"Was verliert jedes Datenmodell?"**
 
-**D3 Component:** Custom SVG radar/spider chart
-
-**Layout:** One radar chart with overlayable polygons. Axes = requirement groups (4 axes: epistemic, medial, semiotic, structural) or per-requirement (24 axes).
-
-**Default View:** 4 axes (grouped), with Thaller + CIDOC-CRM + SDHSS overlaid as benchmark comparison.
-
-**Interactions:**
-- Checkboxes to select 1–3 approaches for overlay
-- Toggle: 4-axis (grouped) / 24-axis (per requirement)
-- Domain profile selector (equal / textual)
-- Hover on polygon edge: show exact value
-
-**Data Source:** `data/evaluation_matrix.json` (aggregated)
-
-### 6.4 Scenario Explorer (§4)
-
-**D3 Component:** Split-screen with custom visualizations per requirement type
-
-**Layout:**
-```
-┌─────────────────────┬─────────────────────┐
-│   Source Material    │   Model View        │
-│                     │                     │
-│  [rendered example] │  [data model viz]   │
-│                     │                     │
-│  E.g., ledger page  │  E.g., event graph  │
-│  or register entry  │  with assertions    │
-├─────────────────────┴─────────────────────┤
-│  [Requirement fulfilled]  [NOT fulfilled]  │
-│  [Approach: ▼ Thaller] [▼ CIDOC-CRM]     │
-└───────────────────────────────────────────┘
-```
-
-**Requirement Selector:** Sidebar or top bar with all 24 requirements, grouped. Systemic gaps highlighted.
-
-**"With/Without" Toggle:** Shows same data with requirement fulfilled (approach X) vs. not fulfilled (approach Y). The *absence of information* in the "without" view is the key visual argument.
-
-**Per-Requirement Visualization Types:**
-- **Uncertainty (R-E1.x):** Confidence bars, probability distributions, ghost/transparent elements for uncertain values
-- **Perspectives (R-E3.x):** Parallel columns showing different source accounts, with connecting lines for agreements/contradictions
-- **Absence (R-E1.3, R-M2.2, R-M3.1):** Ghost elements, dashed outlines for known unknowns, shaded void regions, torn timeline
-- **Temporal (R-S1.x):** Multi-track timeline with layers for event/creation/interpretation time
-- **Textual (R-S2.1):** Synoptic text display with diplomatic/normalized toggle
-- **Relations (R-S3.1):** Stemma diagram with typed edges
-
-**Data Source:** `data/examples/requirement_examples.json` + `data/examples/scenario_*.json`
-
-### 6.5 Lacuna Visualization (§5)
-
-**D3 Component:** Custom SVG with interactive toggle
-
-**Concept:** A prosopographic dataset (Scenario B) is shown with full information, then the user can "remove" the lacuna modeling to see what disappears.
-
-**Three Absence Types — Visual Language:**
-
-1. **Known unknowns (R-E1.3):** Hollow circles with dashed borders. Label: "Birth date: ?" The circle is there (the person existed), but the fill is empty (the information is lost). On toggle-off: the hollow circle disappears entirely.
-
-2. **Systematic omissions (R-M2.2):** Shaded void region in a data table or network graph. Where guild members are shown as nodes, women appear as a translucent shaded area labeled "Systematically excluded: women." On toggle-off: the shaded area vanishes, and the data looks complete (the absence becomes invisible).
-
-3. **Transmission gaps (R-M3.1):** Timeline with a torn/faded segment for 1600–1680 (lost registers). The torn segment carries a label: "Parish registers destroyed, 1681." On toggle-off: the timeline appears continuous (no indication that records are missing).
-
-**Toggle:** Large, prominent button: "Show/Hide Absence Modeling." The transition is animated — elements fade in/out to emphasize the visual difference.
-
-**Explanation Panel:** Below the visualization, three cards explain the causes:
-1. Positive bias: "Ontologies describe what exists, not what is missing"
-2. OWA problem: "In OWL, missing data = unknown, not = informationally significant"
-3. Missing tradition: "No formalization tradition for non-knowledge"
-
-**Thaller Comparison:** Side-by-side: Thaller's Incompleteness Taxonomy (Ex 6.1–6.3: Explicit Defaults, Triggered Defaults, Structural Incompleteness) mapped onto the three absence types. Shows convergence and divergence.
-
-**Data Source:** `data/examples/scenario_b.json` + `data/requirements.json` (systemic gaps)
+- **Module:** `site/js/viz/model-mirror.js`
+- **Data:** Alle Szenarien (A, B, C, D)
+- **Datenpunkt-Tabs:** Pfefferhandel | Johann Meier | Chronikpassage | Zunftstreit
+- **3-Spalten-Vergleich:**
+  - Spalte 1: Volles HI-Modell (alle Schichten, Unsicherheit, Provenienz, Abwesenheit)
+  - Spalte 2: Relationale DB (ein Datum, ein Betrag, ein Name)
+  - Spalte 3: Spreadsheet (alles ist ein String)
+- **Informationsverlust-Zähler:** "17 → 8 → 4 dimensions" als große Zahlen
+- **Geister-Overlay:** Verlorene Felder als 0.15 opacity Einträge in Spalte 2/3
+- **Lost-Panel:** Auflistung aller verlorenen Dimensionen pro Spalte
+- **HI emergiert durch:** Alle Properties gleichzeitig, durch ihre Abwesenheit
 
 ## 7 Responsive Behavior
 
 ### Desktop (≥1200px)
-- Full layout: side panels visible inline
-- Heatmap: all columns visible
-- Split-screen: true side-by-side
+- Full layout: 3-column Model Mirror, 4-column Witness Comparator
+- Source Reader: 2-column (display + controls)
 
-### Tablet (768–1199px)
-- Side panels slide in as overlays
-- Heatmap: horizontally scrollable
-- Split-screen: stacked vertical
-
-### Mobile (≤767px)
-- Single column layout
-- Visualizations simplified (fewer labels, touch-optimized)
-- Side panels: full-screen modals
-- Radar chart: 4-axis only
+### Tablet/Mobile (≤767px)
+- Single column layout for all viz components
+- Source Reader controls above display
+- Witness Comparator: 1 column (stacked)
+- Model Mirror: 1 column (stacked)
+- Hamburger navigation
 
 ## 8 Data Loading Strategy
 
 ```javascript
 // data-loader.js provides:
 const DataLoader = {
-  primitives: null,
-  graph: null,
-  requirements: null,
-  matrix: null,
-  examples: null,
+  primitives, graph, requirements, matrix,
+  scenarioA, scenarioB, scenarioC, scenarioD,
+  requirementExamples,
 
-  async init() {
-    // Parallel fetch of all JSON files
-    const [p, g, r, m, ea, eb, ec, re] = await Promise.all([
-      fetch('../data/primitives.json').then(r => r.json()),
-      fetch('../data/derivation_graph.json').then(r => r.json()),
-      fetch('../data/requirements.json').then(r => r.json()),
-      fetch('../data/evaluation_matrix.json').then(r => r.json()),
-      fetch('../data/examples/scenario_a.json').then(r => r.json()),
-      fetch('../data/examples/scenario_b.json').then(r => r.json()),
-      fetch('../data/examples/scenario_c.json').then(r => r.json()),
-      fetch('../data/examples/requirement_examples.json').then(r => r.json()),
+  async init(basePath) {
+    // Parallel fetch of all 9 JSON files
+    const [p, g, r, m, sa, sb, sc, sd, re] = await Promise.all([
+      fetch(`${basePath}/primitives.json`),
+      fetch(`${basePath}/derivation_graph.json`),
+      fetch(`${basePath}/requirements.json`),
+      fetch(`${basePath}/evaluation_matrix.json`),
+      fetch(`${basePath}/examples/scenario_a.json`),
+      fetch(`${basePath}/examples/scenario_b.json`),
+      fetch(`${basePath}/examples/scenario_c.json`),
+      fetch(`${basePath}/examples/scenario_d.json`),
+      fetch(`${basePath}/examples/requirement_examples.json`),
     ]);
-    // Store and validate...
   }
 };
 ```
 
+**Lazy Loading:** Visualisierungen werden erst initialisiert, wenn ihre Container via IntersectionObserver sichtbar werden (rootMargin: 200px).
+
 ## 9 Module Architecture
 
-Each visualization is a self-contained module with a single entry point:
+Jede Visualisierung ist ein selbständiges ES-Modul:
 
 ```javascript
-// Example: derivation-graph.js
-export function initDerivationGraph(containerSelector, data) {
-  // Creates SVG, binds data, sets up interactions
-  // Returns API: { highlight(nodeId), reset(), resize() }
-}
+// site/js/viz/source-reader.js
+export function initSourceReader(containerSelector, data) { ... }
+
+// site/js/viz/person-tracer.js
+export function initPersonTracer(containerSelector, data) { ... }
+
+// site/js/viz/witness-comparator.js
+export function initWitnessComparator(containerSelector, data) { ... }
+
+// site/js/viz/event-reconstructor.js
+export function initEventReconstructor(containerSelector, data) { ... }
+
+// site/js/viz/model-mirror.js
+export function initModelMirror(containerSelector, data) { ... }
 ```
 
-Cross-linking handled by `cross-links.js` which registers click handlers and coordinates between modules.
+`app.js` koordiniert: DataLoader → IntersectionObserver → init-Funktionen.
 
 ## 10 Print/Export
 
-- `@media print` stylesheet hides navigation, simplifies visualizations to static SVG
-- Each visualization section self-contained for academic screenshot use
+- `@media print` stylesheet hides navigation, simplifies visualizations
+- `.reveal` elements set to `opacity: 1; transform: none`
+- Each section self-contained for academic screenshot use
 
 ## Related
 
 - [[Data]] — JSON-Schema-Dokumentation
 - [[Examples-Overview]] — Synthetische Beispiele für Visualisierungen
-- [[Evaluation-Framework]] — Bewertungsmethodik als Datenquelle für Heatmap
+- [[Evaluation-Framework]] — Bewertungsmethodik (Theorie-Daten, nicht direkt visualisiert)

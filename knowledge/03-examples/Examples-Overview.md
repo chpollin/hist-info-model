@@ -125,6 +125,30 @@ status: draft
 
 ---
 
+## Scenario D: The Guild Dispute (NEU in M17)
+
+**Setting:** One event — the guild dispute over the dye monopoly in Brückstadt, September 1702 — seen through five sources spanning three centuries. This scenario fills gaps not covered by A–C: event-centricity, temporal categorization change, cross-source synthesis, and epistemic distance across source levels.
+
+### Entities
+
+- **Event:** Guild dispute over dye monopoly, September 1702, Brückstadt. Involves Johann Meier (the same person from Scenario B), a Dye Master, and guild authorities.
+- **Sources (5):**
+  - **Guild Register (1702, primary):** "dem Meister Meÿer das Handwerk geleget" — frames as violation of guild honor
+  - **Council Minutes (1702, primary):** "streitet mit dem Farbmeister wegen des Farbmonopols" — frames as administrative dispute, provides exact date (Sept 15)
+  - **Private Letter (1705, primary):** "hab das recht auf meiner Seiten gehabt" — Meier's subjective view, 3 years later
+  - **Local History (1905, secondary):** "gegen den Zunftzwang aufbegehrte" — historicist reframing, cites only guild register
+  - **Database (2020, tertiary):** `{ type: "labor_dispute" }` — controlled vocabulary, cites 1905 book
+
+### Requirement Mappings
+
+**R-A2 (Event-Centricity):** The guild dispute is the central event connecting five independent sources. Without the event as a hub, the five documents remain unconnected. (Updated from Scenario A.)
+
+**R-E5.1 (Temporal Categorization):** The same event is categorized as "wider die Ehre des Handwerks" (1702, guild language), "Zunftzwang" (1905, historicist framework), and "labor_dispute" (2020, database taxonomy). Each category is temporally bounded. (Updated from Scenario A.)
+
+**Cross-reference to Scenario B:** Johann Meier's appearance in the council minutes (1702, "mentioned in guild dispute") IS this event. The `cross_references` field in both scenario_b.json and scenario_d.json establishes this link.
+
+---
+
 ## Requirement-Scenario Assignment Matrix
 
 | Requirement | Primary Scenario | Secondary | Key Example |
@@ -133,11 +157,11 @@ status: draft
 | R-E1.2 | B | — | Hans Weber / Johannes Weber identification |
 | R-E1.3 | B | — | Johann Meier birth date: known unknown |
 | R-E2.1 | A | B | Every claim traces to folio/entry |
-| R-E2.2 | B | — | Guild register → 1905 book → 2015 database |
-| R-E3.1 | B | — | "ehrbarer Meister" vs. "streitbarer Weber" |
+| R-E2.2 | B | D | Guild register → 1905 book → 2015 database |
+| R-E3.1 | B | D | "ehrbarer Meister" vs. "streitbarer Weber" |
 | R-E3.2 | B | — | Tension (guild/council), independence (tax) |
 | R-E4.1 | B | — | Researcher A (2015) vs. B (2020) identification |
-| R-E5.1 | A | — | "Kaufmann" = merchant + banker + trader |
+| R-E5.1 | **D** | A | "Handwerkerehre" → "Zunftzwang" → "labor_dispute" |
 | R-E5.2 | A | — | "welscher Handler" (emic) vs. "Venetian trader" (etic) |
 | R-M1.1 | A | C | Accounting record vs. manuscript vs. print |
 | R-M2.1 | A | — | Ledger for accountability, not history |
@@ -145,22 +169,23 @@ status: draft
 | R-M3.1 | B | — | Parish registers 1600–1680 burned in 1681 |
 | R-M4.1 | C | — | Parchment codex vs. text content |
 | R-M4.2 | C | — | Red ink for names, water damage, watermarks |
-| R-S1.1 | A | C | Event time / recording time / reading time |
+| R-S1.1 | A | C, D | Event time / recording time / reading time |
 | R-S1.2 | A | — | Ducats, guilders, saint's day dating |
 | R-S2.1 | C | B | "grozzer" (diplomatic) vs. "großer" (normalized) |
 | R-S3.1 | C | — | Witness stemma: A/B shared Vorlage, C abbreviates B |
 | R-A1 | C | B | Transcription vs. historical assertion |
-| R-A2 | A | B | Pepper purchase as organizing event |
+| R-A2 | **D** | A | Guild dispute as event hub connecting 5 sources |
 | R-A3 | B | — | New letter discovery adds without modifying |
 | R-A4 | A | B | Every claim wrapped in assertion with source + confidence |
 
 ### Coverage Check
 
-- **Scenario A:** R-E1.1, R-E2.1, R-E5.1, R-E5.2, R-M1.1, R-M2.1, R-S1.1, R-S1.2, R-A2, R-A4 = **10 requirements**
+- **Scenario A:** R-E1.1, R-E2.1, R-E5.2, R-M1.1, R-M2.1, R-S1.1, R-S1.2, R-A4 = **8 requirements**
 - **Scenario B:** R-E1.2, R-E1.3, R-E2.1, R-E2.2, R-E3.1, R-E3.2, R-E4.1, R-M2.2, R-M3.1, R-S2.1, R-A1, R-A3, R-A4 = **13 requirements**
 - **Scenario C:** R-M1.1, R-M4.1, R-M4.2, R-S1.1, R-S2.1, R-S3.1, R-A1 = **7 requirements**
+- **Scenario D:** R-A2, R-E5.1 = **2 requirements** (primary), + secondary for R-E2.2, R-E3.1, R-S1.1
 - All 24 requirements covered: **Yes**
-- Systemic gaps covered by 2+ scenarios: R-E1.3 (B), R-E5.2 (A), R-M2.2 (B), R-M3.1 (B), R-S2.1 (B+C) — R-E1.3, R-M2.2, R-M3.1 only have one scenario. Acceptable because these are all absence-related and Scenario B is specifically designed for absence modeling.
+- Systemic gaps: R-E1.3 (B), R-E5.2 (A), R-M2.2 (B), R-M3.1 (B), R-S2.1 (B+C)
 
 ## Related
 

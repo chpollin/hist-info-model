@@ -4,7 +4,7 @@
 
 Erarbeitung der theoretischen und evidenzbasierten Grundlagen für ein Datenmodell historischer Information. Das Projekt konsolidiert: die Dissertation (Bookkeeping Ontology, DEPCHA, 5 Eigenschaften historischer Information), Thallers Framework (Ivory Stack, Factlets, Hypergraphen), Factoid/STAR-Modelle, CIDOC-CRM-Analyse und Erfahrungen aus echten DH-Projekten (SuGW, M³GIM, zbz-ocr-tei). Literatur-Survey 2024–2025 integriert (Linked Art 1.0, RDF-star, CRMinf, Hypergraph-KGs, MemO/NFDI4Memory, ProbFuzzOnto). Methode: Promptotyping.
 
-**Aktueller Stand:** Research Vault (`knowledge/`) konsolidiert (M16, 2026-03-22). 20 Dateien, 18 Ansätze aus 8 Paradigmen dokumentiert. Theorie-Schicht ist 70% fertig (draft). Evidenzbasierte Evaluation und Extraktion echter Projektdaten stehen noch aus. Website-Prototyp existiert, JSON-Daten sind Platzhalter.
+**Aktueller Stand:** Website-Prototyp umgebaut zu datengetriebenen Visualisierungen (M17, 2026-03-22). 5 Stationen (Reading, Tracing, Comparing, Reconstructing, Reflecting) mit echten historischen Daten aus 4 Szenarien. Research Vault (`knowledge/`) konsolidiert (M16). 20 Dateien, 18 Ansätze aus 8 Paradigmen dokumentiert. Theorie-Schicht ist 70% fertig (draft). Evidenzbasierte Evaluation und Extraktion echter Projektdaten stehen noch aus.
 
 ## Repository Structure
 
@@ -15,7 +15,7 @@ PLAN.md                  # Forschungsplan mit offenen Fragen und Arbeitsphasen
 
 knowledge/               # Research Vault (Obsidian-kompatibel, 20 Dateien)
   00-process/
-    Journal.md           # Process Document (M0–M16)
+    Journal.md           # Process Document (M0–M17)
     MOC.md               # Map of Contents mit Status-Übersicht
   01-theory/             # Theoretische Grundlagen (9 Dateien)
     Information.md            # Informationswissenschaftliches Fundament
@@ -33,7 +33,7 @@ knowledge/               # Research Vault (Obsidian-kompatibel, 20 Dateien)
     Evaluation-Framework.md   # Bewertungsmethodik
     Systemic-Gaps.md          # 5 systemische Lücken mit Status 2024–2025
   03-examples/           # Evidenz und Beispiele (2 Dateien)
-    Examples-Overview.md      # 3 synthetische Szenarien, alle 24 Requirements
+    Examples-Overview.md      # 4 synthetische Szenarien (A–D), alle 24 Requirements
     Project-Evidence.md       # 4 echte Projekte konsolidiert (DEPCHA, SuGW, M³GIM, ZBZ)
   04-design/
     Design.md                 # Website-Architektur
@@ -41,9 +41,10 @@ knowledge/               # Research Vault (Obsidian-kompatibel, 20 Dateien)
   05-paper/
     Paper-Outline.md          # Paper-Gliederung
 
-data/                    # JSON Single Source of Truth (Platzhalter — braucht Review!)
+data/                    # JSON Single Source of Truth (9 Dateien, inkl. scenario_d.json)
 scripts/                 # Python-Validierungsscripts
-site/                    # Website-Prototyp (HTML/CSS/Vanilla JS + D3.js)
+site/                    # Website-Prototyp (5 Stationen, HTML/CSS/Vanilla JS + D3.js)
+  js/viz/                # 5 Visualisierungsmodule (source-reader, person-tracer, witness-comparator, event-reconstructor, model-mirror)
 ```
 
 ## Key Principles
