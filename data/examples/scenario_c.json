@@ -1,0 +1,158 @@
+{
+  "id": "scenario_c",
+  "title_en": "Text Edition with Witnesses",
+  "title_de": "Quellenedition mit Textzeugen",
+  "setting": "Critical edition of 14th-century Middle High German chronicle (Brückstädter Chronik), preserved in three manuscripts and one early print",
+  "witnesses": [
+    {
+      "id": "ms-a",
+      "siglum": "A",
+      "title": "Manuscript A",
+      "material": "parchment",
+      "date_estimate": "ca. 1350",
+      "date_certainty": "medium",
+      "relation_to_original": "closest to presumed original",
+      "repository": "Universitätsbibliothek Heidelberg",
+      "extent": "84 folios",
+      "script": "textura",
+      "decoration": "red and blue initials",
+      "carrier": {
+        "type": "parchment_codex",
+        "dimensions": "28 x 20 cm",
+        "binding": "15th-century leather over wooden boards"
+      },
+      "material_features": [
+        {
+          "type": "ink_color",
+          "description": "Red ink used for proper names throughout",
+          "informational_significance": "Scribe distinguished proper names as a semiotic category through color — this is a deliberate editorial decision, not mere decoration",
+          "requirement": "R-M4.2"
+        }
+      ]
+    },
+    {
+      "id": "ms-b",
+      "siglum": "B",
+      "title": "Manuscript B",
+      "material": "paper",
+      "date_estimate": "ca. 1420",
+      "date_certainty": "high",
+      "relation_to_original": "copy with additions by second hand",
+      "repository": "Bayerische Staatsbibliothek München",
+      "carrier": {
+        "type": "paper_codex"
+      },
+      "material_features": [
+        {
+          "type": "water_damage",
+          "affected_folios": "12–18",
+          "description": "Text partially illegible on fols. 12–18 due to water damage",
+          "informational_significance": "The damage is itself information about the manuscript's post-production history",
+          "requirement": "R-M4.2"
+        },
+        {
+          "type": "watermark",
+          "description": "Bull's head watermark dates the paper to ca. 1415–1425",
+          "informational_significance": "Material property provides independent dating evidence",
+          "requirement": "R-M4.2"
+        }
+      ],
+      "hands": [
+        { "id": "hand-b1", "description": "Main scribe, consistent throughout" },
+        { "id": "hand-b2", "description": "Second hand, marginal additions and corrections" }
+      ]
+    },
+    {
+      "id": "ms-c",
+      "siglum": "C",
+      "title": "Manuscript C",
+      "material": "paper",
+      "date_estimate": "ca. 1480",
+      "relation_to_original": "abbreviated version, some passages paraphrased",
+      "repository": "Private collection",
+      "access": "restricted"
+    },
+    {
+      "id": "print-d",
+      "siglum": "D",
+      "title": "First Printed Edition",
+      "material": "print",
+      "date": "1520",
+      "printer": "Johann Petri, Basel",
+      "modifications": "Modernized spelling, added chapter divisions",
+      "relation_to_original": "derived from B or a now-lost manuscript close to B"
+    }
+  ],
+  "stemma": {
+    "description": "Hypothetical stemma codicum for the chronicle witnesses",
+    "relations": [
+      { "source": "original", "target": "archetype", "type": "derived_from", "certainty": "hypothetical" },
+      { "source": "archetype", "target": "ms-a", "type": "copy", "certainty": "high" },
+      { "source": "archetype", "target": "beta", "type": "copy", "certainty": "medium", "note": "beta is a hypothetical lost intermediate" },
+      { "source": "beta", "target": "ms-b", "type": "copy", "certainty": "medium" },
+      { "source": "beta", "target": "ms-c", "type": "abbreviation", "certainty": "medium", "note": "C abbreviates and paraphrases rather than copies faithfully" },
+      { "source": "ms-b", "target": "print-d", "type": "possibly_derived_from", "certainty": "low", "note": "D may derive from B or from a lost manuscript close to B" }
+    ],
+    "requirement": "R-S3.1"
+  },
+  "text_passage": {
+    "description": "Market fire in Brückstadt, 1298 — fol. 23r in Ms. A",
+    "variants": [
+      {
+        "witness": "ms-a",
+        "folio": "23r",
+        "text_diplomatic": "do wart ain grozzer brant uf dem markte ze Brugstat",
+        "text_normalized": "Da ward ein großer Brand auf dem Markt zu Brückstadt"
+      },
+      {
+        "witness": "ms-b",
+        "folio": "25v",
+        "text_diplomatic": "da wart ein großer brand uff dem marckte zu Bruckstat",
+        "text_normalized": "Da ward ein großer Brand auf dem Markt zu Brückstadt",
+        "marginal_note": {
+          "hand": "hand-b2",
+          "text": "anno domini MCCXCVIII in vigilia sancti Martini",
+          "significance": "Second hand adds precise dating (November 10, 1298) from an unknown source"
+        }
+      },
+      {
+        "witness": "ms-c",
+        "text_diplomatic": "es brante der markt von Bruckstat",
+        "text_normalized": "Es brannte der Markt von Brückstadt",
+        "note": "Paraphrased and abbreviated — transforms passive construction to active"
+      },
+      {
+        "witness": "print-d",
+        "text_diplomatic": "Da ward ein grosser Brand auff dem Marckt zu Brueckstatt",
+        "text_normalized": "Da ward ein großer Brand auf dem Markt zu Brückstadt",
+        "note": "Early New High German spelling modernization by printer"
+      }
+    ],
+    "variant_analysis": {
+      "orthographic_variants": [
+        { "word": "grozzer/großer/grosser", "type": "spelling", "witnesses": ["ms-a", "ms-b", "print-d"] },
+        { "word": "brant/brand/Brand", "type": "spelling", "witnesses": ["ms-a", "ms-b", "print-d"] },
+        { "word": "Brugstat/Bruckstat/Brueckstatt", "type": "place_name_spelling", "witnesses": ["ms-a", "ms-b/ms-c", "print-d"] }
+      ],
+      "substantive_variants": [
+        { "type": "paraphrase", "witness": "ms-c", "description": "C paraphrases the passage, losing the passive construction and the size descriptor 'grozzer'" },
+        { "type": "addition", "witness": "ms-b", "description": "Second hand adds precise date from unknown source" }
+      ],
+      "requirement": "R-S2.1"
+    }
+  },
+  "carrier_content_separation": {
+    "example": {
+      "carrier": {
+        "description": "Ms. A: parchment codex, 84 folios, 28x20cm, textura script, leather binding over wooden boards",
+        "unique_properties": "Red ink for proper names, blue initials for chapter starts"
+      },
+      "content": {
+        "description": "Brückstädter Chronik, narrative of city history from founding to ca. 1340",
+        "shared_with": ["ms-b", "ms-c", "print-d"]
+      },
+      "note": "The same informational content appears across four different physical carriers. Each carrier adds its own layer of information (material, script, additions).",
+      "requirement": "R-M4.1"
+    }
+  }
+}

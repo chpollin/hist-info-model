@@ -1,0 +1,39 @@
+{
+  "primitives": [
+    {
+      "id": "P1",
+      "label_en": "Temporal Irreversibility",
+      "label_de": "Temporale Irreversibilität",
+      "formal_notation": "∀i ∈ HI, ∀s = referent(i) → ¬∃v : reproduces(v, s)",
+      "description_en": "The described states of affairs cannot be re-observed. Not identical with reference to the past — scientific measurements also refer to past events, but the experiment is repeatable.",
+      "description_de": "Die beschriebenen Sachverhalte können nicht erneut beobachtet werden. Nicht identisch mit Vergangenheitsbezug — naturwissenschaftliche Messungen beziehen sich auch auf Vergangenes, aber das Experiment ist wiederholbar.",
+      "distinctness_test_en": "Removing P1: If the referent could be re-observed, we would have empirical data, not historical information. Uncertainty (E1) and category contingency (E5) would disappear because we could re-measure.",
+      "distinctness_test_de": "Entfernen von P1: Wenn der Referent erneut beobachtbar wäre, hätten wir empirische Daten, keine historische Information. Unsicherheit (E1) und Kategorienkontingenz (E5) würden verschwinden, weil wir erneut messen könnten."
+    },
+    {
+      "id": "P2",
+      "label_en": "Trace Mediation",
+      "label_de": "Spurenvermitteltheit",
+      "formal_notation": "∀i ∈ HI → ∃t ∈ Traces : mediates(t, i, referent(i)) ∧ ¬∃directAccess(referent(i))",
+      "description_en": "All access to the referent runs exclusively through traces (vestiges, reflections). There is no direct access to the historical state of affairs.",
+      "description_de": "Jeder Zugang zum Referenten läuft ausschließlich über Spuren (Vestiges, Reflections). Es gibt keinen direkten Zugang zum historischen Sachverhalt.",
+      "distinctness_test_en": "Removing P2: If we had direct access to the referent, we would not need sources. Mediality (M1), selectivity (M3), materiality (M4), and semiotic layering (S2) would be irrelevant.",
+      "distinctness_test_de": "Entfernen von P2: Wenn wir direkten Zugang zum Referenten hätten, bräuchten wir keine Quellen. Medialität (M1), Selektivität (M3), Materialität (M4) und semiotische Schichtung (S2) wären irrelevant."
+    },
+    {
+      "id": "P3",
+      "label_en": "Interpretive Constitution",
+      "label_de": "Interpretative Konstitution",
+      "formal_notation": "∀i ∈ HI → ∃a ∈ InterpretationActs, ∃ag ∈ Agents : constitutes(a, i) ∧ performs(ag, a)",
+      "description_en": "Historical information does not exist independently of interpretation. The trace-referent relationship is in principle underdetermined. Distinct from P2 through underdetermination: in measurement data, the trace-referent relationship is determined by calibration; in historical sources, it is in principle underdetermined.",
+      "description_de": "Historische Information existiert nicht unabhängig von Interpretation. Die Spur-Sachverhalt-Beziehung ist prinzipiell unterdeterminiert. Abgrenzung gegenüber P2 über Unterdeterminiertheit: bei Messdaten ist die Spur-Sachverhalt-Beziehung durch Kalibrierung determiniert, bei historischen Quellen prinzipiell unterdeterminiert.",
+      "distinctness_test_en": "Removing P3: If interpretation were not constitutive, historical information would be objective data extraction. Multiperspectivity (E3) and context-dependence (E4) would disappear.",
+      "distinctness_test_de": "Entfernen von P3: Wenn Interpretation nicht konstitutiv wäre, wäre historische Information objektive Datenextraktion. Multiperspektivität (E3) und Kontextabhängigkeit (E4) würden verschwinden."
+    }
+  ],
+  "meta": {
+    "epistemic_status": "Semi-formal. Predicates are intensional, not axiomatically defined. Structure is explicated, mechanical verification is not possible.",
+    "observation_level": "HI designates the set of historical information units considered as constituted in a given research context. Pragmatic bracketing of P3 at the meta-level.",
+    "derivation_criterion": "derivedFrom(E, P) means: E is only conceivable as a property of historical information if P holds. Ontologically necessary precondition, not epistemic recognition condition."
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "nodes": [
+    {
+      "id": "P1",
+      "type": "primitive",
+      "group": "primitive",
+      "label_en": "Temporal Irreversibility",
+      "label_de": "Temporale Irreversibilität",
+      "description_en": "The described states of affairs cannot be re-observed."
+    },
+    {
+      "id": "P2",
+      "type": "primitive",
+      "group": "primitive",
+      "label_en": "Trace Mediation",
+      "label_de": "Spurenvermitteltheit",
+      "description_en": "All access to the referent runs exclusively through traces."
+    },
+    {
+      "id": "P3",
+      "type": "primitive",
+      "group": "primitive",
+      "label_en": "Interpretive Constitution",
+      "label_de": "Interpretative Konstitution",
+      "description_en": "Historical information does not exist independently of interpretation."
+    },
+    {
+      "id": "E1",
+      "type": "property",
+      "group": "epistemic",
+      "label_en": "Uncertainty",
+      "label_de": "Unsicherheit",
+      "description_en": "Historical statements carry inherent degrees of uncertainty that cannot be fully eliminated."
+    },
+    {
+      "id": "E2",
+      "type": "property",
+      "group": "epistemic",
+      "label_en": "Source-Boundedness",
+      "label_de": "Quellengebundenheit",
+      "description_en": "Every historical claim must be traceable to specific sources."
+    },
+    {
+      "id": "E3",
+      "type": "property",
+      "group": "epistemic",
+      "label_en": "Multiperspectivity",
+      "label_de": "Multiperspektivität",
+      "description_en": "Multiple valid but potentially contradictory interpretations can coexist."
+    },
+    {
+      "id": "E4",
+      "type": "property",
+      "group": "epistemic",
+      "label_en": "Context-Dependence",
+      "label_de": "Kontextabhängigkeit",
+      "description_en": "The meaning of historical information changes with interpretive context."
+    },
+    {
+      "id": "E5",
+      "type": "property",
+      "group": "epistemic",
+      "label_en": "Category Contingency",
+      "label_de": "Kategorienkontingenz",
+      "description_en": "Categories used to classify historical phenomena are themselves historically contingent. Ontologically contingent because of P1; epistemically recognized through P2+P3."
+    },
+    {
+      "id": "M1",
+      "type": "property",
+      "group": "medial",
+      "label_en": "Mediality",
+      "label_de": "Medialität",
+      "description_en": "The medium of a source shapes and constrains the information it can carry."
+    },
+    {
+      "id": "M2",
+      "type": "property",
+      "group": "medial",
+      "label_en": "Intentionality",
+      "label_de": "Intentionalität",
+      "description_en": "Sources were created with specific purposes that shape their content and form."
+    },
+    {
+      "id": "M3",
+      "type": "property",
+      "group": "medial",
+      "label_en": "Selectivity",
+      "label_de": "Selektivität",
+      "description_en": "Sources record only a fraction of what occurred; selection is inherent, not accidental."
+    },
+    {
+      "id": "M4",
+      "type": "property",
+      "group": "medial",
+      "label_en": "Materiality",
+      "label_de": "Materialität",
+      "description_en": "The physical carrier of a source is itself informationally significant."
+    },
+    {
+      "id": "S1",
+      "type": "property",
+      "group": "semiotic",
+      "label_en": "Temporal Complexity",
+      "label_de": "Temporale Komplexität",
+      "description_en": "Historical information involves multiple, non-trivially related temporal layers."
+    },
+    {
+      "id": "S2",
+      "type": "property",
+      "group": "semiotic",
+      "label_en": "Semiotic Layering",
+      "label_de": "Semiotische Schichtung",
+      "description_en": "Sources encode meaning through multiple semiotic layers (abbreviations, conventions, scripts)."
+    },
+    {
+      "id": "S3",
+      "type": "property",
+      "group": "semiotic",
+      "label_en": "Intertextuality",
+      "label_de": "Intertextualität",
+      "description_en": "Sources reference, depend on, and relate to other sources in non-trivial ways."
+    }
+  ],
+  "edges": [
+    { "source": "P1", "target": "E1", "derivation_type": "single", "label_en": "Irreversibility causes inherent uncertainty" },
+    { "source": "P1", "target": "E5", "derivation_type": "single", "label_en": "Irreversibility makes categories contingent" },
+    { "source": "P1", "target": "S1", "derivation_type": "single", "label_en": "Irreversibility creates temporal complexity" },
+    { "source": "P2", "target": "E2", "derivation_type": "single", "label_en": "Trace mediation requires source-boundedness" },
+    { "source": "P2", "target": "M1", "derivation_type": "single", "label_en": "Trace mediation implies mediality" },
+    { "source": "P2", "target": "M3", "derivation_type": "single", "label_en": "Trace mediation entails selectivity" },
+    { "source": "P2", "target": "M4", "derivation_type": "single", "label_en": "Trace mediation grounds materiality" },
+    { "source": "P2", "target": "S2", "derivation_type": "single", "label_en": "Trace mediation produces semiotic layering" },
+    { "source": "P3", "target": "E3", "derivation_type": "single", "label_en": "Interpretive constitution enables multiperspectivity" },
+    { "source": "P3", "target": "E4", "derivation_type": "single", "label_en": "Interpretive constitution creates context-dependence" },
+    { "source": ["P1", "P2"], "target": "S3", "derivation_type": "combined", "label_en": "Irreversibility + trace mediation produce intertextuality" },
+    { "source": ["P2", "P3"], "target": "M2", "derivation_type": "combined", "label_en": "Trace mediation + interpretive constitution reveal intentionality" }
+  ],
+  "meta": {
+    "total_node_count": 15,
+    "primitive_count": 3,
+    "property_count": 12,
+    "edge_count": 12,
+    "grouping_note": "Grouping (epistemic, medial, semiotic) is pragmatic, not exhaustive. Not covered: pragmatic dimensions (access restrictions, archival orders) and social dimensions (school formation, canonization, power dynamics).",
+    "p2_productivity": "P2 is the most productive primitive: 5 direct derivations + 2 combined derivations."
+  }
+}

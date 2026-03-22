@@ -1,0 +1,364 @@
+{
+  "requirement_examples": [
+    {
+      "requirement_id": "R-E1.1",
+      "title_en": "Uncertainty Degrees",
+      "scenario": "scenario_a",
+      "data_path": "transactions[2]",
+      "description_en": "The loan to Archduke Sigismund: month known (June 1480), day uncertain; amount partially illegible (2,000 or 2,500 guilders).",
+      "with_requirement": {
+        "description": "Date represented as '1480-06' with certainty 'medium' and note 'day unknown'. Amount has two candidates [2000, 2500] with certainty 'low'.",
+        "visual": "Date shown with fuzzy range indicator. Amount shown as split bar with two possible values."
+      },
+      "without_requirement": {
+        "description": "Date forced to '1480-06-15' (arbitrary midpoint). Amount forced to single value 2000 (first guess). Uncertainty invisible.",
+        "visual": "Date shown as precise point. Amount shown as single definite bar. No indication of doubt."
+      }
+    },
+    {
+      "requirement_id": "R-E1.2",
+      "title_en": "Alternative Interpretations",
+      "scenario": "scenario_b",
+      "data_path": "persons[3].identification_problem",
+      "description_en": "Hans Weber (guild, 1690) may or may not be Johannes Weber (council, 1702). Researcher A: same person (0.7). Researcher B: different persons (0.6).",
+      "with_requirement": {
+        "description": "Both identifications coexist as parallel assertions with different confidence levels. Neither is privileged.",
+        "visual": "Two parallel cards showing Researcher A's and B's interpretations, connected to the same evidence node."
+      },
+      "without_requirement": {
+        "description": "System forces a single answer: either merged into one person or kept as two. The uncertainty is resolved by fiat.",
+        "visual": "Single person card with no indication that the identification was disputed."
+      }
+    },
+    {
+      "requirement_id": "R-E1.3",
+      "title_en": "Explicit Knowledge Gaps",
+      "scenario": "scenario_b",
+      "data_path": "persons[0].birth",
+      "description_en": "Johann Meier's birth date must exist (he was born) but is unknown because the parish registers from 1600–1680 were destroyed in a fire.",
+      "with_requirement": {
+        "description": "Birth date explicitly modeled as 'known unknown' with reason: 'Parish registers 1600–1680 destroyed.' The gap is informationally significant.",
+        "visual": "Hollow circle with dashed border for birth date. Label: 'Birth date: ? (parish registers destroyed 1681)'. The circle exists because the person existed."
+      },
+      "without_requirement": {
+        "description": "Birth date field is simply empty/null. No distinction between 'unknown because destroyed' and 'never recorded' and 'not applicable'.",
+        "visual": "Empty field or no field at all. The knowledge gap is invisible — indistinguishable from data that was never expected to exist."
+      }
+    },
+    {
+      "requirement_id": "R-E2.1",
+      "title_en": "Provenance",
+      "scenario": "scenario_a",
+      "data_path": "transactions[0]",
+      "description_en": "The assertion 'Fugger traded pepper with Venice in March 1478' traces to H.F. Ledger, fol. 127r, entry 3.",
+      "with_requirement": {
+        "description": "Assertion linked to source: H.F. Ledger, fol. 127r, entry 3. Full provenance chain visible.",
+        "visual": "Assertion node connected by arrow to source node with folio/entry citation."
+      },
+      "without_requirement": {
+        "description": "Fact stated without source attribution. 'Fugger traded pepper' exists as a free-floating claim.",
+        "visual": "Fact node with no incoming provenance arrow. Looks authoritative but ungrounded."
+      }
+    },
+    {
+      "requirement_id": "R-E2.2",
+      "title_en": "Epistemic Distance",
+      "scenario": "scenario_b",
+      "data_path": "epistemic_distance_example",
+      "description_en": "Chain: guild register (primary) → 1905 local history (secondary) → 2015 database (tertiary). Each step increases epistemic distance.",
+      "with_requirement": {
+        "description": "Three-level chain with explicit distance markers: level 0 (primary), level 1 (secondary), level 2 (tertiary).",
+        "visual": "Descending chain of nodes, each more faded/smaller than the last. Distance label on each link."
+      },
+      "without_requirement": {
+        "description": "All three sources treated as equivalent evidence. The 2015 database entry carries the same weight as the guild register.",
+        "visual": "Three equal-sized nodes in a flat arrangement. No hierarchy, no distance indication."
+      }
+    },
+    {
+      "requirement_id": "R-E3.1",
+      "title_en": "Perspective Coexistence",
+      "scenario": "scenario_b",
+      "data_path": "persons[0].appearances",
+      "description_en": "Guild register: 'ehrbarer Meister' (honorable). Council minutes: 'streitbarer Weber' (quarrelsome). Both characterizations are valid — different institutional perspectives.",
+      "with_requirement": {
+        "description": "Both characterizations coexist, attributed to their respective sources. Neither cancels the other.",
+        "visual": "Two parallel columns: guild view (green, 'honorable') and council view (amber, 'quarrelsome'), both pointing to the same person."
+      },
+      "without_requirement": {
+        "description": "System picks one characterization or merges them into a neutral composite. The institutional perspective is lost.",
+        "visual": "Single person card with a bland merged description. The tension between perspectives is invisible."
+      }
+    },
+    {
+      "requirement_id": "R-E3.2",
+      "title_en": "Perspective Relations",
+      "scenario": "scenario_b",
+      "data_path": "persons[0].perspective_relations",
+      "description_en": "Guild/council views are in 'tension' (not contradiction). Tax list is 'independent'. These are typed relations between perspectives.",
+      "with_requirement": {
+        "description": "Relations explicitly typed: tension, independence. Each relation carries a description.",
+        "visual": "Colored edges between perspective nodes: orange dashed for tension, gray dotted for independence."
+      },
+      "without_requirement": {
+        "description": "Perspectives exist in isolation. No mechanism to express how they relate to each other.",
+        "visual": "Disconnected perspective boxes with no connecting lines."
+      }
+    },
+    {
+      "requirement_id": "R-E4.1",
+      "title_en": "Interpretation Metadata",
+      "scenario": "scenario_b",
+      "data_path": "persons[0].identifications",
+      "description_en": "Researcher A (2015, social history) vs. Researcher B (2020, quantitative prosopography): different identifications of the same person, each with full metadata.",
+      "with_requirement": {
+        "description": "Each identification carries: who (researcher), when (year), framework (methodology), confidence (0.7 / 0.6), evidence.",
+        "visual": "Two interpretation cards with full metadata fields, side by side."
+      },
+      "without_requirement": {
+        "description": "Identification exists as bare fact: 'Meier = Maier' or 'Meier ≠ Maier'. No context for why or by whom.",
+        "visual": "Simple link or non-link between person records. No explanation."
+      }
+    },
+    {
+      "requirement_id": "R-E5.1",
+      "title_en": "Temporal Categorization",
+      "scenario": "scenario_a",
+      "data_path": "persons[0].role_emic",
+      "description_en": "'Kaufmann' in 15th century = merchant + banker + commodity trader. The category is temporally bounded — it does not map 1:1 to any modern category.",
+      "with_requirement": {
+        "description": "Category 'Kaufmann' marked as valid 15th century, with note that it encompasses modern categories ['merchant', 'banker', 'commodity_trader'].",
+        "visual": "Category node with temporal validity bar (1400–1600) and exploded view showing modern equivalents."
+      },
+      "without_requirement": {
+        "description": "Role forced into modern category 'merchant'. The historical breadth and temporal boundedness of 'Kaufmann' is lost.",
+        "visual": "Simple role label: 'merchant'. No indication that the original category was different or broader."
+      }
+    },
+    {
+      "requirement_id": "R-E5.2",
+      "title_en": "Category Provenance (emic/etic)",
+      "scenario": "scenario_a",
+      "data_path": "persons[2]",
+      "description_en": "Bellini is called 'welscher Handler' (emic — historical actors' term, connoting foreignness) vs. 'Venetian long-distance trader' (etic — researcher's analytical category).",
+      "with_requirement": {
+        "description": "Both categories present with provenance: emic (from source) vs. etic (from researcher). The connotations of each are documented.",
+        "visual": "Split label: left = 'welscher Handler' (source badge), right = 'Venetian trader' (researcher badge). Hover reveals connotation difference."
+      },
+      "without_requirement": {
+        "description": "Single category used, either the emic or etic. If etic, the historical actors' self-understanding is lost. If emic, it is treated as objective description.",
+        "visual": "Single label with no provenance indicator. No way to know if this is the actors' term or the researcher's."
+      }
+    },
+    {
+      "requirement_id": "R-M1.1",
+      "title_en": "Source Type as Dimension",
+      "scenario": "scenario_a",
+      "data_path": "source.type",
+      "description_en": "The H.F. Ledger is an accounting record (not created for history). Its source type constrains what it can say: financial transactions yes, personal emotions no.",
+      "with_requirement": {
+        "description": "Source type 'accounting_record' is an explicit dimension affecting interpretation. Documented constraints: records transactions, not personal matters.",
+        "visual": "Source card with prominent type badge and 'constraints' panel showing what the source can and cannot tell us."
+      },
+      "without_requirement": {
+        "description": "Source exists as undifferentiated document. No indication of how its type shapes the available information.",
+        "visual": "Generic document icon. No type-specific interpretation guidance."
+      }
+    },
+    {
+      "requirement_id": "R-M2.1",
+      "title_en": "Creation Purpose",
+      "scenario": "scenario_a",
+      "data_path": "source.creation_purpose",
+      "description_en": "The ledger was created for commercial accountability, not for posterity. This explains what is recorded (amounts, dates) and what is omitted (motivations, relationships).",
+      "with_requirement": {
+        "description": "Creation purpose 'commercial accountability' explicitly modeled, linked to explanations of inclusion/exclusion patterns.",
+        "visual": "Purpose badge on source card, with arrows to 'included' and 'excluded' information categories."
+      },
+      "without_requirement": {
+        "description": "Source content treated as if it were a comprehensive record. No indication of what the source was designed NOT to capture.",
+        "visual": "Data presented as complete. Absences look like data that does not exist rather than data that was never intended to be recorded."
+      }
+    },
+    {
+      "requirement_id": "R-M2.2",
+      "title_en": "Systematic Omissions",
+      "scenario": "scenario_b",
+      "data_path": "sources[0].systematic_omission",
+      "description_en": "Women are absent from guild registers not by accident but by design — guild statutes defined master/journeyman as male. Anna Meier appears in church records but nowhere in administrative sources.",
+      "with_requirement": {
+        "description": "The omission is modeled as a property of the source type: 'Guild registers systematically exclude women because guild categories are defined as male.'",
+        "visual": "Shaded void region in the guild member network labeled 'Systematically excluded: women (guild statutes)'. Anna Meier appears as a ghost node visible only in church record view."
+      },
+      "without_requirement": {
+        "description": "Women are simply absent from the data. No indication whether this is accidental, systematic, or meaningful.",
+        "visual": "Clean network of guild members. No indication that half the population is missing for structural reasons. The data looks complete."
+      }
+    },
+    {
+      "requirement_id": "R-M3.1",
+      "title_en": "Transmission Gaps",
+      "scenario": "scenario_b",
+      "data_path": "sources[1].transmission_gap",
+      "description_en": "Parish registers 1600–1680 burned in 1681. The records existed and are known to have contained baptisms, marriages, and deaths. The gap is itself a historical fact.",
+      "with_requirement": {
+        "description": "Timeline shows a torn/faded segment for 1600–1680 labeled 'Parish registers destroyed by fire, 1681. Known contents: baptisms, marriages, deaths.'",
+        "visual": "Timeline with a torn segment. The gap is visible and explained. Connected to specific consequences (e.g., Johann Meier's missing birth date)."
+      },
+      "without_requirement": {
+        "description": "Timeline simply has no data for 1600–1680. No indication that records ever existed or why they are missing.",
+        "visual": "Smooth timeline with an empty stretch. Looks like nothing happened, not like records were destroyed."
+      }
+    },
+    {
+      "requirement_id": "R-M4.1",
+      "title_en": "Carrier-Content Separation",
+      "scenario": "scenario_c",
+      "data_path": "carrier_content_separation",
+      "description_en": "Ms. A (parchment codex) and Ms. B (paper codex) carry the same chronicle text. The carrier and content must be independently describable.",
+      "with_requirement": {
+        "description": "Carrier (parchment codex, 84 folios, textura script) and content (Brückstädter Chronik) are separate entities. Content is shared across 4 carriers.",
+        "visual": "Two-layer diagram: physical objects on top (4 different carriers), abstract text on bottom (1 shared content). Lines connect each carrier to the content."
+      },
+      "without_requirement": {
+        "description": "Each manuscript is a monolithic entity. The text in Ms. A and Ms. B are treated as separate things, not as the same content in different containers.",
+        "visual": "Four separate document boxes with no shared content layer. Redundant, and the conceptual unity of the text is invisible."
+      }
+    },
+    {
+      "requirement_id": "R-M4.2",
+      "title_en": "Material as Information",
+      "scenario": "scenario_c",
+      "data_path": "witnesses[0].material_features",
+      "description_en": "Ms. A uses red ink for proper names (scribe's deliberate semiotic choice). Ms. B has water damage on fols. 12–18 and watermarks dating the paper to ca. 1415–1425.",
+      "with_requirement": {
+        "description": "Material features modeled as informationally significant: red ink = intentional name highlighting; watermark = independent dating evidence; water damage = post-production history.",
+        "visual": "Manuscript visualization with material features as annotated layers. Red ink areas, damage areas, and watermark area each clickable with significance explanation."
+      },
+      "without_requirement": {
+        "description": "Material features either omitted entirely or recorded as incidental metadata. The informational significance (dating, editorial intention) is not captured.",
+        "visual": "Plain text transcription with no material annotations. The physical manuscript is invisible."
+      }
+    },
+    {
+      "requirement_id": "R-S1.1",
+      "title_en": "Temporal Contextualization",
+      "scenario": "scenario_a",
+      "data_path": "transactions[0].temporal_layers",
+      "description_en": "The pepper purchase involves three temporal layers: event (March 1478, Venice), recording (April 1478?, by Schwarz), interpretation (2024, by researcher).",
+      "with_requirement": {
+        "description": "Three distinct temporal layers represented: event_time, recording_time, interpretation_time. Each with its own date and context.",
+        "visual": "Multi-track timeline with three parallel lanes: event (green), recording (amber), interpretation (slate). Vertical alignment shows they refer to the same transaction."
+      },
+      "without_requirement": {
+        "description": "Single date: 'March 1478'. No indication of whether this is when it happened, when it was written down, or when it was interpreted.",
+        "visual": "Single point on a timeline. The layered temporality is collapsed into a deceptive simplicity."
+      }
+    },
+    {
+      "requirement_id": "R-S1.2",
+      "title_en": "Historical Reference Systems",
+      "scenario": "scenario_a",
+      "data_path": "reference_systems",
+      "description_en": "Entry: '2,000 ducats at 15 shillings Augsburg pence' — uses reference systems (Venetian ducats, Augsburg shillings, saint's day dating) no longer in common use.",
+      "with_requirement": {
+        "description": "Both historical system (ducats, saint's day) and modern equivalent coexist. Neither is privileged. Conversion information documented.",
+        "visual": "Dual display: historical value on top (original notation), modern equivalent below (converted). Toggle between them."
+      },
+      "without_requirement": {
+        "description": "Either only modern equivalent (losing the original) or only historical notation (requiring the reader to convert). One system is privileged.",
+        "visual": "Single value display. If converted: the original is lost. If original: requires specialist knowledge to read."
+      }
+    },
+    {
+      "requirement_id": "R-S2.1",
+      "title_en": "Readings / Normalization",
+      "scenario": "scenario_c",
+      "data_path": "text_passage.variants",
+      "description_en": "'grozzer' (Ms. A, diplomatic) vs. 'großer' (Ms. B) vs. 'grosser' (Print D). Diplomatic preserves scribe's orthography; normalized: 'großer'.",
+      "with_requirement": {
+        "description": "Both diplomatic and normalized readings present, linked to their witnesses. The transformation relationship between them is explicit.",
+        "visual": "Synoptic display: diplomatic texts in parallel columns (per witness), with normalized form below. Color-coded variant highlighting."
+      },
+      "without_requirement": {
+        "description": "Only normalized text preserved. The original orthographic variants are lost. Scribal practices invisible.",
+        "visual": "Single clean text. No indication that four witnesses exist with different readings."
+      }
+    },
+    {
+      "requirement_id": "R-S3.1",
+      "title_en": "Source Relations",
+      "scenario": "scenario_c",
+      "data_path": "stemma",
+      "description_en": "Stemma: A and B share a common exemplar (Vorlage). C abbreviates a text close to B. D may derive from B. Typed relations: copy, abbreviation, possibly-derived-from.",
+      "with_requirement": {
+        "description": "Stemma codicum with typed edges: copy (solid), abbreviation (dashed), possibly-derived-from (dotted). Hypothetical nodes (lost exemplar) marked.",
+        "visual": "Tree diagram with typed edges and confidence indicators. Hypothetical archetype node shown with dashed border."
+      },
+      "without_requirement": {
+        "description": "Witnesses listed as independent documents. No relational information. The transmission history is invisible.",
+        "visual": "Four disconnected document cards. No lines, no hierarchy, no transmission story."
+      }
+    },
+    {
+      "requirement_id": "R-A1",
+      "title_en": "Separation of Concerns",
+      "scenario": "scenario_c",
+      "data_path": "text_passage",
+      "description_en": "Transcription: 'do wart ain grozzer brant uf dem markte ze Brugstat' (source representation). Interpretation: 'A large fire destroyed the market of Brückstadt in 1298' (assertion). These must be separable.",
+      "with_requirement": {
+        "description": "Source representation (diplomatic transcription) and interpretive assertion (historical claim) are separate layers. Each can be examined independently.",
+        "visual": "Two-panel view: left = transcription (amber border), right = assertion (teal border). Lines show derivation."
+      },
+      "without_requirement": {
+        "description": "Transcription and interpretation collapsed. 'Fire in Brückstadt, 1298' exists as a single entity — is it what the source says or what the historian claims?",
+        "visual": "Single text block. No way to distinguish source language from interpretive language."
+      }
+    },
+    {
+      "requirement_id": "R-A2",
+      "title_en": "Event-Centricity",
+      "scenario": "scenario_a",
+      "data_path": "transactions[0]",
+      "description_en": "The pepper purchase is an event linking persons (Fugger, Bellini), places (Augsburg, Venice), times (March 1478), objects (pepper), and amounts (2,000 ducats).",
+      "with_requirement": {
+        "description": "Event 'pepper purchase' is the central node connecting all entities. Persons, places, times, and objects are linked through the event.",
+        "visual": "Star diagram with event at center, connected to person nodes, place nodes, time nodes, and object nodes."
+      },
+      "without_requirement": {
+        "description": "Data organized by entity type (all persons in one table, all places in another). The event that connects them is implicit.",
+        "visual": "Separate tables for persons, places, dates. No visible connection between 'Fugger' and 'Venice' and 'March 1478'."
+      }
+    },
+    {
+      "requirement_id": "R-A3",
+      "title_en": "Monotonicity",
+      "scenario": "scenario_b",
+      "data_path": "monotonicity_example",
+      "description_en": "In 2023, a letter is discovered showing Meier had Nuremberg trade contacts. This adds to the record without modifying any existing assertion.",
+      "with_requirement": {
+        "description": "New source and new assertions added. All previous assertions remain unchanged. The model grows additively.",
+        "visual": "Before/after: same network with one new node (letter) and one new edge (trade contact). All existing nodes and edges unchanged."
+      },
+      "without_requirement": {
+        "description": "Adding the new information requires updating existing records (e.g., editing Meier's profile). Previous state is overwritten.",
+        "visual": "Person card with modified fields. The previous version is lost. No audit trail."
+      }
+    },
+    {
+      "requirement_id": "R-A4",
+      "title_en": "Assertion-Based",
+      "scenario": "scenario_a",
+      "data_path": "transactions[0]",
+      "description_en": "'Fugger purchased pepper from Bellini in March 1478' is an assertion by the researcher, based on fol. 127r, with high confidence for the transaction but uncertain confidence for the exact date.",
+      "with_requirement": {
+        "description": "Assertion wraps the claim with: agent (researcher X), source (fol. 127r), confidence (high for transaction, medium for date). The claim is attributed, not floating.",
+        "visual": "Assertion envelope containing the claim, with metadata badges: source, agent, confidence level."
+      },
+      "without_requirement": {
+        "description": "Claim exists as bare fact: 'Fugger bought pepper from Bellini, March 1478.' No attribution, no confidence, no source link.",
+        "visual": "Plain text statement. Looks like objective truth. No indication of who says it, based on what, or how certain they are."
+      }
+    }
+  ]
+}

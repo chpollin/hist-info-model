@@ -1,0 +1,183 @@
+{
+  "id": "scenario_b",
+  "title_en": "Prosopographic Database",
+  "title_de": "Prosopographische Datenbank",
+  "setting": "Guild members in Brückstadt, 1650–1750, compiled from multiple source types",
+  "sources": [
+    {
+      "id": "src-guild",
+      "title": "Webermeisterbuch (Weavers' Guild Register)",
+      "type": "administrative_register",
+      "date_range": { "from": "1648", "to": "1720" },
+      "completeness": "continuous",
+      "systematic_omission": {
+        "excluded_category": "women",
+        "reason": "Guild registers record masters and journeymen — categories defined as male by guild statutes",
+        "requirement": "R-M2.2"
+      }
+    },
+    {
+      "id": "src-parish-pre",
+      "title": "Parish Registers of St. Martin's Church (pre-fire)",
+      "type": "church_record",
+      "date_range": { "from": "1600", "to": "1680" },
+      "status": "destroyed",
+      "transmission_gap": {
+        "cause": "Fire in 1681 destroyed all registers from 1600–1680",
+        "known_contents": "Baptisms, marriages, deaths for the parish",
+        "requirement": "R-M3.1"
+      }
+    },
+    {
+      "id": "src-parish-post",
+      "title": "Parish Registers of St. Martin's Church (post-fire)",
+      "type": "church_record",
+      "date_range": { "from": "1682", "to": "1800" },
+      "status": "extant",
+      "completeness": "continuous"
+    },
+    {
+      "id": "src-council",
+      "title": "Ratsprotokoll (City Council Minutes)",
+      "type": "administrative_record",
+      "date_range": { "from": "1650", "to": "1750" },
+      "completeness": "sporadic mentions of guild members"
+    },
+    {
+      "id": "src-tax",
+      "title": "Steuerliste 1695 (Tax List)",
+      "type": "fiscal_record",
+      "date_range": { "from": "1695", "to": "1695" },
+      "systematic_omission": {
+        "excluded_category": "non-householders",
+        "reason": "Tax lists record household heads (typically male property owners)"
+      }
+    }
+  ],
+  "persons": [
+    {
+      "id": "per-j-meier",
+      "name_variants": [
+        { "form": "Johann Meÿer", "source": "src-guild", "type": "diplomatic" },
+        { "form": "Johanß Meÿer", "source": "src-parish-post", "type": "diplomatic" },
+        { "form": "Johannes Maier", "source": "src-tax", "type": "diplomatic" },
+        { "form": "Johann Meier", "type": "normalized" }
+      ],
+      "birth": {
+        "date": null,
+        "date_estimate": "ca. 1655",
+        "certainty": "low",
+        "known_unknown": true,
+        "reason": "Parish registers 1600–1680 destroyed. Birth date must exist but is irrecoverable.",
+        "requirement": "R-E1.3"
+      },
+      "death": {
+        "date": "1723",
+        "source": "src-parish-post",
+        "certainty": "high"
+      },
+      "appearances": [
+        { "source": "src-guild", "date": "1678", "content": "Admitted as master weaver", "characterization": "ehrbarer Meister (honorable master)" },
+        { "source": "src-tax", "date": "1695", "content": "Tax assessment: 45 fl.", "characterization": null },
+        { "source": "src-council", "date": "1702", "content": "Mentioned in guild dispute", "characterization": "der streitbare Weber Meier (the quarrelsome weaver Meier)" }
+      ],
+      "identifications": [
+        {
+          "id": "ident-1",
+          "claim": "Johann Meÿer (guild register) = Johannes Maier (tax list 1695)",
+          "researcher": "Researcher A",
+          "year": 2015,
+          "framework": "social history",
+          "confidence": 0.7,
+          "evidence": "Name similarity, professional match, temporal plausibility",
+          "requirement": "R-E4.1"
+        },
+        {
+          "id": "ident-2",
+          "claim": "Johann Meÿer (guild register) ≠ Johannes Maier (tax list 1695)",
+          "researcher": "Researcher B",
+          "year": 2020,
+          "framework": "quantitative prosopography",
+          "confidence": 0.6,
+          "evidence": "Meÿer/Maier are distinct family names in Brückstadt records",
+          "requirement": "R-E4.1"
+        }
+      ],
+      "perspective_relations": {
+        "guild_vs_council": {
+          "type": "tension",
+          "description": "'ehrbarer Meister' (guild) vs. 'streitbarer Weber' (council) — different institutional perspectives, not outright contradiction",
+          "requirement": "R-E3.2"
+        },
+        "tax_independence": {
+          "type": "independent",
+          "description": "Tax list records assessment without characterization — independent data point",
+          "requirement": "R-E3.2"
+        }
+      }
+    },
+    {
+      "id": "per-anna",
+      "name_variants": [
+        { "form": "Anna Bergerin", "source": "src-parish-post", "type": "diplomatic" },
+        { "form": "Anna Meier née Berger", "type": "normalized" }
+      ],
+      "birth": { "date": null, "known_unknown": true, "reason": "Pre-fire registers destroyed" },
+      "death": { "date": "1731", "source": "src-parish-post", "certainty": "high" },
+      "appearances": [
+        { "source": "src-parish-post", "date": "1680", "content": "Marriage to Johann Meÿer" },
+        { "source": "src-parish-post", "date": "1731", "content": "Death entry" }
+      ],
+      "absence_from_sources": {
+        "guild": { "absent": true, "reason": "systematic_omission", "requirement": "R-M2.2" },
+        "tax": { "absent": true, "reason": "systematic_omission", "note": "Listed under husband's household" },
+        "council": { "absent": true, "reason": "not_mentioned" }
+      }
+    },
+    {
+      "id": "per-peter",
+      "name_variants": [
+        { "form": "Peter Meÿer", "source": "src-parish-post", "type": "diplomatic" },
+        { "form": "Peter Meier", "type": "normalized" }
+      ],
+      "birth": { "date": "1682", "source": "src-parish-post", "certainty": "high" },
+      "death": { "date": null, "known_unknown": false, "note": "Simply not recorded in available sources" },
+      "appearances": [
+        { "source": "src-parish-post", "date": "1682", "content": "Baptism recorded" },
+        { "source": "src-guild", "date": "1705", "content": "Admitted as master weaver" }
+      ]
+    },
+    {
+      "id": "per-h-weber",
+      "name_variants": [
+        { "form": "Hans Weber", "source": "src-guild", "type": "diplomatic" },
+        { "form": "Johannes Weber", "source": "src-council", "type": "diplomatic" }
+      ],
+      "identification_problem": {
+        "question": "Is Hans Weber (guild, 1690) the same person as Johannes Weber (council, 1702)?",
+        "interpretation_a": { "claim": "same person", "confidence": 0.7, "researcher": "Researcher A" },
+        "interpretation_b": { "claim": "different persons", "confidence": 0.6, "researcher": "Researcher B" },
+        "requirement": "R-E1.2"
+      }
+    }
+  ],
+  "epistemic_distance_example": {
+    "chain": [
+      { "level": 0, "source": "src-guild", "type": "primary", "description": "Guild register records Meier's admission directly" },
+      { "level": 1, "source": "1905 local history book", "type": "secondary", "description": "Mentions Meier citing the guild register" },
+      { "level": 2, "source": "2015 database entry", "type": "tertiary", "description": "Cites the 1905 book, not the original source" }
+    ],
+    "requirement": "R-E2.2"
+  },
+  "monotonicity_example": {
+    "existing_assertions": "All assertions about Meier from guild register, tax list, and council minutes",
+    "new_discovery": {
+      "year": 2023,
+      "source": "Letter from Johann Meier to a Nuremberg merchant, 1705",
+      "new_information": "Meier had trade contacts beyond Brückstadt",
+      "modification_required": false,
+      "note": "New source adds information without requiring modification of any existing assertion"
+    },
+    "requirement": "R-A3"
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "id": "scenario_a",
+  "title_en": "Early Modern Account Book",
+  "title_de": "Frühneuzeitliches Rechnungsbuch",
+  "setting": "Household account book of Augsburg merchant Hans Fugger, 1472–1489",
+  "source": {
+    "id": "src-hf-ledger",
+    "title": "Handelsbuch des Hans Fugger",
+    "type": "accounting_record",
+    "material": "paper_codex",
+    "extent": "248 folios",
+    "medium": "ink on rag paper",
+    "language": "Early New High German with Latin abbreviations",
+    "date_range": { "from": "1472", "to": "1489" },
+    "repository": "Stadtarchiv Augsburg",
+    "shelf_mark": "StadtA Aug, Cod. Merc. 17",
+    "creation_purpose": "Commercial accountability (Rechenschaftslegung), not historical record"
+  },
+  "persons": [
+    {
+      "id": "per-fugger",
+      "name_diplomatic": "Hannß Fugger",
+      "name_normalized": "Hans Fugger",
+      "role": "merchant",
+      "role_emic": "Kaufmann",
+      "role_etic": ["merchant", "banker", "commodity_trader"],
+      "active_period": { "from": "1472", "to": "1489" }
+    },
+    {
+      "id": "per-katharina",
+      "name_diplomatic": "Katherina Fuggerin",
+      "name_normalized": "Katharina Fugger",
+      "role": "wife",
+      "note": "Appears only in dowry transaction (fol. 3r). Otherwise invisible in commercial records."
+    },
+    {
+      "id": "per-bellini",
+      "name_diplomatic": "Iohannes Bellini de Venetia",
+      "name_normalized": "Giovanni Bellini",
+      "role_emic": "welscher Handler",
+      "role_etic": "Venetian long-distance trader",
+      "note": "Emic term 'welscher Handler' carries connotations of foreignness and Catholic trade privileges."
+    },
+    {
+      "id": "per-schwarz",
+      "name_diplomatic": "Jacob Identity Identity Schwartz",
+      "name_normalized": "Jakob Schwarz",
+      "role": "bookkeeper/scribe"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "tx-pepper",
+      "type": "purchase",
+      "description_en": "Pepper purchase from Venice",
+      "folio": "127r",
+      "entry_number": 3,
+      "date": {
+        "value": "1478-03-15",
+        "certainty": "high",
+        "calendar": "julian",
+        "original_text": "uf den xv. tag des Merzen"
+      },
+      "participants": ["per-fugger", "per-bellini"],
+      "commodity": { "item": "pepper", "quantity": "500 lb." },
+      "amount": {
+        "value": 2000,
+        "currency": "duc.",
+        "currency_full": "Venetian Ducats",
+        "exchange_rate": {
+          "to": "fl_rh",
+          "rate": 1.15,
+          "note": "15 ß d. aug. per ducat, approximate"
+        }
+      },
+      "temporal_layers": {
+        "event_time": "1478-03 (pepper delivery in Venice)",
+        "recording_time": "1478-04? (Schwarz entered weeks later)",
+        "interpretation_time": "2024 (modern researcher reads entry)"
+      }
+    },
+    {
+      "id": "tx-cloth",
+      "type": "sale",
+      "description_en": "Cloth sale to Nuremberg",
+      "folio": "142v",
+      "date": {
+        "value": "1479-11-02",
+        "certainty": "high",
+        "calendar": "julian"
+      },
+      "participants": ["per-fugger"],
+      "amount": { "value": 350, "currency": "fl_rh", "currency_full": "Rhenish Guilders" }
+    },
+    {
+      "id": "tx-loan",
+      "type": "loan",
+      "description_en": "Loan to Archduke Sigismund",
+      "folio": "158r",
+      "date": {
+        "value": "1480-06",
+        "certainty": "medium",
+        "uncertainty_type": "day_unknown",
+        "original_text": "im Brachmonat",
+        "note": "Month known (June/Brachmonat), day uncertain"
+      },
+      "participants": ["per-fugger"],
+      "amount": {
+        "value": null,
+        "value_candidates": [2000, 2500],
+        "currency": "fl_rh",
+        "certainty": "low",
+        "note": "Partially illegible: 'ij[?]M fl. rh.' — could be 2,000 or 2,500 guilders"
+      }
+    },
+    {
+      "id": "tx-dowry",
+      "type": "dowry_payment",
+      "description_en": "Dowry payment",
+      "folio": "3r",
+      "date": {
+        "value": "1473-01-12",
+        "certainty": "high",
+        "calendar": "julian"
+      },
+      "participants": ["per-fugger", "per-katharina"],
+      "amount": { "value": 800, "currency": "fl_rh", "currency_full": "Rhenish Guilders" }
+    }
+  ],
+  "reference_systems": [
+    {
+      "type": "currency",
+      "systems": [
+        { "id": "fl_rh", "label": "Rhenish Guilders (fl. rh.)", "period": "15th century" },
+        { "id": "duc", "label": "Venetian Ducats (duc.)", "period": "15th century" },
+        { "id": "d_aug", "label": "Augsburg Pfennige (d. aug.)", "period": "15th century" }
+      ]
+    },
+    {
+      "type": "calendar",
+      "systems": [
+        { "id": "julian", "label": "Julian Calendar" },
+        { "id": "saints_day", "label": "Saint's Day Dating", "example": "uff sant Martinstag = November 11" }
+      ]
+    }
+  ]
+}

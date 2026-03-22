@@ -1,0 +1,278 @@
+{
+  "requirements": [
+    {
+      "id": "R-E1.1",
+      "label_en": "Uncertainty Degrees",
+      "label_de": "Unsicherheitsgrade",
+      "derived_from": "E1",
+      "group": "epistemic",
+      "test_condition": "The model must be able to represent graded levels of certainty/uncertainty for any assertion, not merely binary certain/uncertain.",
+      "is_systemic_gap": false,
+      "gap_category": null,
+      "scenario_assignments": ["A"]
+    },
+    {
+      "id": "R-E1.2",
+      "label_en": "Alternative Interpretations",
+      "label_de": "Alternativinterpretationen",
+      "derived_from": "E1",
+      "group": "epistemic",
+      "test_condition": "The model must be able to represent multiple competing interpretations of the same evidence, each with its own certainty level, without forcing resolution.",
+      "is_systemic_gap": false,
+      "gap_category": null,
+      "scenario_assignments": ["B"]
+    },
+    {
+      "id": "R-E1.3",
+      "label_en": "Explicit Knowledge Gaps",
+      "label_de": "Explizite Wissenslücken",
+      "derived_from": "E1",
+      "group": "epistemic",
+      "test_condition": "The model must be able to explicitly represent that a piece of information is known to be missing (known unknown), distinguishing it from information that was never expected to exist.",
+      "is_systemic_gap": true,
+      "gap_category": "absence_modeling",
+      "scenario_assignments": ["B"]
+    },
+    {
+      "id": "R-E2.1",
+      "label_en": "Provenance",
+      "label_de": "Provenienz",
+      "derived_from": "E2",
+      "group": "epistemic",
+      "test_condition": "Every assertion must be linkable to its source(s) with full provenance chain.",
+      "is_systemic_gap": false,
+      "gap_category": null,
+      "scenario_assignments": ["A", "B"]
+    },
+    {
+      "id": "R-E2.2",
+      "label_en": "Epistemic Distance",
+      "label_de": "Epistemische Distanz",
+      "derived_from": "E2",
+      "group": "epistemic",
+      "test_condition": "The model must be able to represent the epistemic distance between a claim and its evidentiary basis (e.g., eyewitness vs. hearsay vs. later reconstruction).",
+      "is_systemic_gap": false,
+      "gap_category": null,
+      "scenario_assignments": ["B"]
+    },
+    {
+      "id": "R-E3.1",
+      "label_en": "Perspective Coexistence",
+      "label_de": "Perspektivenkoexistenz",
+      "derived_from": "E3",
+      "group": "epistemic",
+      "test_condition": "The model must allow multiple agents to hold conflicting assertions about the same referent simultaneously without requiring resolution.",
+      "is_systemic_gap": false,
+      "gap_category": null,
+      "scenario_assignments": ["B"]
+    },
+    {
+      "id": "R-E3.2",
+      "label_en": "Perspective Relations",
+      "label_de": "Perspektivenrelationen",
+      "derived_from": "E3",
+      "group": "epistemic",
+      "test_condition": "The model must be able to represent relationships between perspectives (agreement, contradiction, subsumption, independence).",
+      "is_systemic_gap": false,
+      "gap_category": null,
+      "scenario_assignments": ["B"]
+    },
+    {
+      "id": "R-E4.1",
+      "label_en": "Interpretation Metadata",
+      "label_de": "Interpretationsmetadaten",
+      "derived_from": "E4",
+      "group": "epistemic",
+      "test_condition": "Each interpretation act must carry metadata: who interpreted, when, under which theoretical framework, and with what purpose.",
+      "is_systemic_gap": false,
+      "gap_category": null,
+      "scenario_assignments": ["B"]
+    },
+    {
+      "id": "R-E5.1",
+      "label_en": "Temporal Categorization",
+      "label_de": "Temporale Kategorisierung",
+      "derived_from": "E5",
+      "group": "epistemic",
+      "test_condition": "The model must be able to represent that categorizations change over time and that a category valid in one period may be anachronistic in another.",
+      "is_systemic_gap": false,
+      "gap_category": null,
+      "scenario_assignments": ["A"]
+    },
+    {
+      "id": "R-E5.2",
+      "label_en": "Category Provenance (emic/etic)",
+      "label_de": "Kategorienprovenienz (emic/etic)",
+      "derived_from": "E5",
+      "group": "epistemic",
+      "test_condition": "The model must distinguish between categories used by historical actors (emic) and categories imposed by researchers (etic), and track the provenance of each.",
+      "is_systemic_gap": true,
+      "gap_category": "category_provenance",
+      "scenario_assignments": ["A"]
+    },
+    {
+      "id": "R-M1.1",
+      "label_en": "Source Type as Dimension",
+      "label_de": "Quellentyp als Dimension",
+      "derived_from": "M1",
+      "group": "medial",
+      "test_condition": "The model must represent source type (textual, visual, material, oral, etc.) as an explicit dimension that affects the interpretation of content.",
+      "is_systemic_gap": false,
+      "gap_category": null,
+      "scenario_assignments": ["A", "C"]
+    },
+    {
+      "id": "R-M2.1",
+      "label_en": "Creation Purpose",
+      "label_de": "Erstellungszweck",
+      "derived_from": "M2",
+      "group": "medial",
+      "test_condition": "The model must be able to represent the original purpose for which a source was created, distinguishing it from its later use as historical evidence.",
+      "is_systemic_gap": false,
+      "gap_category": null,
+      "scenario_assignments": ["A"]
+    },
+    {
+      "id": "R-M2.2",
+      "label_en": "Systematic Omissions",
+      "label_de": "Systematische Auslassungen",
+      "derived_from": "M2",
+      "group": "medial",
+      "test_condition": "The model must be able to represent that certain categories of information are systematically absent from a source type due to its creation purpose (e.g., women absent from guild records not by accident but by design).",
+      "is_systemic_gap": true,
+      "gap_category": "absence_modeling",
+      "scenario_assignments": ["B"]
+    },
+    {
+      "id": "R-M3.1",
+      "label_en": "Transmission Gaps",
+      "label_de": "Überlieferungslücken",
+      "derived_from": "M3",
+      "group": "medial",
+      "test_condition": "The model must be able to represent gaps in the transmission record — periods or regions for which sources are known to have existed but are now lost.",
+      "is_systemic_gap": true,
+      "gap_category": "absence_modeling",
+      "scenario_assignments": ["B"]
+    },
+    {
+      "id": "R-M4.1",
+      "label_en": "Carrier-Content Separation",
+      "label_de": "Träger-Inhalt-Separation",
+      "derived_from": "M4",
+      "group": "medial",
+      "test_condition": "The model must separate the physical carrier (manuscript, codex, stone) from the informational content it carries, allowing independent description of each.",
+      "is_systemic_gap": false,
+      "gap_category": null,
+      "scenario_assignments": ["C"]
+    },
+    {
+      "id": "R-M4.2",
+      "label_en": "Material as Information",
+      "label_de": "Material als Information",
+      "derived_from": "M4",
+      "group": "medial",
+      "test_condition": "The model must be able to represent material properties of the carrier (ink color, watermarks, paper quality, damage) as informationally significant, not merely descriptive metadata.",
+      "is_systemic_gap": false,
+      "gap_category": null,
+      "scenario_assignments": ["C"]
+    },
+    {
+      "id": "R-S1.1",
+      "label_en": "Temporal Contextualization",
+      "label_de": "Temporale Kontextualisierung",
+      "derived_from": "S1",
+      "group": "semiotic",
+      "test_condition": "The model must distinguish multiple temporal layers: time of the described event, time of the source creation, time of later annotations/copies, and time of scholarly interpretation.",
+      "is_systemic_gap": false,
+      "gap_category": null,
+      "scenario_assignments": ["A", "C"]
+    },
+    {
+      "id": "R-S1.2",
+      "label_en": "Historical Reference Systems",
+      "label_de": "Historische Referenzsysteme",
+      "derived_from": "S1",
+      "group": "semiotic",
+      "test_condition": "The model must be able to represent historical reference systems (calendars, currencies, measurements) alongside modern equivalents without privileging either.",
+      "is_systemic_gap": false,
+      "gap_category": null,
+      "scenario_assignments": ["A"]
+    },
+    {
+      "id": "R-S2.1",
+      "label_en": "Readings / Normalization",
+      "label_de": "Lesarten / Normalisierung",
+      "derived_from": "S2",
+      "group": "semiotic",
+      "test_condition": "The model must be able to represent both diplomatic (source-faithful) and normalized readings of the same text, maintaining the relationship between them.",
+      "is_systemic_gap": true,
+      "gap_category": "normalization",
+      "scenario_assignments": ["B", "C"]
+    },
+    {
+      "id": "R-S3.1",
+      "label_en": "Source Relations",
+      "label_de": "Quellenrelationen",
+      "derived_from": "S3",
+      "group": "semiotic",
+      "test_condition": "The model must be able to represent typed relationships between sources (copy, translation, commentary, citation, contradiction).",
+      "is_systemic_gap": false,
+      "gap_category": null,
+      "scenario_assignments": ["C"]
+    },
+    {
+      "id": "R-A1",
+      "label_en": "Separation of Concerns",
+      "label_de": "Separation of Concerns",
+      "derived_from": null,
+      "group": "structural",
+      "test_condition": "The model must separate source representation from interpretive assertions. The artifact representation must be as free from interpretation as possible.",
+      "is_systemic_gap": false,
+      "gap_category": null,
+      "scenario_assignments": ["C"]
+    },
+    {
+      "id": "R-A2",
+      "label_en": "Event-Centricity",
+      "label_de": "Ereigniszentrierung",
+      "derived_from": null,
+      "group": "structural",
+      "test_condition": "The model should center on events as the primary unit of historical description, linking persons, places, times, and sources through events.",
+      "is_systemic_gap": false,
+      "gap_category": null,
+      "scenario_assignments": ["A", "B"]
+    },
+    {
+      "id": "R-A3",
+      "label_en": "Monotonicity",
+      "label_de": "Monotonizität",
+      "derived_from": null,
+      "group": "structural",
+      "test_condition": "Adding new information or interpretations must not require deleting or modifying existing assertions. The model must be additive/monotonic.",
+      "is_systemic_gap": false,
+      "gap_category": null,
+      "scenario_assignments": ["B"]
+    },
+    {
+      "id": "R-A4",
+      "label_en": "Assertion-Based",
+      "label_de": "Assertionsbasierung",
+      "derived_from": null,
+      "group": "structural",
+      "test_condition": "All information in the model must be wrapped in assertions that attribute the information to an agent, a source, and a confidence level.",
+      "is_systemic_gap": false,
+      "gap_category": null,
+      "scenario_assignments": ["A", "B"]
+    }
+  ],
+  "systemic_gaps": ["R-E1.3", "R-E5.2", "R-M2.2", "R-M3.1", "R-S2.1"],
+  "systemic_gap_analysis": {
+    "absence_related": ["R-E1.3", "R-M2.2", "R-M3.1"],
+    "causes_of_poor_absence_modeling": [
+      "Positive bias of knowledge representation: ontologies describe what exists, not what is missing",
+      "Open World Assumption (OWA) in OWL: missing statements = unknown, not = informationally significant",
+      "Missing formalization tradition for non-knowledge"
+    ],
+    "owa_paradox": "Historical research needs a knowledge representation that operates under OWA (because historical knowledge is always incomplete) and simultaneously can model absence as an informational state of affairs."
+  }
+}

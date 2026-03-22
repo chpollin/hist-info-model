@@ -1,0 +1,821 @@
+{
+  "approaches": [
+    {
+      "id": "thaller",
+      "label": "Thaller (Ivory Stack)",
+      "year": "2018–2021",
+      "source": "Thaller 2018, 2020, 2021",
+      "description_en": "Manfred Thaller's conceptual design for historical information systems, based on co-references, token strings, and multi-source files (MSF). Design-level, not implemented as formal ontology.",
+      "note": "Based on design (Ivory Stack 2018–2021), not on implementation."
+    },
+    {
+      "id": "sdhss",
+      "label": "SDHSS",
+      "year": "2021",
+      "source": "Beretta 2021 (OntoME)",
+      "description_en": "Semantic Data for Humanities and Social Sciences. CIDOC-CRM extension for prosopography and historical research. Uses temporal entities and assertion-based architecture."
+    },
+    {
+      "id": "cidoc_crm",
+      "label": "CIDOC-CRM",
+      "year": "2003–",
+      "source": "Doerr 2003",
+      "description_en": "Conceptual Reference Model for cultural heritage documentation. Event-centric ontology. ISO 21127. Broad scope, not specifically designed for historical research methodology."
+    },
+    {
+      "id": "bookkeeping",
+      "label": "Bookkeeping Ontology",
+      "year": "2025",
+      "source": "Pollin 2025",
+      "description_en": "Domain-specific ontology for historical bookkeeping records. CIDOC-CRM based. Focused on economic transactions, currencies, and accounting practices."
+    },
+    {
+      "id": "factoid",
+      "label": "Factoid Model",
+      "year": "2015",
+      "source": "Pasin/Bradley 2015",
+      "description_en": "Prosopographic data model based on factoids — atomic statements about persons extracted from sources. Designed for person-centric historical databases."
+    },
+    {
+      "id": "star",
+      "label": "STAR",
+      "year": "2019",
+      "source": "Various",
+      "description_en": "Spatiotemporal Archaeological Resource model. Focused on archaeological excavation data, stratigraphic relationships, and material culture."
+    },
+    {
+      "id": "prov_o",
+      "label": "PROV-O",
+      "year": "2013",
+      "source": "W3C",
+      "description_en": "W3C Provenance Ontology. General-purpose provenance model for tracking the origin and derivation of data. Not domain-specific to historical research."
+    }
+  ],
+  "ratings": {
+    "thaller": {
+      "R-E1.1": {
+        "level": "structural",
+        "justification": "Co-references with probabilistic/possibilistic weights provide graded uncertainty as a system-level feature. All data is inherently fuzzy."
+      },
+      "R-E1.2": {
+        "level": "structural",
+        "justification": "Co-reference mechanism allows multiple interpretations with different weights to coexist. Contradictions may resist resolution by design."
+      },
+      "R-E1.3": {
+        "level": "structural",
+        "justification": "Incompleteness taxonomy (Ex 6.1–6.3) with Explicit Defaults and Triggered Defaults. Most detailed absence treatment of all approaches."
+      },
+      "R-E2.1": {
+        "level": "structural",
+        "justification": "Multi-source files (MSF) track which source contributed each piece of information. Provenance is a core architectural feature."
+      },
+      "R-E2.2": {
+        "level": "absent",
+        "justification": "Epistemic distance is not modeled. Co-references track source attribution but not the degree of mediation."
+      },
+      "R-E3.1": {
+        "level": "structural",
+        "justification": "Multiple co-references from different sources for the same referent coexist without forced resolution."
+      },
+      "R-E3.2": {
+        "level": "absent",
+        "justification": "No typed relations between perspectives. Co-references coexist but their mutual relationships are not expressed."
+      },
+      "R-E4.1": {
+        "level": "metadata",
+        "justification": "Interpretation context can be attached to co-references but is not a first-class construct with dedicated metadata fields."
+      },
+      "R-E5.1": {
+        "level": "absent",
+        "justification": "Temporal categorization is not systematically addressed. Token strings preserve original forms but do not track when categories become anachronistic."
+      },
+      "R-E5.2": {
+        "level": "absent",
+        "justification": "No explicit emic/etic distinction mechanism. Categories are preserved as tokens but their provenance (actor vs. researcher) is not systematically tracked."
+      },
+      "R-M1.1": {
+        "level": "structural",
+        "justification": "Source types are explicitly distinguished and affect processing. MSF architecture differentiates source characteristics."
+      },
+      "R-M2.1": {
+        "level": "metadata",
+        "justification": "Creation purpose can be recorded as source metadata but is not a dedicated modeling construct."
+      },
+      "R-M2.2": {
+        "level": "metadata",
+        "justification": "Incompleteness taxonomy addresses missing data generally but does not specifically model systematic omissions as a source-type property."
+      },
+      "R-M3.1": {
+        "level": "structural",
+        "justification": "Incompleteness taxonomy directly addresses transmission gaps. Lacunae are modelable through the default mechanisms."
+      },
+      "R-M4.1": {
+        "level": "structural",
+        "justification": "Token string architecture inherently separates the physical token from its interpreted content."
+      },
+      "R-M4.2": {
+        "level": "metadata",
+        "justification": "Material properties can be recorded but are not given the same systematic treatment as textual content."
+      },
+      "R-S1.1": {
+        "level": "structural",
+        "justification": "Temporal modeling distinguishes creation time, event time, and annotation time as separate dimensions."
+      },
+      "R-S1.2": {
+        "level": "structural",
+        "justification": "Token strings preserve historical reference systems (currencies, measurements) in their original form alongside modern equivalents."
+      },
+      "R-S2.1": {
+        "level": "metadata",
+        "justification": "Token strings can preserve diplomatic readings, but the systematic relationship between diplomatic and normalized forms is not a dedicated construct."
+      },
+      "R-S3.1": {
+        "level": "metadata",
+        "justification": "Source relations can be modeled through references between MSF entries but lack a typed relation vocabulary."
+      },
+      "R-A1": {
+        "level": "structural",
+        "justification": "Core architectural principle: 'Represents the artifacts as free from any interpretation as possible.' Token strings vs. co-references implement this separation."
+      },
+      "R-A2": {
+        "level": "absent",
+        "justification": "Not explicitly event-centric. Thaller's architecture organizes around sources and co-references, not events as primary units."
+      },
+      "R-A3": {
+        "level": "structural",
+        "justification": "'Accepts that contradictions may resist resolution' — monotonic by design, new information added without modifying existing data."
+      },
+      "R-A4": {
+        "level": "structural",
+        "justification": "'All interpretations represent tendencies, no certainties' — assertion-based architecture with source attribution and confidence."
+      }
+    },
+    "sdhss": {
+      "R-E1.1": {
+        "level": "metadata",
+        "justification": "Certainty can be expressed through E13 qualifiers but uncertainty is not a pervasive system feature with dedicated constructs."
+      },
+      "R-E1.2": {
+        "level": "metadata",
+        "justification": "Multiple E13 assignments possible for competing interpretations but this is not a primary design pattern with dedicated support."
+      },
+      "R-E1.3": {
+        "level": "absent",
+        "justification": "No dedicated mechanism for representing known unknowns. Open World Assumption treats missing data as unknown, not as informationally significant."
+      },
+      "R-E2.1": {
+        "level": "structural",
+        "justification": "E13 Attribute Assignment links every assertion to its source through P140 assigned attribute to / P141 assigned."
+      },
+      "R-E2.2": {
+        "level": "absent",
+        "justification": "No dedicated epistemic distance concept. Derivation chains provide some proxy but no systematic distance measurement."
+      },
+      "R-E3.1": {
+        "level": "structural",
+        "justification": "Multiple Attribute Assignments from different scholars can coexist for the same entity. Core prosopographic feature."
+      },
+      "R-E3.2": {
+        "level": "absent",
+        "justification": "No vocabulary for typed relationships between perspectives (agreement, contradiction, subsumption)."
+      },
+      "R-E4.1": {
+        "level": "structural",
+        "justification": "E13 records who and when but not under which theoretical framework or with what interpretive purpose. Incomplete metadata."
+      },
+      "R-E5.1": {
+        "level": "metadata",
+        "justification": "Temporal validity of types can be modeled through E55 Type with temporal qualifiers, but not a primary design focus."
+      },
+      "R-E5.2": {
+        "level": "absent",
+        "justification": "No emic/etic distinction. E55 Type is used for all classifications without systematic provenance tracking."
+      },
+      "R-M1.1": {
+        "level": "structural",
+        "justification": "Inherits CIDOC-CRM's rich source type hierarchy through E73 Information Object subclasses."
+      },
+      "R-M2.1": {
+        "level": "metadata",
+        "justification": "Creation purpose can be modeled through E65 Creation events but is not a dedicated field."
+      },
+      "R-M2.2": {
+        "level": "absent",
+        "justification": "No mechanism for representing systematic omissions. Source limitations are not modeled as source properties."
+      },
+      "R-M3.1": {
+        "level": "absent",
+        "justification": "Transmission gaps cannot be explicitly represented. Lost sources are simply absent from the model."
+      },
+      "R-M4.1": {
+        "level": "structural",
+        "justification": "CIDOC-CRM's E18 Physical Thing / E73 Information Object distinction provides carrier-content separation."
+      },
+      "R-M4.2": {
+        "level": "metadata",
+        "justification": "Material properties can be described through E54 Dimension and condition reports but are not integrated with content interpretation."
+      },
+      "R-S1.1": {
+        "level": "structural",
+        "justification": "CIDOC-CRM temporal entities (E2 Temporal Entity, E52 Time-Span) distinguish event time, creation time, and documentation time."
+      },
+      "R-S1.2": {
+        "level": "absent",
+        "justification": "Historical reference systems can theoretically be recorded but dual representation is not built in or systematically supported."
+      },
+      "R-S2.1": {
+        "level": "absent",
+        "justification": "No dedicated mechanism for diplomatic vs. normalized readings. Text variants are not a modeling focus."
+      },
+      "R-S3.1": {
+        "level": "structural",
+        "justification": "Source relations can be modeled through P130 shows features of, P67 refers to, and other CRM properties."
+      },
+      "R-A1": {
+        "level": "structural",
+        "justification": "Separation of observation (source) from interpretation (assertion) is an architectural principle inherited from CIDOC-CRM's E13."
+      },
+      "R-A2": {
+        "level": "structural",
+        "justification": "Event-centric by design (CIDOC-CRM foundation). E5 Event is the primary organizational unit."
+      },
+      "R-A3": {
+        "level": "structural",
+        "justification": "RDF-based model is inherently additive. New triples can be added without modifying existing ones."
+      },
+      "R-A4": {
+        "level": "structural",
+        "justification": "E13 Attribute Assignment wraps all interpretive claims in assertions with agent, source, and optional certainty."
+      }
+    },
+    "cidoc_crm": {
+      "R-E1.1": {
+        "level": "metadata",
+        "justification": "E13 Attribute Assignment can carry certainty annotations, but uncertainty is not a pervasive system feature. Often treated as optional metadata."
+      },
+      "R-E1.2": {
+        "level": "metadata",
+        "justification": "Multiple E13 assignments possible but the pattern is not enforced or promoted as standard practice."
+      },
+      "R-E1.3": {
+        "level": "absent",
+        "justification": "No mechanism for known unknowns. OWA treats missing information as simply unknown."
+      },
+      "R-E2.1": {
+        "level": "structural",
+        "justification": "E13 Attribute Assignment provides provenance linkage. P140/P141 connect assertions to sources."
+      },
+      "R-E2.2": {
+        "level": "metadata",
+        "justification": "No dedicated epistemic distance concept. Can be approximated through chains of derivation events."
+      },
+      "R-E3.1": {
+        "level": "metadata",
+        "justification": "Multiple E13 assignments can coexist but the model does not specifically promote multiperspectivity as a design principle."
+      },
+      "R-E3.2": {
+        "level": "absent",
+        "justification": "No vocabulary for expressing relationships between competing perspectives."
+      },
+      "R-E4.1": {
+        "level": "absent",
+        "justification": "E13 records performer and time but not theoretical framework or interpretive purpose."
+      },
+      "R-E5.1": {
+        "level": "absent",
+        "justification": "Temporal contingency of categories is not addressed by the type system."
+      },
+      "R-E5.2": {
+        "level": "absent",
+        "justification": "No emic/etic distinction in the type system."
+      },
+      "R-M1.1": {
+        "level": "structural",
+        "justification": "Rich hierarchy of information object classes (E31 Document, E36 Visual Item, etc.) with source type semantics."
+      },
+      "R-M2.1": {
+        "level": "metadata",
+        "justification": "E65 Creation can link to motivation/purpose through P17 was motivated by, but it is generic."
+      },
+      "R-M2.2": {
+        "level": "absent",
+        "justification": "No concept of systematic omissions. Source biases are not modeled."
+      },
+      "R-M3.1": {
+        "level": "absent",
+        "justification": "No mechanism for explicitly representing that sources existed but are lost."
+      },
+      "R-M4.1": {
+        "level": "structural",
+        "justification": "E18 Physical Thing / E73 Information Object distinction is a foundational feature."
+      },
+      "R-M4.2": {
+        "level": "metadata",
+        "justification": "E54 Dimension can describe material properties but integration with content interpretation is not systematic. Material as evidence is possible but not promoted."
+      },
+      "R-S1.1": {
+        "level": "structural",
+        "justification": "Temporal entities with E52 Time-Span provide multi-layered temporal representation. Core CRM strength."
+      },
+      "R-S1.2": {
+        "level": "metadata",
+        "justification": "E58 Measurement Unit exists but dual representation of historical/modern systems is not built in."
+      },
+      "R-S2.1": {
+        "level": "absent",
+        "justification": "No mechanism for diplomatic vs. normalized text readings."
+      },
+      "R-S3.1": {
+        "level": "structural",
+        "justification": "P130 shows features of, P67 refers to, P128 carries provide source relation vocabulary."
+      },
+      "R-A1": {
+        "level": "structural",
+        "justification": "E13 Attribute Assignment separates observation from interpretation at the architectural level."
+      },
+      "R-A2": {
+        "level": "structural",
+        "justification": "Fundamentally event-centric. E5 Event is the backbone of the model."
+      },
+      "R-A3": {
+        "level": "metadata",
+        "justification": "RDF base is additive, but CRM itself does not enforce monotonicity — deletions and modifications are possible."
+      },
+      "R-A4": {
+        "level": "absent",
+        "justification": "E13 exists but is rarely mandatory. Most CRM usage does not wrap all claims in assertions with confidence and source."
+      }
+    },
+    "bookkeeping": {
+      "R-E1.1": {
+        "level": "metadata",
+        "justification": "Inherits CRM's E13 pattern but uncertainty is not a primary concern in the bookkeeping domain design."
+      },
+      "R-E1.2": {
+        "level": "absent",
+        "justification": "Designed for relatively unambiguous economic transactions. Alternative interpretations are not a focus."
+      },
+      "R-E1.3": {
+        "level": "absent",
+        "justification": "No mechanism for explicit knowledge gaps beyond inherited CRM limitations."
+      },
+      "R-E2.1": {
+        "level": "structural",
+        "justification": "Provenance to source ledgers is a core feature. Each transaction traces back to its folio/entry."
+      },
+      "R-E2.2": {
+        "level": "absent",
+        "justification": "Epistemic distance is not relevant for the bookkeeping domain as modeled."
+      },
+      "R-E3.1": {
+        "level": "absent",
+        "justification": "Single-source transcription model. Multiperspectivity is not a design consideration."
+      },
+      "R-E3.2": {
+        "level": "absent",
+        "justification": "No perspective relation mechanism."
+      },
+      "R-E4.1": {
+        "level": "absent",
+        "justification": "Interpretation metadata beyond basic provenance is not modeled."
+      },
+      "R-E5.1": {
+        "level": "metadata",
+        "justification": "Historical economic categories (Währungen, Maßeinheiten) are temporally bounded in the domain model."
+      },
+      "R-E5.2": {
+        "level": "absent",
+        "justification": "No emic/etic distinction."
+      },
+      "R-M1.1": {
+        "level": "metadata",
+        "justification": "Source type can be indicated through CRM inheritance but is not a primary dimension of the bookkeeping-specific design."
+      },
+      "R-M2.1": {
+        "level": "structural",
+        "justification": "The accounting purpose of each document type is modeled as part of the domain ontology."
+      },
+      "R-M2.2": {
+        "level": "absent",
+        "justification": "Systematic omissions (e.g., informal transactions not recorded) are not modeled."
+      },
+      "R-M3.1": {
+        "level": "absent",
+        "justification": "Lost ledgers or missing years are not explicitly representable."
+      },
+      "R-M4.1": {
+        "level": "metadata",
+        "justification": "Inherited CRM carrier-content separation but not a primary focus."
+      },
+      "R-M4.2": {
+        "level": "absent",
+        "justification": "Material properties of account books are not modeled as informationally significant."
+      },
+      "R-S1.1": {
+        "level": "structural",
+        "justification": "Transaction dates, recording dates, and accounting periods are explicitly distinguished."
+      },
+      "R-S1.2": {
+        "level": "absent",
+        "justification": "Historical currencies are referenced in the domain but systematic dual representation with conversion mechanisms is not a core feature."
+      },
+      "R-S2.1": {
+        "level": "absent",
+        "justification": "No diplomatic/normalized reading distinction."
+      },
+      "R-S3.1": {
+        "level": "absent",
+        "justification": "Relations between source documents are not a focus."
+      },
+      "R-A1": {
+        "level": "metadata",
+        "justification": "Some separation through CRM inheritance but transcription and interpretation are often conflated in practice."
+      },
+      "R-A2": {
+        "level": "absent",
+        "justification": "Transactions are central domain objects but the model is not event-centric in the generic CRM/historical sense."
+      },
+      "R-A3": {
+        "level": "metadata",
+        "justification": "Inherited from CRM/RDF but not explicitly enforced."
+      },
+      "R-A4": {
+        "level": "absent",
+        "justification": "Assertions are not a modeling feature. Data is treated as factual transcription."
+      }
+    },
+    "factoid": {
+      "R-E1.1": {
+        "level": "metadata",
+        "justification": "Factoids can carry certainty qualifiers but this is implementation-dependent, not a core model feature."
+      },
+      "R-E1.2": {
+        "level": "structural",
+        "justification": "Multiple factoids from different sources can represent competing claims about the same person. Core design feature."
+      },
+      "R-E1.3": {
+        "level": "absent",
+        "justification": "No mechanism for representing known unknowns. Missing data is simply absent."
+      },
+      "R-E2.1": {
+        "level": "structural",
+        "justification": "Each factoid links to its source. Provenance is the foundational principle of the factoid model."
+      },
+      "R-E2.2": {
+        "level": "absent",
+        "justification": "No epistemic distance concept."
+      },
+      "R-E3.1": {
+        "level": "structural",
+        "justification": "Factoids from different sources coexist without resolution. The model is designed for contradictory information."
+      },
+      "R-E3.2": {
+        "level": "absent",
+        "justification": "No mechanism for expressing relationships between factoids beyond shared referent."
+      },
+      "R-E4.1": {
+        "level": "absent",
+        "justification": "Factoids track source but not the interpreter's framework or purpose."
+      },
+      "R-E5.1": {
+        "level": "absent",
+        "justification": "Categories are not temporally qualified."
+      },
+      "R-E5.2": {
+        "level": "absent",
+        "justification": "No emic/etic distinction."
+      },
+      "R-M1.1": {
+        "level": "metadata",
+        "justification": "Source type can be recorded as metadata on the source entity but is not a modeling dimension."
+      },
+      "R-M2.1": {
+        "level": "absent",
+        "justification": "Source creation purpose is not modeled."
+      },
+      "R-M2.2": {
+        "level": "absent",
+        "justification": "Systematic omissions are not representable."
+      },
+      "R-M3.1": {
+        "level": "absent",
+        "justification": "Lost sources are not explicitly representable."
+      },
+      "R-M4.1": {
+        "level": "absent",
+        "justification": "No carrier-content separation."
+      },
+      "R-M4.2": {
+        "level": "absent",
+        "justification": "Material properties are not modeled."
+      },
+      "R-S1.1": {
+        "level": "metadata",
+        "justification": "Dates are recorded on factoids but multiple temporal layers are not systematically distinguished."
+      },
+      "R-S1.2": {
+        "level": "absent",
+        "justification": "Historical reference systems are not modeled."
+      },
+      "R-S2.1": {
+        "level": "absent",
+        "justification": "No reading/normalization mechanism."
+      },
+      "R-S3.1": {
+        "level": "absent",
+        "justification": "Source relations beyond shared referent are not modeled."
+      },
+      "R-A1": {
+        "level": "metadata",
+        "justification": "Factoids separate source from interpretation implicitly but not as explicitly as CRM's E13."
+      },
+      "R-A2": {
+        "level": "absent",
+        "justification": "Person-centric, not event-centric."
+      },
+      "R-A3": {
+        "level": "absent",
+        "justification": "Factoids are conceptually additive but implementations may allow modification. Monotonicity is not enforced at the model level."
+      },
+      "R-A4": {
+        "level": "structural",
+        "justification": "The factoid itself IS an assertion: person + source + claim. Core architectural principle."
+      }
+    },
+    "star": {
+      "R-E1.1": {
+        "level": "absent",
+        "justification": "Certainty is not a systematic feature. Archaeological recording assumes factual documentation."
+      },
+      "R-E1.2": {
+        "level": "absent",
+        "justification": "Alternative interpretations are not a core modeling feature."
+      },
+      "R-E1.3": {
+        "level": "absent",
+        "justification": "No explicit mechanism for known unknowns in the archaeological record."
+      },
+      "R-E2.1": {
+        "level": "structural",
+        "justification": "Every observation links to its excavation context and finds record. Provenance is fundamental to archaeological documentation."
+      },
+      "R-E2.2": {
+        "level": "absent",
+        "justification": "Epistemic distance is not modeled in the archaeological recording context."
+      },
+      "R-E3.1": {
+        "level": "absent",
+        "justification": "Designed for single-team documentation, not multi-perspective coexistence."
+      },
+      "R-E3.2": {
+        "level": "absent",
+        "justification": "No perspective relation mechanism."
+      },
+      "R-E4.1": {
+        "level": "absent",
+        "justification": "Excavation metadata (who, when) exists but interpretive framework tracking is not modeled."
+      },
+      "R-E5.1": {
+        "level": "absent",
+        "justification": "Period classifications exist but temporal contingency of categories is not addressed."
+      },
+      "R-E5.2": {
+        "level": "absent",
+        "justification": "No emic/etic distinction."
+      },
+      "R-M1.1": {
+        "level": "structural",
+        "justification": "Material culture types (ceramic, metal, bone, etc.) are a primary dimension."
+      },
+      "R-M2.1": {
+        "level": "absent",
+        "justification": "Creation purpose of material culture is not systematically modeled."
+      },
+      "R-M2.2": {
+        "level": "absent",
+        "justification": "Taphonomic bias is acknowledged but not modeled as systematic omission."
+      },
+      "R-M3.1": {
+        "level": "absent",
+        "justification": "Destroyed archaeological contexts (e.g., by later construction) are not explicitly representable."
+      },
+      "R-M4.1": {
+        "level": "structural",
+        "justification": "Physical object and its informational content are separated in the finds documentation model."
+      },
+      "R-M4.2": {
+        "level": "metadata",
+        "justification": "Material analysis is recorded in finds documentation but as descriptive metadata rather than as a systematically integrated informational dimension."
+      },
+      "R-S1.1": {
+        "level": "structural",
+        "justification": "Stratigraphic time, absolute dating, and recording time are distinguished."
+      },
+      "R-S1.2": {
+        "level": "metadata",
+        "justification": "Archaeological dating systems (BP, BC/AD, typological periods) coexist but dual representation is not systematic."
+      },
+      "R-S2.1": {
+        "level": "absent",
+        "justification": "Not applicable — STAR deals with material culture, not text readings."
+      },
+      "R-S3.1": {
+        "level": "absent",
+        "justification": "Stratigraphic relationships have different semantics from historical source relations. Not applicable."
+      },
+      "R-A1": {
+        "level": "metadata",
+        "justification": "Recording separates observation from interpretation in excavation methodology but the model conflates them partially."
+      },
+      "R-A2": {
+        "level": "structural",
+        "justification": "Archaeological events (depositions, destructions) are central organizational units."
+      },
+      "R-A3": {
+        "level": "absent",
+        "justification": "Stratigraphic reinterpretation can require modifying existing records."
+      },
+      "R-A4": {
+        "level": "absent",
+        "justification": "Data is typically recorded as facts, not assertions with confidence levels."
+      }
+    },
+    "prov_o": {
+      "R-E1.1": {
+        "level": "absent",
+        "justification": "No uncertainty mechanism. PROV-O tracks derivation, not certainty."
+      },
+      "R-E1.2": {
+        "level": "absent",
+        "justification": "No mechanism for competing interpretations."
+      },
+      "R-E1.3": {
+        "level": "absent",
+        "justification": "No concept of known unknowns."
+      },
+      "R-E2.1": {
+        "level": "structural",
+        "justification": "Provenance is the core purpose. wasDerivedFrom, wasAttributedTo, wasGeneratedBy provide full provenance chains."
+      },
+      "R-E2.2": {
+        "level": "metadata",
+        "justification": "Derivation chains can encode distance implicitly but it is not a dedicated concept."
+      },
+      "R-E3.1": {
+        "level": "absent",
+        "justification": "Single-provenance model. Not designed for multiperspectivity."
+      },
+      "R-E3.2": {
+        "level": "absent",
+        "justification": "No perspective relation vocabulary."
+      },
+      "R-E4.1": {
+        "level": "absent",
+        "justification": "wasAssociatedWith links to agents but interpretive framework, purpose, and theoretical context are not modeled."
+      },
+      "R-E5.1": {
+        "level": "absent",
+        "justification": "No temporal categorization mechanism."
+      },
+      "R-E5.2": {
+        "level": "absent",
+        "justification": "No category provenance mechanism."
+      },
+      "R-M1.1": {
+        "level": "absent",
+        "justification": "No source type concept. Entities are generic."
+      },
+      "R-M2.1": {
+        "level": "absent",
+        "justification": "No creation purpose concept beyond generic Activity."
+      },
+      "R-M2.2": {
+        "level": "absent",
+        "justification": "No systematic omission concept."
+      },
+      "R-M3.1": {
+        "level": "absent",
+        "justification": "No transmission gap concept."
+      },
+      "R-M4.1": {
+        "level": "absent",
+        "justification": "No carrier-content distinction."
+      },
+      "R-M4.2": {
+        "level": "absent",
+        "justification": "No materiality concept."
+      },
+      "R-S1.1": {
+        "level": "absent",
+        "justification": "Timestamps exist but multi-layered temporal representation is not a feature."
+      },
+      "R-S1.2": {
+        "level": "absent",
+        "justification": "No historical reference system concept."
+      },
+      "R-S2.1": {
+        "level": "absent",
+        "justification": "No text reading mechanism."
+      },
+      "R-S3.1": {
+        "level": "absent",
+        "justification": "wasDerivedFrom can link entities but lacks typed historical source relations."
+      },
+      "R-A1": {
+        "level": "absent",
+        "justification": "No separation of source representation from interpretation."
+      },
+      "R-A2": {
+        "level": "absent",
+        "justification": "Activity-centric but activities are generic, not event-centric in the historical sense."
+      },
+      "R-A3": {
+        "level": "structural",
+        "justification": "Provenance records are inherently additive. New derivations do not modify existing ones."
+      },
+      "R-A4": {
+        "level": "metadata",
+        "justification": "wasAttributedTo links entities to agents, providing partial assertion-like attribution, but without confidence levels or source links."
+      }
+    }
+  },
+  "coverage": {
+    "equal_weight": {
+      "thaller": {
+        "structural": 13,
+        "metadata": 6,
+        "absent": 5,
+        "percentage": 79
+      },
+      "sdhss": {
+        "structural": 11,
+        "metadata": 5,
+        "absent": 8,
+        "percentage": 67
+      },
+      "cidoc_crm": {
+        "structural": 7,
+        "metadata": 8,
+        "absent": 9,
+        "percentage": 63
+      },
+      "bookkeeping": {
+        "structural": 3,
+        "metadata": 6,
+        "absent": 15,
+        "percentage": 38
+      },
+      "factoid": {
+        "structural": 4,
+        "metadata": 4,
+        "absent": 16,
+        "percentage": 33
+      },
+      "star": {
+        "structural": 5,
+        "metadata": 3,
+        "absent": 16,
+        "percentage": 33
+      },
+      "prov_o": {
+        "structural": 2,
+        "metadata": 2,
+        "absent": 20,
+        "percentage": 17
+      }
+    },
+    "scoring_method": "Coverage = (structural + metadata) / 24 * 100, rounded to nearest integer. Both structural and metadata count as 'addressed' (coverage). Absent = not addressed.",
+    "domain_profiles": {
+      "textual_sources": {
+        "description": "Weighted for textual historical sources: epistemic and semiotic requirements weighted higher (C=3 for core epistemic, R=2 for representation/semiotic, M=1 for medial/structural)",
+        "weights": {
+          "R-E1.1": 3,
+          "R-E1.2": 3,
+          "R-E1.3": 3,
+          "R-E2.1": 3,
+          "R-E2.2": 3,
+          "R-E3.1": 3,
+          "R-E3.2": 3,
+          "R-E4.1": 3,
+          "R-E5.1": 3,
+          "R-E5.2": 3,
+          "R-M1.1": 1,
+          "R-M2.1": 1,
+          "R-M2.2": 1,
+          "R-M3.1": 1,
+          "R-M4.1": 1,
+          "R-M4.2": 1,
+          "R-S1.1": 2,
+          "R-S1.2": 2,
+          "R-S2.1": 2,
+          "R-S3.1": 2,
+          "R-A1": 1,
+          "R-A2": 1,
+          "R-A3": 1,
+          "R-A4": 1
+        },
+        "note": "C=3 for epistemic (core requirements), R=2 for semiotic (representation), M=1 for medial and structural"
+      }
+    }
+  }
+}
