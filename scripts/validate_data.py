@@ -50,12 +50,13 @@ matrix = load_json(data_dir / "evaluation_matrix.json")
 sc_a = load_json(data_dir / "examples" / "scenario_a.json")
 sc_b = load_json(data_dir / "examples" / "scenario_b.json")
 sc_c = load_json(data_dir / "examples" / "scenario_c.json")
+sc_d = load_json(data_dir / "examples" / "scenario_d.json")
 req_ex = load_json(data_dir / "examples" / "requirement_examples.json")
 
-if any(x is None for x in [primitives, graph, reqs, matrix, sc_a, sc_b, sc_c, req_ex]):
+if any(x is None for x in [primitives, graph, reqs, matrix, sc_a, sc_b, sc_c, sc_d, req_ex]):
     print("FATAL: Could not load all JSON files.")
     sys.exit(1)
-print("  All 8 JSON files loaded successfully.")
+print("  All 9 JSON files loaded successfully.")
 
 # ── 2. Primitives ──
 print("\n[2] Validating primitives.json...")
@@ -204,14 +205,14 @@ check(len(examples) == 24, f"Expected 24 requirement examples, got {len(examples
 example_req_ids = {e["requirement_id"] for e in examples}
 check(example_req_ids == req_ids, f"Example requirements mismatch. Missing: {req_ids - example_req_ids}")
 
-valid_scenarios = {"scenario_a", "scenario_b", "scenario_c"}
+valid_scenarios = {"scenario_a", "scenario_b", "scenario_c", "scenario_d"}
 for ex in examples:
     check(ex["scenario"] in valid_scenarios, f"{ex['requirement_id']}: invalid scenario '{ex['scenario']}'")
     check("with_requirement" in ex, f"{ex['requirement_id']}: missing 'with_requirement'")
     check("without_requirement" in ex, f"{ex['requirement_id']}: missing 'without_requirement'")
 
 # Scenario file validation
-for label, sc in [("scenario_a", sc_a), ("scenario_b", sc_b), ("scenario_c", sc_c)]:
+for label, sc in [("scenario_a", sc_a), ("scenario_b", sc_b), ("scenario_c", sc_c), ("scenario_d", sc_d)]:
     check("id" in sc, f"{label}: missing 'id'")
     check("title_en" in sc, f"{label}: missing 'title_en'")
 
@@ -246,7 +247,7 @@ else:
     print(f"  3 primitives, 15 graph nodes, 12 edges (acyclic)")
     print(f"  24 requirements (10E + 6M + 4S + 4A), 5 systemic gaps")
     print(f"  168 ratings with justifications, 7 approaches")
-    print(f"  24 requirement examples across 3 scenarios")
+    print(f"  24 requirement examples across 4 scenarios")
     print(f"  All cross-file references valid")
 
 if warnings:

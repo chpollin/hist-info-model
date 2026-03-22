@@ -1,0 +1,224 @@
+{
+  "id": "scenario_d",
+  "title_en": "The Guild Dispute",
+  "title_de": "Der Zunftstreit",
+  "setting": "Dispute over dye monopoly in Brückstadt, 1702 — one event, five sources, three centuries of interpretation",
+  "event": {
+    "id": "evt-guild-dispute",
+    "label_en": "Guild Dispute over Dye Monopoly",
+    "label_de": "Zunftstreit um das Farbmonopol",
+    "date": "1702-09",
+    "date_certainty": "medium",
+    "date_note": "All sources agree on September 1702, but no exact day survives",
+    "place": "Brückstadt",
+    "participants": ["per-j-meier", "per-farbmeister", "per-zunftmeister"],
+    "intersection": "All sources agree: September 1702, Brückstadt, involves Meier and guild authority. Almost nothing else aligns across all five accounts."
+  },
+  "sources": [
+    {
+      "id": "src-d-guild",
+      "title": "Webermeisterbuch (Weavers' Guild Register)",
+      "type": "administrative_register",
+      "date": "1702",
+      "level": "primary",
+      "perspective": "institutional/guild",
+      "text_diplomatic": "Anno 1702 im Herbstmonat. Dem Meister Meÿer ist das Handwerk geleget worden weilen er wider die Ehre des Handwerks dem Farbmeister ins Amt gegriffen.",
+      "text_normalized": "Im September 1702 wurde Meister Meier das Handwerk gelegt, weil er gegen die Ehre des Handwerks dem Farbmeister ins Amt gegriffen hatte.",
+      "text_translation": "In September 1702, Master Meier was barred from practicing his trade because he had encroached upon the Dye Master's office, against the honor of the craft.",
+      "event_characterization": "Violation of guild honor — a disciplinary matter",
+      "meier_characterization": "An offender against guild statutes",
+      "blind_spots": ["Cannot record Meier's perspective", "Cannot question whether guild monopoly is just", "Cannot see economic motivations"],
+      "temporal_layers": {
+        "event_time": "1702-09 (the dispute itself)",
+        "recording_time": "1702-09 (recorded shortly after in the register)",
+        "interpretation_time": "2024 (modern researcher reads entry)"
+      }
+    },
+    {
+      "id": "src-d-council",
+      "title": "Ratsprotokoll (City Council Minutes)",
+      "type": "administrative_record",
+      "date": "1702",
+      "level": "primary",
+      "perspective": "institutional/municipal",
+      "text_diplomatic": "den 15. Tag des Herbstmonats. Der Weber Meÿer streitet mit dem Farbmeister wegen des Farbmonopols. Der Rath weist den Meÿer zurecht.",
+      "text_normalized": "Am 15. September. Der Weber Meier streitet mit dem Farbmeister wegen des Farbmonopols. Der Rat weist Meier zurecht.",
+      "text_translation": "On the 15th of September. The weaver Meier disputes with the Dye Master over the dye monopoly. The Council admonishes Meier.",
+      "event_characterization": "Administrative dispute over monopoly rights — a regulatory matter",
+      "meier_characterization": "A troublesome weaver challenging established order",
+      "blind_spots": ["Cannot record guild-internal dynamics", "Cannot see personal motivations", "Treats monopoly as given, not as contested"],
+      "temporal_layers": {
+        "event_time": "1702-09-15 (council session)",
+        "recording_time": "1702-09-15 (recorded during session by clerk)",
+        "interpretation_time": "2024 (modern researcher reads entry)"
+      },
+      "unique_information": "Provides exact date (September 15) not found in any other source"
+    },
+    {
+      "id": "src-d-letter",
+      "title": "Privatbrief Johann Meiers an seinen Bruder",
+      "type": "personal_correspondence",
+      "date": "1705",
+      "level": "primary",
+      "perspective": "personal/subjective",
+      "text_diplomatic": "Lieber Bruder, du weist wol was mir anno 2 widerfahren. Hab das recht auf meiner Seiten gehabt, der Farbmeister aber hat die gantze Zunfft wider mich gewendet. Nun bin ich noch immer gstrafft.",
+      "text_normalized": "Lieber Bruder, du weißt wohl, was mir im Jahr [17]02 widerfahren ist. Ich habe das Recht auf meiner Seite gehabt, der Farbmeister aber hat die ganze Zunft gegen mich gewendet. Nun bin ich immer noch bestraft.",
+      "text_translation": "Dear brother, you know well what befell me in the year [17]02. I had the right on my side, but the Dye Master turned the entire guild against me. Now I am still punished.",
+      "event_characterization": "Injustice — a personal wrong suffered",
+      "meier_characterization": "A man wronged by the system",
+      "blind_spots": ["Self-serving account", "Cannot see institutional logic", "Retrospective (3 years later) — memory shaped by outcome"],
+      "temporal_layers": {
+        "event_time": "1702-09 (the dispute referred to)",
+        "recording_time": "1705 (letter written 3 years later)",
+        "interpretation_time": "2024 (modern researcher reads letter)"
+      },
+      "unique_information": "Only source showing Meier's subjective experience and that punishment was still in effect in 1705"
+    },
+    {
+      "id": "src-d-history",
+      "title": "Brückstädter Lokalgeschichte (1905)",
+      "type": "secondary_literature",
+      "date": "1905",
+      "level": "secondary",
+      "perspective": "academic/historicist",
+      "text_diplomatic": "In den Zunftkämpfen um die Jahrhundertwende trat besonders der Fall des Webers Meier hervor, der gegen den Zunftzwang aufbegehrte.",
+      "text_normalized": "In den Zunftkämpfen um die Jahrhundertwende trat besonders der Fall des Webers Meier hervor, der gegen den Zunftzwang aufbegehrte.",
+      "text_translation": "In the guild struggles around the turn of the century, the case of the weaver Meier stood out particularly, who rebelled against guild coercion.",
+      "event_characterization": "Class struggle — part of structural guild decline",
+      "meier_characterization": "A proto-modern resister of guild coercion",
+      "blind_spots": ["Imposes 19th-century framework (Zunftzwang) on 18th-century event", "Treats Meier as representative of a class, not an individual", "Cites guild register but not the letter — selection bias"],
+      "sources_cited": ["src-d-guild"],
+      "sources_not_cited": ["src-d-letter", "src-d-council"],
+      "temporal_layers": {
+        "event_time": "1702-09 (the dispute referred to)",
+        "recording_time": "1905 (book published)",
+        "interpretation_time": "2024 (modern researcher reads book)"
+      },
+      "epistemic_distance": {
+        "level": 1,
+        "chain": "guild register → 1905 book",
+        "information_loss": "Personal perspective (letter) never consulted; guild-internal view becomes the only evidence base"
+      }
+    },
+    {
+      "id": "src-d-database",
+      "title": "Historische Datenbank Brückstadt (2020)",
+      "type": "database_entry",
+      "date": "2020",
+      "level": "tertiary",
+      "perspective": "computational/taxonomic",
+      "record": {
+        "event_id": "EVT-1702-047",
+        "type": "labor_dispute",
+        "category": "guild_conflict",
+        "date": "1702-09-15",
+        "location": "Brückstadt",
+        "persons": ["Meier, Johann", "unnamed Dye Master"],
+        "outcome": "disciplinary_action",
+        "source_ref": "Brückstädter Lokalgeschichte (1905), p. 47"
+      },
+      "event_characterization": "A categorized data point — one row among thousands",
+      "meier_characterization": "A string in a person field",
+      "blind_spots": ["Category 'labor_dispute' is anachronistic", "Cites 1905 book, not primary sources", "Flattens all uncertainty to single values", "Cannot represent what the event meant to anyone", "Treats guild register date AND council date as identical (1702-09-15)"],
+      "temporal_layers": {
+        "event_time": "1702-09 (the dispute referred to)",
+        "recording_time": "2020 (database entry created)",
+        "interpretation_time": "2024 (modern researcher queries database)"
+      },
+      "epistemic_distance": {
+        "level": 2,
+        "chain": "guild register → 1905 book → 2020 database",
+        "information_loss": "Personal perspective lost; historical-interpretive framework lost; reduced to controlled vocabulary"
+      }
+    }
+  ],
+  "categorizations": [
+    {
+      "period": "1702",
+      "label_original": "wider die Ehre des Handwerks",
+      "label_en": "against the honor of the craft",
+      "framework": "emic",
+      "framework_type": "guild language",
+      "connotation": "Moral violation within a self-governing community. 'Ehre' (honor) is a legal-moral category — losing it means social death within the guild.",
+      "category_system": "Guild internal regulation"
+    },
+    {
+      "period": "1905",
+      "label_original": "Zunftzwang / Zunftkämpfe",
+      "label_en": "guild coercion / guild struggles",
+      "framework": "etic",
+      "framework_type": "historicism",
+      "connotation": "Structural conflict viewed through 19th-century liberal lens. 'Zunftzwang' implies the guild system was oppressive — a judgment the actors would not have shared.",
+      "category_system": "Liberal historiography"
+    },
+    {
+      "period": "2020",
+      "label_original": "labor_dispute / guild_conflict",
+      "label_en": "labor dispute / guild conflict",
+      "framework": "etic",
+      "framework_type": "database taxonomy",
+      "connotation": "Controlled vocabulary term. 'labor_dispute' maps to modern industrial relations — a category that did not exist in 1702. All semantic richness is lost.",
+      "category_system": "Controlled vocabulary (ISO 25964)"
+    }
+  ],
+  "interpretive_chain": [
+    {
+      "level": 0,
+      "type": "primary",
+      "source": "Guild Register + Council Minutes + Letter",
+      "description": "Direct testimony from participants and institutions. Three independent perspectives, each with blind spots.",
+      "information_dimensions": 17,
+      "what_is_preserved": ["Original language", "Institutional perspective", "Personal experience", "Temporal precision varies by source", "Uncertainty visible", "Multiple characterizations coexist"]
+    },
+    {
+      "level": 1,
+      "type": "secondary",
+      "source": "Local History Book (1905)",
+      "description": "Scholarly interpretation. Selects one primary source, imposes historicist framework, treats Meier as type rather than individual.",
+      "information_dimensions": 8,
+      "what_is_lost": ["Meier's personal perspective", "Council's regulatory framing", "Original emic categories", "Uncertainty about date", "Competing characterizations"],
+      "what_is_added": ["Historicist interpretive framework", "Narrative coherence", "Comparative context (other guild disputes)"]
+    },
+    {
+      "level": 2,
+      "type": "tertiary",
+      "source": "Historical Database (2020)",
+      "description": "Data entry derived from secondary source. All information flattened to controlled vocabulary. Epistemic provenance invisible.",
+      "information_dimensions": 4,
+      "what_is_lost": ["Historical language entirely", "Interpretive framework of 1905", "Any sense of contested meaning", "Material context of sources", "The fact that this was ever a story about a person"],
+      "what_is_added": ["Machine-readability", "Queryability", "Standardized categories"]
+    }
+  ],
+  "perspective_comparisons": [
+    {
+      "sources": ["src-d-guild", "src-d-council"],
+      "agreement": ["Date: September 1702", "Place: Brückstadt", "Involves Meier and dye monopoly"],
+      "unique_to_a": ["Guild honor framing", "Handwerk gelegt (barred from trade)"],
+      "unique_to_b": ["Exact date (September 15)", "Regulatory framing", "Council admonishment"],
+      "contradiction": [],
+      "tension": ["Guild sees moral violation; Council sees administrative dispute"]
+    },
+    {
+      "sources": ["src-d-guild", "src-d-letter"],
+      "agreement": ["Event happened in 1702", "Involves Meier and guild"],
+      "unique_to_a": ["Institutional framing", "Formal language"],
+      "unique_to_b": ["Meier's subjective experience", "Claim of being in the right", "Ongoing punishment in 1705"],
+      "contradiction": ["Guild: Meier violated honor → Letter: Meier had the right on his side"],
+      "tension": ["Offender vs. victim — irreconcilable perspectives on the same event"]
+    },
+    {
+      "sources": ["src-d-history", "src-d-database"],
+      "agreement": ["Both refer to the dispute", "Both ultimately derive from guild register"],
+      "unique_to_a": ["Narrative interpretation", "Historical context", "Category 'Zunftzwang'"],
+      "unique_to_b": ["Machine-readable format", "Controlled vocabulary", "Standardized fields"],
+      "contradiction": [],
+      "tension": ["1905 book has interpretive depth but selection bias; 2020 database has breadth but no depth"]
+    }
+  ],
+  "cross_references": {
+    "scenario_b": {
+      "person": "per-j-meier",
+      "note": "Johann Meier from scenario B is the same person. His appearance in the council minutes (1702, 'mentioned in guild dispute') IS this event."
+    }
+  }
+}

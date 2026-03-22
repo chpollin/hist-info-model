@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Historical Information — Making Theory Experienceable</title>
-  <meta name="description" content="Interactive visualization of a formalized theory of historical information modeling — from three primitives to twenty-four requirements.">
+  <title>Historical Information — What happens when you translate a source into data?</title>
+  <meta name="description" content="Interactive visualizations exploring what historical sources contain, what data models capture, and what gets lost in translation.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -25,25 +25,23 @@
       </button>
       <ul class="nav__links" id="nav-links">
         <li><a href="#introduction" class="nav__link" data-section="introduction">Introduction</a></li>
-        <li><a href="#derivation" class="nav__link" data-section="derivation">Derivation</a></li>
-        <li><a href="#evaluation" class="nav__link" data-section="evaluation">Evaluation</a></li>
-        <li><a href="#explorer" class="nav__link" data-section="explorer">Requirements</a></li>
-        <li><a href="#absence" class="nav__link" data-section="absence">Absence</a></li>
+        <li><a href="#reading" class="nav__link" data-section="reading">Reading</a></li>
+        <li><a href="#tracing" class="nav__link" data-section="tracing">Tracing</a></li>
+        <li><a href="#comparing" class="nav__link" data-section="comparing">Comparing</a></li>
+        <li><a href="#reconstructing" class="nav__link" data-section="reconstructing">Reconstructing</a></li>
+        <li><a href="#reflecting" class="nav__link" data-section="reflecting">Reflecting</a></li>
         <li><a href="#about" class="nav__link" data-section="about">About</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- Detail Panel Overlay -->
-  <div class="detail-overlay" id="detail-overlay"></div>
-
   <main>
-    <!-- §1 Introduction -->
+    <!-- §1 Introduction / Hero -->
     <section id="introduction" class="hero section">
       <div class="section__inner">
         <div class="reveal">
-          <h1 class="hero__title">Historical<br><span class="hero__accent">Information</span></h1>
-          <p class="hero__subtitle">Making the formalized theory of historical information modeling experienceable through interactive visualizations</p>
+          <h1 class="hero__title">What happens when you translate<br>a <span class="hero__accent">historical source</span><br>into data?</h1>
+          <p class="hero__subtitle">Five scholarly tasks. Real historical examples. The properties of historical information emerge from the experience — not from labels.</p>
         </div>
 
         <div class="primitives-overview">
@@ -64,133 +62,82 @@
           </div>
         </div>
 
-        <p class="intro-text reveal">These three primitives are analytically distinct and each necessary. From them, eleven derived properties and twenty-four formal requirements follow. This website lets you explore the derivation structure, evaluate how existing ontology approaches address these requirements, and experience what is lost when requirements are not met — particularly the modeling of <em>absence</em>.</p>
+        <p class="intro-text reveal">These three primitives are analytically distinct and each necessary. From them, eleven derived properties and twenty-four formal requirements follow. The visualizations below let you <em>experience</em> what these properties mean in practice — through real historical data, not abstract diagrams.</p>
       </div>
     </section>
 
-    <!-- §2 Derivation Graph -->
-    <section id="derivation" class="section section--alt">
+    <!-- §2 Reading — Source Reading Table -->
+    <section id="reading" class="section section--alt">
       <div class="section__inner">
         <div class="section__header reveal">
-          <span class="section__eyebrow">Structure</span>
-          <h2 class="section__title">Derivation Graph</h2>
-          <p class="section__subtitle">From three primitives to eleven properties — an interactive derivation structure</p>
+          <span class="section__eyebrow">Station 1</span>
+          <h2 class="section__title">Reading</h2>
+          <p class="section__subtitle">A single source entry contains more layers than expected. Toggle them on and off to see what's hidden in plain sight.</p>
         </div>
-        <div id="derivation-graph-container" class="viz-container reveal">
-          <div class="viz-placeholder">Loading derivation graph…</div>
+        <div id="source-reader-container" class="viz-container viz-container--tall reveal">
+          <div class="viz-placeholder">Loading source reader…</div>
         </div>
-        <aside id="derivation-detail" class="detail-panel" aria-hidden="true">
-          <button class="detail-panel__close" aria-label="Close">&times;</button>
-          <h3 id="detail-title" class="detail-panel__title"></h3>
-          <p id="detail-description" class="detail-panel__desc"></p>
-          <div id="detail-formal" class="formal-notation"></div>
-          <div id="detail-connections"></div>
-        </aside>
       </div>
     </section>
 
-    <!-- §3 Evaluation Matrix -->
-    <section id="evaluation" class="section">
+    <!-- §3 Tracing — Person Tracer -->
+    <section id="tracing" class="section">
       <div class="section__inner">
         <div class="section__header reveal">
-          <span class="section__eyebrow">Assessment</span>
-          <h2 class="section__title">Evaluation Matrix</h2>
-          <p class="section__subtitle">How seven ontology approaches address the twenty-four requirements</p>
+          <span class="section__eyebrow">Station 2</span>
+          <h2 class="section__title">Tracing</h2>
+          <p class="section__subtitle">Follow a person across multiple sources. They shimmer, contradict themselves, and disappear. The absences are as informative as the presences.</p>
         </div>
-
-        <div class="eval-controls reveal">
-          <div class="eval-controls__filter">
-            <label>Filter:</label>
-            <button class="btn btn--active" data-filter="all">All</button>
-            <button class="btn" data-filter="epistemic">Epistemic</button>
-            <button class="btn" data-filter="medial">Medial</button>
-            <button class="btn" data-filter="semiotic">Semiotic</button>
-            <button class="btn" data-filter="structural">Structural</button>
-            <button class="btn btn--gap" data-filter="gaps">Systemic Gaps</button>
-          </div>
-          <div class="eval-controls__weighting">
-            <label>Weighting:</label>
-            <button class="btn btn--active" data-weight="equal">Equal</button>
-            <button class="btn" data-weight="textual">Textual Sources</button>
-          </div>
-        </div>
-
-        <div id="heatmap-container" class="viz-container reveal">
-          <div class="viz-placeholder">Loading evaluation heatmap…</div>
-        </div>
-
-        <div class="eval-legend reveal">
-          <span class="legend-item"><span class="legend-swatch legend-swatch--structural"></span> Structural (dedicated constructs)</span>
-          <span class="legend-item"><span class="legend-swatch legend-swatch--metadata"></span> Metadata (generic mechanisms)</span>
-          <span class="legend-item"><span class="legend-swatch legend-swatch--absent"></span> Absent (not addressed)</span>
-        </div>
-
-        <h3 class="subsection-title reveal">Approach Profiles</h3>
-        <div id="radar-container" class="viz-container reveal">
-          <div class="viz-placeholder">Loading radar chart…</div>
+        <div id="person-tracer-container" class="viz-container viz-container--tall reveal">
+          <div class="viz-placeholder">Loading person tracer…</div>
         </div>
       </div>
     </section>
 
-    <!-- §4 Requirement Explorer -->
-    <section id="explorer" class="section section--alt">
+    <!-- §4 Comparing — Witness Comparator -->
+    <section id="comparing" class="section section--alt">
       <div class="section__inner">
         <div class="section__header reveal">
-          <span class="section__eyebrow">Deep Dive</span>
-          <h2 class="section__title">Requirement Explorer</h2>
-          <p class="section__subtitle">See what each requirement demands — and what is lost without it</p>
+          <span class="section__eyebrow">Station 3</span>
+          <h2 class="section__title">Comparing</h2>
+          <p class="section__subtitle">The same text in four witnesses: never identical. Orthographic variants, paraphrases, marginal additions — and the physical carriers that shape what survives.</p>
         </div>
-
-        <div id="req-selector" class="req-selector reveal">
-          <!-- Populated by JS: requirement buttons grouped by category -->
-        </div>
-
-        <div id="explorer-container" class="viz-container reveal">
-          <div class="viz-placeholder">Select a requirement to explore…</div>
+        <div id="witness-comparator-container" class="viz-container viz-container--tall reveal">
+          <div class="viz-placeholder">Loading witness comparator…</div>
         </div>
       </div>
     </section>
 
-    <!-- §5 Absence Modeling -->
-    <section id="absence" class="section">
+    <!-- §5 Reconstructing — Event Reconstructor -->
+    <section id="reconstructing" class="section">
       <div class="section__inner">
         <div class="section__header reveal">
-          <span class="section__eyebrow">Critical Gap</span>
-          <h2 class="section__title">Modeling Absence</h2>
-          <p class="section__subtitle">Three types of absence that no current ontology adequately represents</p>
+          <span class="section__eyebrow">Station 4</span>
+          <h2 class="section__title">Reconstructing</h2>
+          <p class="section__subtitle">One event, five reports, three centuries. The guild dispute of 1702 shows how categories dissolve and perspectives irreconcilably diverge.</p>
         </div>
-
-        <div class="absence-toggle-container reveal">
-          <button id="lacuna-toggle" class="btn btn--large btn--primary">
-            <span class="toggle-on">Hide Absence Modeling</span>
-            <span class="toggle-off" hidden>Show Absence Modeling</span>
-          </button>
-          <p class="absence-toggle-hint">Toggle to see what becomes invisible when absence cannot be represented</p>
-        </div>
-
-        <div id="lacuna-container" class="viz-container reveal">
-          <div class="viz-placeholder">Loading absence visualization…</div>
-        </div>
-
-        <div class="absence-causes">
-          <div class="cause-card reveal reveal--delay-1">
-            <h4>Positive Bias</h4>
-            <p>Ontologies describe what exists, not what is missing. There is no established pattern for "this should be here but isn't."</p>
-          </div>
-          <div class="cause-card reveal reveal--delay-2">
-            <h4>Open World Assumption</h4>
-            <p>In OWL, missing data means "unknown" — not "informationally significant." Historical research needs both.</p>
-          </div>
-          <div class="cause-card reveal reveal--delay-3">
-            <h4>Missing Formalization</h4>
-            <p>Philosophy discusses absence (Heidegger, Sartre), but this hasn't been translated into formal ontology patterns.</p>
-          </div>
+        <div id="event-reconstructor-container" class="viz-container viz-container--tall reveal">
+          <div class="viz-placeholder">Loading event reconstructor…</div>
         </div>
       </div>
     </section>
 
-    <!-- §6 About -->
-    <section id="about" class="section section--alt">
+    <!-- §6 Reflecting — Model Mirror -->
+    <section id="reflecting" class="section section--alt">
+      <div class="section__inner">
+        <div class="section__header reveal">
+          <span class="section__eyebrow">Station 5</span>
+          <h2 class="section__title">Reflecting</h2>
+          <p class="section__subtitle">What does every data model lose? Select a data point you've explored above and watch information disappear as the model gets simpler.</p>
+        </div>
+        <div id="model-mirror-container" class="viz-container viz-container--tall reveal">
+          <div class="viz-placeholder">Loading model mirror…</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- §7 About -->
+    <section id="about" class="section">
       <div class="section__inner">
         <div class="section__header reveal">
           <span class="section__eyebrow">Context</span>
@@ -200,7 +147,7 @@
         <div class="about-grid">
           <div class="about-card reveal reveal--delay-1">
             <h3>Research Prototype</h3>
-            <p>This website validates 24 formal requirements for historical information modeling against seven existing ontology approaches. It makes visible the five systemic gaps — three of which concern the modeling of absence.</p>
+            <p>This website makes the properties of historical information experienceable through interactive visualizations of real historical data. 24 formal requirements emerge from three primitives — and from the scholarly tasks of reading, tracing, comparing, reconstructing, and reflecting.</p>
           </div>
           <div class="about-card reveal reveal--delay-2">
             <h3>Promptotype</h3>
@@ -228,7 +175,7 @@
 
   <footer class="footer">
     <div class="footer__inner">
-      <p class="footer__title">Historical Information — Making Theory Experienceable</p>
+      <p class="footer__title">Historical Information — What happens when you translate a source into data?</p>
       <p class="footer__method">Built as a Promptotype using iterative context engineering</p>
     </div>
   </footer>

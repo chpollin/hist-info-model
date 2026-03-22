@@ -10,6 +10,7 @@ const DataLoader = {
   scenarioA: null,
   scenarioB: null,
   scenarioC: null,
+  scenarioD: null,
   requirementExamples: null,
 
   /** True once init() has completed successfully */
@@ -21,7 +22,7 @@ const DataLoader = {
    */
   async init(basePath = '../data') {
     try {
-      const [p, g, r, m, sa, sb, sc, re] = await Promise.all([
+      const [p, g, r, m, sa, sb, sc, sd, re] = await Promise.all([
         fetch(`${basePath}/primitives.json`).then(r => r.json()),
         fetch(`${basePath}/derivation_graph.json`).then(r => r.json()),
         fetch(`${basePath}/requirements.json`).then(r => r.json()),
@@ -29,6 +30,7 @@ const DataLoader = {
         fetch(`${basePath}/examples/scenario_a.json`).then(r => r.json()),
         fetch(`${basePath}/examples/scenario_b.json`).then(r => r.json()),
         fetch(`${basePath}/examples/scenario_c.json`).then(r => r.json()),
+        fetch(`${basePath}/examples/scenario_d.json`).then(r => r.json()),
         fetch(`${basePath}/examples/requirement_examples.json`).then(r => r.json()),
       ]);
 
@@ -39,6 +41,7 @@ const DataLoader = {
       this.scenarioA = sa;
       this.scenarioB = sb;
       this.scenarioC = sc;
+      this.scenarioD = sd;
       this.requirementExamples = re;
       this.ready = true;
 
@@ -49,6 +52,7 @@ const DataLoader = {
         requirements: r.requirements.length,
         approaches: m.approaches.length,
         examples: re.requirement_examples.length,
+        scenarioD: sd.sources.length + ' sources',
       });
 
       return true;
@@ -120,6 +124,7 @@ const DataLoader = {
       case 'scenario_a': return this.scenarioA;
       case 'scenario_b': return this.scenarioB;
       case 'scenario_c': return this.scenarioC;
+      case 'scenario_d': return this.scenarioD;
       default: return null;
     }
   },

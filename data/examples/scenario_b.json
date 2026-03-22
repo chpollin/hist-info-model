@@ -169,6 +169,13 @@
     ],
     "requirement": "R-E2.2"
   },
+  "cross_references": {
+    "scenario_d": {
+      "person": "per-j-meier",
+      "appearance": "src-council, 1702",
+      "note": "The council minutes entry 'Mentioned in guild dispute' is the same event described in full in scenario D (The Guild Dispute of 1702)."
+    }
+  },
   "monotonicity_example": {
     "existing_assertions": "All assertions about Meier from guild register, tax list, and council minutes",
     "new_discovery": {

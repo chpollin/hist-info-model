@@ -123,16 +123,16 @@
     {
       "requirement_id": "R-E5.1",
       "title_en": "Temporal Categorization",
-      "scenario": "scenario_a",
-      "data_path": "persons[0].role_emic",
-      "description_en": "'Kaufmann' in 15th century = merchant + banker + commodity trader. The category is temporally bounded — it does not map 1:1 to any modern category.",
+      "scenario": "scenario_d",
+      "data_path": "categorizations",
+      "description_en": "The same event is categorized as 'wider die Ehre des Handwerks' (1702, guild language), 'Zunftzwang' (1905, historicist framework), and 'labor_dispute' (2020, database taxonomy). Each category is temporally bounded and carries the semantic framework of its era.",
       "with_requirement": {
-        "description": "Category 'Kaufmann' marked as valid 15th century, with note that it encompasses modern categories ['merchant', 'banker', 'commodity_trader'].",
-        "visual": "Category node with temporal validity bar (1400–1600) and exploded view showing modern equivalents."
+        "description": "Three categorizations coexist, each marked with its temporal validity and framework type (emic/guild, etic/historicism, etic/database). The semantic drift from 'honor' to 'coercion' to 'labor dispute' is visible.",
+        "visual": "Category timeline: three nodes on a 1702→2020 axis, each with original label, framework type, and connotation. Transformation arrows between them show semantic drift."
       },
       "without_requirement": {
-        "description": "Role forced into modern category 'merchant'. The historical breadth and temporal boundedness of 'Kaufmann' is lost.",
-        "visual": "Simple role label: 'merchant'. No indication that the original category was different or broader."
+        "description": "Event categorized as 'guild_conflict' (the 2020 database term). The 1702 emic category and the 1905 historicist interpretation are both lost. The semantic richness of 'Handwerkerehre' is invisible.",
+        "visual": "Single category label: 'guild_conflict'. No indication that this term did not exist in 1702, or that the event was understood entirely differently by its participants."
       }
     },
     {
@@ -318,16 +318,16 @@
     {
       "requirement_id": "R-A2",
       "title_en": "Event-Centricity",
-      "scenario": "scenario_a",
-      "data_path": "transactions[0]",
-      "description_en": "The pepper purchase is an event linking persons (Fugger, Bellini), places (Augsburg, Venice), times (March 1478), objects (pepper), and amounts (2,000 ducats).",
+      "scenario": "scenario_d",
+      "data_path": "event",
+      "description_en": "The guild dispute of 1702 is a single event connecting five independent sources, three persons, one place, and three centuries of interpretation. Without the event as a central node, the five documents remain unconnected.",
       "with_requirement": {
-        "description": "Event 'pepper purchase' is the central node connecting all entities. Persons, places, times, and objects are linked through the event.",
-        "visual": "Star diagram with event at center, connected to person nodes, place nodes, time nodes, and object nodes."
+        "description": "Event 'guild dispute' is the central hub. Five sources radiate from it, each contributing a partial, perspectival account. Persons, place, date, and categorizations all connect through the event.",
+        "visual": "Radial diagram: event at center, 5 source nodes around it. Each source connected with typed edge (primary/secondary/tertiary). Category timeline below shows the event's meaning changing across 3 centuries."
       },
       "without_requirement": {
-        "description": "Data organized by entity type (all persons in one table, all places in another). The event that connects them is implicit.",
-        "visual": "Separate tables for persons, places, dates. No visible connection between 'Fugger' and 'Venice' and 'March 1478'."
+        "description": "Five documents in separate collections. The guild register, council minutes, letter, history book, and database entry are organized by source type, not by the event they describe. The connection between them is implicit or lost.",
+        "visual": "Five separate document cards in different tables. No visible connection. The researcher must reconstruct the event mentally."
       }
     },
     {
