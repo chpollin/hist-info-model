@@ -97,7 +97,7 @@
       "test_condition": "The model must be able to represent that categorizations change over time and that a category valid in one period may be anachronistic in another.",
       "is_systemic_gap": false,
       "gap_category": null,
-      "scenario_assignments": ["A"]
+      "scenario_assignments": ["A", "D"]
     },
     {
       "id": "R-E5.2",
@@ -240,7 +240,7 @@
       "test_condition": "The model should center on events as the primary unit of historical description, linking persons, places, times, and sources through events.",
       "is_systemic_gap": false,
       "gap_category": null,
-      "scenario_assignments": ["A", "B"]
+      "scenario_assignments": ["A", "B", "D"]
     },
     {
       "id": "R-A3",

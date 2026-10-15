@@ -1,11 +1,14 @@
 ---
 type: knowledge
 created: 2026-03-21
+updated: 2026-10-15
 tags: [examples, scenarios, synthetic-data]
 status: draft
 ---
 
 # Synthetic Historical Examples
+
+All scenarios below are invented teaching cases. Their contrasts illustrate selected representations and do not establish historical facts or universal limitations of other data models. Source-chain distance is not a reliability score. Scholarly revision can preserve earlier assertions while changing their accepted status.
 
 **Version:** 1.0
 **Purpose:** Concrete, historically plausible examples for each of the 24 requirements, drawn from three scenarios.
@@ -83,7 +86,7 @@ status: draft
 
 **R-E2.2 (Epistemic Distance):** The guild register records Johann Meier's admission directly (primary source, eyewitness-level). A 1905 local history book mentions Meier citing the guild register (secondary source, one degree removed). A 2015 database entry cites the 1905 book (tertiary, two degrees removed). Epistemic distance: guild register < 1905 book < 2015 database.
 
-**R-S2.1 (Readings/Normalization):** The guild register spells the name "Johann Identity Identity Identity Meÿer" (diplomatic reading with historical ÿ). Normalized: "Johann Meier." The parish register spells "Identity Johanß Identity Meÿer" (different hand). The model must preserve both forms and their relationship.
+**R-S2.1 (Readings/Normalization):** The guild register spells the name "Johann Meÿer" (diplomatic reading with historical ÿ). Normalized: "Johann Meier." The parish register spells "Johanß Meÿer" (different hand). The model must preserve both forms and their relationship.
 
 **R-A3 (Monotonicity):** In 2023, a new source is discovered — a letter from Johann Meier to a Nuremberg merchant (1705). This adds information (Meier had trade contacts beyond Brückstadt) without requiring modification of any existing assertions. The model is additive.
 
@@ -141,7 +144,7 @@ status: draft
 
 ### Requirement Mappings
 
-**R-A2 (Event-Centricity):** The guild dispute is the central event connecting five independent sources. Without the event as a hub, the five documents remain unconnected. (Updated from Scenario A.)
+**R-A2 (Event-Centricity):** The guild dispute is the central event connecting five related source representations, including derivative accounts. The event is one organizing view; explicit source and derivation links provide another. (Updated from Scenario A.)
 
 **R-E5.1 (Temporal Categorization):** The same event is categorized as "wider die Ehre des Handwerks" (1702, guild language), "Zunftzwang" (1905, historicist framework), and "labor_dispute" (2020, database taxonomy). Each category is temporally bounded. (Updated from Scenario A.)
 

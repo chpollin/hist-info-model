@@ -1,63 +1,49 @@
 ---
 type: knowledge
 created: 2026-03-22
+updated: 2026-10-15
 tags: [moc, navigation, vault-structure]
-status: active
+status: draft
 ---
 
 # Map of Contents — Research Vault
 
-Navigations-Dokument für den Research Vault des Projekts "Foundations for a Data Model of Historical Information".
-
-**Vault-Statistik:** 20 Markdown-Dateien (9 Theory, 4 Approaches, 2 Evidence/Examples, 2 Design, 1 Paper, 2 Process).
-**Letztes Update:** 2026-03-22 (M17 — datengetriebene Visualisierungen).
+The theoretical strand connects the dissertation's foundation with representation requirements, approach notes and teaching examples. The [requirements integration](https://github.com/DigitalHumanitiesCraft/ivory-kleio/blob/codex/temporal-prototype/knowledge/requirements-integration.md) owns the common R/H correspondence and evidence boundaries.
 
 ## Theory (01-theory/)
 
-| Dokument | Inhalt | Status |
-|----------|--------|--------|
-| [[Information]] | Informationswissenschaftliches Fundament: Langefors, DIKW-Kritik, capta, Beretta | draft |
-| [[Dissertation-Context]] | Zentrale Referenz: Pollin 2024, 5 Eigenschaften, Bookkeeping Ontology, DEPCHA | draft |
-| [[Historical-Information]] | Zusammenführung 5 Eigenschaften + 3 Primitive, offene Forschungsfrage | draft |
-| [[Primitives]] | P1 Temporale Irreversibilität, P2 Spurenvermitteltheit, P3 Interpretative Konstitution | draft |
-| [[Properties]] | 11 abgeleitete Eigenschaften (epistemisch, medial, semiotisch) mit Ableitungsgraph | draft |
-| [[Requirements]] | 24 Requirements mit RE-Methodik, 5 systemische Lücken | stub |
-| [[Absence-Modeling]] | Drei Abwesenheitstypen, OWA-Paradox, Thallers Incompleteness-Taxonomie | draft |
-| [[Thaller-Synthesis]] | Konvergenz/Divergenz: Thallers 8 Annahmen ↔ 3 Primitive ↔ Ivory Stack | draft |
-| research-archive.md | Archiv: ursprüngliche Synthese v1.0 | archived |
+- [[Information]] connects information-science concepts and the dissertation.
+- [[Dissertation-Context]] identifies the existing foundation and source-driven modelling.
+- [[Historical-Information]] distinguishes characteristics, source veto and later reconstructions.
+- [[Primitives]] develops optional P1/P2/P3 hypotheses.
+- [[Properties]] organizes candidate analytical distinctions.
+- [[Requirements]] maintains stable R identifiers and links to the common integration.
+- [[Absence-Modeling]] distinguishes missingness, omissions and transmission loss.
+- [[Thaller-Synthesis]] retains the research connections with explicit reading limits.
+- [Earlier research synthesis](../01-theory/research-archive.md) is a dated prior formulation, not the current requirement baseline.
 
 ## Approaches (02-approaches/)
 
-| Dokument | Inhalt | Status |
-|----------|--------|--------|
-| [[Approaches-Overview]] | 8 Paradigmen, 18 Ansätze (10 bestehend + 8 neu aus 2024–2025) | draft |
-| [[Approaches-Comparison]] | Konsolidierter Vergleich aller Ansätze: CIDOC-CRM, SDHSS, Bookkeeping, Factoid/STAR, PROV-O, CRMinf, Thaller, FactGrid, Hypergraph-KGs, TEI, RiC-O, EDM, Linked Art, MemO, RDF-star, CHAD-KG, TKGs, ProbFuzzOnto | draft |
-| [[Evaluation-Framework]] | Bewertungsmethodik: structural / metadata / absent, Evidenzquellen, offene Fragen | draft |
-| [[Systemic-Gaps]] | 5 systemische Lücken mit Status 2024–2025, OWA-Paradox | draft |
+- [[Approaches-Overview]] routes to candidate representation approaches.
+- [[Approaches-Comparison]] contains working comparison notes.
+- [[Evaluation-Framework]] defines evidence and scope for a capability assessment.
+- [[Systemic-Gaps]] carries open capability questions rather than universal findings.
 
 ## Evidence & Examples (03-examples/)
 
-| Dokument | Inhalt | Status |
-|----------|--------|--------|
-| [[Examples-Overview]] | 4 synthetische Szenarien (Rechnungsbuch, Prosopographie, Edition, Zunftstreit), alle 24 Requirements | draft |
-| [[Project-Evidence]] | 4 echte Projekte konsolidiert: DEPCHA, SuGW, M³GIM, ZBZ | stub |
+- [[Examples-Overview]] describes the invented teaching scenarios.
+- [[Project-Evidence]] separates dissertation-backed examples from candidate project extensions.
 
 ## Design (04-design/)
 
-| Dokument | Inhalt | Status |
-|----------|--------|--------|
-| [[Design]] | Website-Architektur: 5 Stationen (Reading, Tracing, Comparing, Reconstructing, Reflecting), D3.js | draft |
-| [[Data]] | JSON-Schema-Dokumentation: 9 Dateien (inkl. scenario_d.json), Invarianten | draft |
+- [[Design]] describes the static teaching interface and its projections.
+- [[Data]] describes JSON structures and the status of their research claims.
 
 ## Paper (05-paper/)
 
-| Dokument | Inhalt | Status |
-|----------|--------|--------|
-| [[Paper-Outline]] | "Foundations for a Data Model of Historical Information" — 7 Sektionen | stub |
+- [[Paper-Outline]] develops the existing manuscript structure subject to evidence.
 
 ## Process (00-process/)
 
-| Dokument | Inhalt | Status |
-|----------|--------|--------|
-| [[Journal]] | Chronologische Entwicklung M0–M16 | active |
-| MOC.md | Dieses Dokument | active |
+- [[Journal]] records integrated transitions.
+- [Work plan](../../PLAN.md) carries future work.

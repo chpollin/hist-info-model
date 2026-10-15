@@ -1,67 +1,49 @@
 ---
 type: design-document
 created: 2026-03-21
+updated: 2026-10-15
 tags: [website-design, visualization, d3js]
 status: draft
 ---
 
 # Design Document: Historical Information Web Interface
 
-**Version:** 2.0 (M17 — datengetriebene Visualisierungen)
-**Technology:** Static HTML/CSS/Vanilla JS + D3.js v7 (local copy, no CDN)
+Version 2.0 (M17) records the data-driven website design. Its architecture uses static HTML/CSS/Vanilla JS and a local D3.js v7 copy. The stations illustrate synthetic cases from [[Examples-Overview]]. They do not constitute an evaluated historical information model.
 
----
+The [canonical requirements integration](https://github.com/DigitalHumanitiesCraft/ivory-kleio/blob/codex/temporal-prototype/knowledge/requirements-integration.md) owns the connection to dissertation findings, R-IDs and Ivory KLEIO H-candidates. The website is a teaching and communication strand.
 
 ## 1 Page Structure
 
-Single-page application with scroll-based navigation. Seven sections structured as five scholarly "stations" plus introduction and about:
+The single-page layout uses scroll navigation through Introduction, Reading, Tracing, Comparing, Reconstructing, Reflecting and About.
 
-```
-┌──────────────────────────────────────────┐
-│  Header / Navigation Bar (sticky)        │
-├──────────────────────────────────────────┤
-│  §1 Introduction                         │
-│  Leitfrage + Three Primitives overview   │
-├──────────────────────────────────────────┤
-│  §2 Reading (Station 1)                  │
-│  Source Reading Table — Viz 1            │
-├──────────────────────────────────────────┤
-│  §3 Tracing (Station 2)                 │
-│  Person Tracer — Viz 2                   │
-├──────────────────────────────────────────┤
-│  §4 Comparing (Station 3)               │
-│  Witness Comparator — Viz 3              │
-├──────────────────────────────────────────┤
-│  §5 Reconstructing (Station 4)           │
-│  Event Reconstructor — Viz 4             │
-├──────────────────────────────────────────┤
-│  §6 Reflecting (Station 5)              │
-│  Model Mirror — Viz 5                    │
-├──────────────────────────────────────────┤
-│  §7 About / Methodology                  │
-│  Promptotyping as method, references     │
-└──────────────────────────────────────────┘
-```
+| Section | Function | Module |
+|---|---|---|
+| Introduction | Introduce the source-to-data problem and mark the primitives as hypotheses | Introductory content |
+| Reading | Inspect one source passage and its representations | Source Reading Table |
+| Tracing | Inspect appearances, identities and explicitly modelled absences | Person Tracer |
+| Comparing | Inspect witnesses, variants and material features | Witness Comparator |
+| Reconstructing | Compare accounts of one synthetic event | Event Reconstructor |
+| Reflecting | Compare deliberately selected data projections | Model Mirror |
+| About | Explain synthetic provenance, method and references | Methodology content |
 
-**Leitfrage der Seite:** "Was passiert, wenn man eine historische Quelle in Daten übersetzen will?"
-
-**Narrativer Fluss:** Jede Station entspricht einem scholarly task. Die Eigenschaften historischer Information emergieren aus den Daten, nicht aus Labels.
+The retained public guiding question is “Was passiert, wenn man eine historische Quelle in Daten übersetzen will?” The narrative follows scholarly tasks. Illustrations must distinguish observations within the fictional case from claims about historical practice.
 
 ## 2 Navigation
 
-- Sticky top bar with section links (7 links: Introduction, Reading, Tracing, Comparing, Reconstructing, Reflecting, About)
-- Active section highlighted during scroll (Intersection Observer API)
-- Smooth scroll on click
-- Hamburger menu on mobile (≤767px)
-- Scroll progress bar (3px gradient top)
+- Sticky navigation links to the named sections.
+- IntersectionObserver identifies the visible section and supports lazy initialisation.
+- Link navigation scrolls to the target.
+- The mobile menu applies at widths up to 767px.
+- The progress indicator uses a 3px top bar.
+- Keyboard access and reduced-motion behaviour require interface verification.
 
 ## 3 Color System
 
 ### Primary Palette (Property Groups)
 
-| Group | Hue | CSS Variable | Hex |
-|-------|-----|-------------|-----|
-| Primitive | Indigo | `--color-primitive` | `#4338ca` |
+| Group | Hue | CSS variable | Hex |
+|---|---|---|---|
+| Primitive hypothesis | Indigo | `--color-primitive` | `#4338ca` |
 | Epistemic | Teal | `--color-epistemic` | `#0d9488` |
 | Medial | Amber | `--color-medial` | `#d97706` |
 | Semiotic | Rose | `--color-semiotic` | `#e11d48` |
@@ -69,134 +51,127 @@ Single-page application with scroll-based navigation. Seven sections structured 
 
 ### Rating Palette (used in Model Mirror)
 
-| Level | Color | CSS Variable | Hex |
-|-------|-------|-------------|-----|
-| Structural (dedicated) | Green | `--color-rating-structural` | `#16a34a` |
-| Metadata (generic) | Yellow | `--color-rating-metadata` | `#ca8a04` |
+These retained design tokens describe display categories. They are not measured ratings of representation technologies.
+
+| Legacy token category | Color | CSS variable | Hex |
+|---|---|---|---|
+| Structural | Green | `--color-rating-structural` | `#16a34a` |
+| Metadata | Yellow | `--color-rating-metadata` | `#ca8a04` |
 | Absent | Red | `--color-rating-absent` | `#dc2626` |
 
 ### Systemic Gap / Absence Indicator
 
-- Purple (`--color-gap`: `#7c3aed`)
-- Used for absence markers, known unknowns, systematic omissions, transmission gaps
+Purple `--color-gap: #7c3aed` identifies explicit gaps and absence states in the synthetic examples. Its use does not establish a systemic deficit in other approaches.
 
 ### Accessibility
 
-- All color pairs meet WCAG AA contrast ratio (4.5:1 minimum)
-- Patterns/icons supplement color for colorblind users
+WCAG AA text contrast is a design target, including 4.5:1 where applicable. Text, patterns and icons supplement color. This document does not certify measured compliance.
 
 ## 4 Typography
 
-- **Headings:** Inter (Google Fonts) + system fallback stack
-- **Body:** Inter, 16px base, 1.65 line height
-- **Code/Formal:** `'JetBrains Mono', 'Fira Code', 'Consolas', monospace`
-- **Scale:** 1.25 ratio (h1: 2.75rem, h2: 2rem, h3: 1.5rem, h4: 1.2rem)
+- Headings and body use Inter with system fallbacks.
+- The body baseline is 16px with 1.65 line height.
+- Code/formal notation uses JetBrains Mono, Fira Code, Consolas and monospace fallbacks.
+- The design scale is 1.25, with h1 2.75rem, h2 2rem, h3 1.5rem and h4 1.2rem.
+- Font loading must preserve the repository's local-asset constraint.
 
 ## 5 Layout Grid
 
-- Max width: 1200px, centered
-- Responsive breakpoints: 1200px (desktop), 768px (tablet/mobile)
-- Viz containers: min-height 500px for station vizs
-- Scroll reveal animations on `.reveal` class elements (0.7s cubic-bezier)
+The maximum width is 1200px. Responsive layout changes at 1200px and 768px. Station visualisation containers have a 500px minimum height in the desktop design. Reveal animation uses 0.7s timing where motion is enabled.
 
 ## 6 Visualization Specifications
 
 ### 6.1 Source Reading Table (§2 — Station 1: "Reading")
 
-**"Was sagt ein einzelner Eintrag wirklich?"**
+The reader inspects a synthetic pepper trade, uncertain loan, dowry entry or chronicle passage.
 
-- **Module:** `site/js/viz/source-reader.js`
-- **Data:** `scenario_a.json` (Fugger-Transaktionen), `scenario_c.json` (Chronikpassage)
-- **Entry-Tabs:** Pfefferhandel | Darlehen | Mitgift | Chronikpassage
-- **Layer-Toggles:** Diplomatisch/Normalisiert, Temporale Schichten, Referenzsysteme, Kategorien (emic/etic), Unsicherheit
-- **D3-Einsatz:** SVG swimlanes für temporale Schichten (Event/Recording/Interpretation Time)
-- **DOM-Pattern:** HTML für Text (besseres Wrapping), D3 nur für Balken/Timeline
-- **HI emergiert durch:** Schimmernder Split-Betrag (2000/2500), emic/etic-Split, drei Zeitebenen für dasselbe Ereignis
+- Module `site/js/viz/source-reader.js`.
+- Data `scenario_a.json` and `scenario_c.json`.
+- Entry tabs select the existing synthetic passages.
+- Layer controls expose diplomatic/normalised text, temporal layers, reference systems, emic/etic categories and uncertainty.
+- D3 supplies temporal swimlanes for event, recording and interpretation time.
+- HTML renders wrapping text. D3 renders bars and timelines.
+- The amount candidates `[2000, 2500]` illustrate an invented reading alternative. They are not observed historical amounts or probabilities.
 
 ### 6.2 Person Tracer (§3 — Station 2: "Tracing")
 
-**"Was wissen wir wirklich über Johann Meier?"**
+The reader inspects fictional guild members and household relationships in `scenario_b.json`.
 
-- **Module:** `site/js/viz/person-tracer.js`
-- **Data:** `scenario_b.json` (Prosopographie mit Abwesenheiten)
-- **Person-Selector:** Johann | Anna | Peter | Hans — jede Person erzählt eine andere Abwesenheitsgeschichte
-- **Grid:** x=Zeit (1650–1750), y=Quellen (5 Zeilen), Schnittpunkte = Erscheinungen/Abwesenheiten
-- **Zell-Typen:**
-  - Gefüllter Kreis (teal) = Person erscheint
-  - Gestrichelter Hohlkreis (lila) = Known Unknown (Quelle zerstört)
-  - Schattierte Fläche (lila) = Systematische Auslassung (by design)
-  - Leer = nicht erwähnt
-- **Feuernarbe:** 1681 Markierung auf Timeline mit torn-pattern
-- **Characterization-Callouts:** Hover → "ehrbarer Meister" vs. "streitbarer Weber"
-- **Identity-Fork:** Hans Weber → Gabelung mit "?" und zwei Forscher-Interpretationen
-- **Absence Toggle:** Hide/Show aller strukturierten Abwesenheitsmarker
-- **HI emergiert durch:** Johanns Geburt als Hohlkreis, Annas Gilde-Spalte als strukturelle Leere, Feuernarbe als viszeraler Verlust
+- Module `site/js/viz/person-tracer.js`.
+- The selector changes the displayed person and source appearances.
+- The grid relates time in the scenario domain 1650–1750 to the listed sources.
+- Filled teal circles indicate recorded appearances.
+- Dashed purple circles indicate a declared known unknown.
+- Shaded areas indicate a declared systematic omission.
+- Empty cells indicate no recorded mention in this fixture.
+- The synthetic 1681 fire marker displays the scenario's invented transmission loss.
+- Characterisation callouts compare the fictional guild and council perspectives.
+- An identity fork exposes competing research identifications.
+- The absence toggle exposes or hides explicit absence annotations.
+
+Claims of systematic exclusion are premises of this synthetic scenario. Historical generalisation requires evidence from real sources.
 
 ### 6.3 Witness Comparator (§4 — Station 3: "Comparing")
 
-**"Ist das derselbe Text?"**
+The reader compares fictional chronicle witnesses in `scenario_c.json`.
 
-- **Module:** `site/js/viz/witness-comparator.js`
-- **Data:** `scenario_c.json` (4 Textzeugen, Stemma, Varianten)
-- **Stemma-Diagramm:** D3 tree (Original → Archetypus → A/β → B/C/D), hypothetische Knoten gestrichelt
-- **Synoptische Text-Spalten:** 2–4 Spalten je nach Auswahl, diplomatisch mit Toggle für Normalisierung
-- **Varianten-Highlighting:** Orthographische Varianten (amber underline via CSS), substantive Varianten (rose border-left)
-- **Material-Features-Panel:** Pro Textzeuge: Material, Schrift, Schäden, Wasserzeichen, Tintenfarbe
-- **Carrier/Content Toggle:** "Trägermaterial" an/aus
-- **HI emergiert durch:** Diplomatisch→Normalisiert zeigt Transkription als Interpretation; rote Tinte als Information über die Handschrift
+- Module `site/js/viz/witness-comparator.js`.
+- A D3 stemma represents the recorded relationships and marks hypothetical nodes.
+- Selected witnesses appear in parallel diplomatic text columns with a normalisation toggle.
+- Orthographic variants use amber underlining. Substantive variants use rose borders.
+- Material panels expose carrier, script, damage, watermarks and ink.
+- A carrier/content toggle distinguishes physical features from the represented text.
+
+The fictional red ink, water damage and watermarks are teaching examples of possible evidential roles. Their interpretation is encoded in the fixture.
 
 ### 6.4 Event Reconstructor (§5 — Station 4: "Reconstructing")
 
-**"Fünf Berichte über einen Streit"**
+The reader compares synthetic accounts of the 1702 guild dispute in `scenario_d.json`.
 
-- **Module:** `site/js/viz/event-reconstructor.js`
-- **Data:** `scenario_d.json` (Zunftstreit 1702, 5 Quellen)
-- **Event-Hub:** D3 radiale Anordnung — zentraler Ereignisknoten, 5 Quellen trigonometrisch verteilt
-- **Quellen-Karten:** Klick auf 2 Quellen → Perspektivenvergleich (Übereinstimmung/nur A/nur B/Widerspruch/Spannung)
-- **Kategorienwandel-Timeline:** 1702→1905→2020 mit 3 Knoten ("Handwerkerehre"→"Zunftzwang"→"labor_dispute")
-- **Epistemische Distanz-Kette:** 3 Stufen mit abnehmender Opazität und Dimensionszähler (17→8→4)
-- **HI emergiert durch:** Fünf Quellen, fünf Wahrheiten, ein Ereignis; Kategorienwandel als semantischer Drift; Widerspruch Täter vs. Opfer
+- Module `site/js/viz/event-reconstructor.js`.
+- A radial event hub connects the listed source representations.
+- Selecting sources opens the recorded agreements, unique details, contradictions and tensions.
+- A categorisation timeline compares guild language in 1702, the later 1905 framing and the 2020 database category `labor_dispute`.
+- The interpretive chain shows source derivations and the explicitly selected retained/omitted fields.
+
+Dependent accounts must remain visibly dependent. The displayed field counts are properties of the teaching projection, not measures of truth, epistemic reliability or model coverage. The common event keeps month-level dating; the finer September 15 reading remains attributed to the council account. The later database projection can still illustrate unjustified precision.
 
 ### 6.5 Model Mirror (§6 — Station 5: "Reflecting")
 
-**"Was verliert jedes Datenmodell?"**
+The Model Mirror compares deliberately lossy teaching projections of the same synthetic example.
 
-- **Module:** `site/js/viz/model-mirror.js`
-- **Data:** Alle Szenarien (A, B, C, D)
-- **Datenpunkt-Tabs:** Pfefferhandel | Johann Meier | Chronikpassage | Zunftstreit
-- **3-Spalten-Vergleich:**
-  - Spalte 1: Volles HI-Modell (alle Schichten, Unsicherheit, Provenienz, Abwesenheit)
-  - Spalte 2: Relationale DB (ein Datum, ein Betrag, ein Name)
-  - Spalte 3: Spreadsheet (alles ist ein String)
-- **Informationsverlust-Zähler:** "17 → 8 → 4 dimensions" als große Zahlen
-- **Geister-Overlay:** Verlorene Felder als 0.15 opacity Einträge in Spalte 2/3
-- **Lost-Panel:** Auflistung aller verlorenen Dimensionen pro Spalte
-- **HI emergiert durch:** Alle Properties gleichzeitig, durch ihre Abwesenheit
+- Module `site/js/viz/model-mirror.js`.
+- Data are the existing scenario JSON files.
+- Tabs select the trade, guild member, chronicle passage or dispute.
+- The detailed fixture view exposes the fields chosen for the example. It is not a complete or validated HI model.
+- The reduced relational view selects a narrow schema with a date, amount and name.
+- The reduced spreadsheet view selects a flattened display.
+- The ghost overlay and lost-field panel expose fields omitted by those specific projections.
+- Any displayed dimension count is derived from the selected projection and must be labelled accordingly.
+
+Relational databases can represent related records, alternatives, provenance and revisions through appropriate schemas. Spreadsheets can retain typed values, multiple sheets and references. The selected reductions illustrate design choices. They do not demonstrate expressive limits of either technology.
 
 ## 7 Responsive Behavior
 
 ### Desktop (≥1200px)
-- Full layout: 3-column Model Mirror, 4-column Witness Comparator
-- Source Reader: 2-column (display + controls)
+
+The desktop design supports parallel Model Mirror views and witness columns. The Source Reader separates the display and its controls.
 
 ### Tablet/Mobile (≤767px)
-- Single column layout for all viz components
-- Source Reader controls above display
-- Witness Comparator: 1 column (stacked)
-- Model Mirror: 1 column (stacked)
-- Hamburger navigation
+
+The views stack in a single column. Source Reader controls precede the display. Witnesses and Model Mirror projections stack, with navigation available through the mobile menu.
 
 ## 8 Data Loading Strategy
 
+The following retained architectural sketch lists the named inputs. [[Data]] describes their structures and evidence limits.
+
 ```javascript
-// data-loader.js provides:
 const DataLoader = {
   primitives, graph, requirements, matrix,
   scenarioA, scenarioB, scenarioC, scenarioD,
   requirementExamples,
 
   async init(basePath) {
-    // Parallel fetch of all 9 JSON files
     const [p, g, r, m, sa, sb, sc, sd, re] = await Promise.all([
       fetch(`${basePath}/primitives.json`),
       fetch(`${basePath}/derivation_graph.json`),
@@ -212,11 +187,11 @@ const DataLoader = {
 };
 ```
 
-**Lazy Loading:** Visualisierungen werden erst initialisiert, wenn ihre Container via IntersectionObserver sichtbar werden (rootMargin: 200px).
+The design initialises visualisations when their containers approach visibility through IntersectionObserver with `rootMargin: 200px`. Loaded theory and rating files remain provisional records even where they are not directly displayed.
 
 ## 9 Module Architecture
 
-Jede Visualisierung ist ein selbständiges ES-Modul:
+Each visualisation has its own ES-module initialisation function.
 
 ```javascript
 // site/js/viz/source-reader.js
@@ -235,16 +210,14 @@ export function initEventReconstructor(containerSelector, data) { ... }
 export function initModelMirror(containerSelector, data) { ... }
 ```
 
-`app.js` koordiniert: DataLoader → IntersectionObserver → init-Funktionen.
+`app.js` coordinates DataLoader, IntersectionObserver and initialisation. These sketches preserve the documented architecture and are not a fresh implementation read-back.
 
 ## 10 Print/Export
 
-- `@media print` stylesheet hides navigation, simplifies visualizations
-- `.reveal` elements set to `opacity: 1; transform: none`
-- Each section self-contained for academic screenshot use
+The print stylesheet hides navigation and simplifies visualisations. Reveal elements become visible with `opacity: 1; transform: none`. Exported screenshots need their synthetic-case and projection labels to remain legible.
 
 ## Related
 
-- [[Data]] — JSON-Schema-Dokumentation
-- [[Examples-Overview]] — Synthetische Beispiele für Visualisierungen
-- [[Evaluation-Framework]] — Bewertungsmethodik (Theorie-Daten, nicht direkt visualisiert)
+- [[Data]] — JSON structures and evidence status
+- [[Examples-Overview]] — Synthetic scenarios
+- [[Evaluation-Framework]] — Research evaluation procedure

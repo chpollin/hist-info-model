@@ -1,128 +1,105 @@
 ---
 type: knowledge
 created: 2026-03-21
+updated: 2026-10-15
 tags: [historical-information, requirements, data-modeling, requirements-engineering]
-status: stub
+status: draft
 ---
 
 # Requirements
 
 ## Summary
 
-24 formale Requirements für die Modellierung historischer Information. Die Requirements beschreiben *was* ein Datenmodell repräsentieren muss, nicht *wie*. Sie sind paradigmenneutral formuliert — ein Requirement muss prinzipiell von einer Ontologie, einem TEI-Schema, einem Graphmodell oder einem Archivstandard erfüllbar sein.
+The R register names candidate representation requirements for historical information. The dissertation supplies the conceptual foundation and documented source-driven modelling. The [requirements integration](https://github.com/DigitalHumanitiesCraft/ivory-kleio/blob/codex/temporal-prototype/knowledge/requirements-integration.md) owns the complete correspondence to dissertation pages, existing examples, H operation candidates and specific open questions.
 
-Status: **Stub** — die Requirements sind aus den [[Properties]] abgeleitet, müssen aber durch Evidenz aus echten Projekten validiert und durch konkrete Testbedingungen geschärft werden.
+The identifiers retain continuity with [requirements.json](../../data/requirements.json) and the synthetic examples. The primitive/property connections are analytical hypotheses rather than proven derivations. Historical adequacy and comparative capability assessments require explicit evidence.
 
 ## Methodische Herleitung
 
-Die Requirements-Ableitung folgt der Methodik aus der Dissertation (Pollin 2024), die [[Dissertation-Context|Scholar-Centred Design]] mit Requirements Engineering verbindet:
-
 ### 1. Empirische Grundlage: Deep Dive Sessions
 
-In DEPCHA (2017–2020) wurden durch Deep-Dive-Sessions mit Historikern wiederkehrende Repräsentationsbedürfnisse identifiziert. Der Prozess kombinierte Screen-Sharing, Forschungsbesuche, TEI-XML-Annotationsübungen und Rapid Prototyping. Drei Erkenntnisse:
-
-- Die inhärente Logik der Quellen erzeugt Anforderungen (z.B. Steuerregister → Group-Konzept)
-- Die expliziten Forschungsbedürfnisse erzeugen Anforderungen (z.B. Netzwerkanalyse → Relationsmodellierung)
-- Die impliziten Interpretationspraktiken erzeugen Anforderungen (z.B. verschiedene Historiker → verschiedene Kategorisierungen → Multiperspektivität)
+Pollin (2025, pp. 89–98) connects source work and requirements engineering. Collective tax actors motivate Group, rights motivate Right, and wording in the Wheaton daybook motivates AgentMention. Network analysis and hierarchical aggregation provide documented research tasks. These are existing requirement-bearing cases, not evidence that the entire later R taxonomy has been empirically validated.
 
 ### 2. Theoretische Abstraktion: Eigenschaften → Requirements
 
-Die fünf [[Historical-Information|Eigenschaften historischer Information]] und die elf daraus abgeleiteten [[Properties]] bilden den theoretischen Rahmen. Jedes Requirement ist einer Eigenschaft zugeordnet und formuliert eine konkrete Bedingung, die aus dieser Eigenschaft folgt:
-
-```
-Eigenschaft → Property → Requirement → Testbedingung
-z.B.: Uncertainty → E1 Unsicherheit → R-E1.1 Unsicherheitsgrade →
-      "Das Modell muss graduierte Unsicherheit für Datierungen darstellen können"
-```
+[[Historical-Information]] distinguishes the dissertation's characteristics and source veto from the later [[Primitives]] reconstruction. [[Properties]] organizes candidate distinctions. A connection to a property supplies a rationale to examine, not logical necessity or universal scope.
 
 ### 3. Validierung: Echte Projekte
 
-Jedes Requirement soll durch mindestens ein konkretes Modellierungsproblem aus einem echten Projekt belegt werden:
-
-- **DEPCHA** — Historische Finanzdaten, TEI → RDF, Bookkeeping Ontology
-- **SuGW** — 16.084 Personen, mittelalterliche Rechtsgeschäfte, Personenidentifikation
-- **M³GIM** — 283 Archiveinheiten, RiC-O-basiert, relationale Dichte
-- **zbz-ocr-tei** — 286 PDFs, 34 Design Decisions, OCR-Pipeline
-
-TODO: Diese Validierung steht noch aus. Siehe [[Project-Evidence]].
+[[Project-Evidence]] distinguishes dissertation-backed DEPCHA examples from candidate extensions to SuGW, M³GIM and the Zentralbibliothek Zürich workflow. [[Examples-Overview]] contains invented teaching cases. A source location, attributed interpretation, defined operation and counterexample are required before treating an example as a historical test fixture.
 
 ## Offene Fragen
 
-1. **Sind 24 die richtige Zahl?** Oder gibt es Requirements, die redundant sind bzw. fehlen?
-2. **Sind alle Requirements gleich gewichtig?** Oder gibt es eine natürliche Hierarchie?
-3. **Testbedingungen:** Bisher abstrakt formuliert. Sollten als "In Projekt X scheitert Ansatz Y an diesem Problem" konkretisiert werden.
-4. **Die 5 systemischen Lücken:** Sind es wirklich genau 5? Warum nicht mehr?
-5. **Paradigmenneutralität:** Sind die Requirements so formuliert, dass sie auch von nicht-ontologischen Ansätzen (TEI, Graphmodelle, Archivstandards) adressiert werden können? Siehe [[Approaches-Overview]].
-6. **Strukturelle Requirements:** R-A1 bis R-A4 haben keine `derived_from`-Eigenschaft — sie stammen aus Thallers Architekturprinzipien und den DEPCHA-Erfahrungen, nicht aus den Primitiven.
+- Which requirements are necessary for a named operation and which are optional contextual descriptions?
+- Which proposed distinctions add value to the dissertation's existing architecture?
+- Which source and implementation evidence supports each capability comparison?
+- How do preservation of old assertions, revision of acceptance and non-monotonic reasoning interact?
+- Which concerns have no direct H counterpart and must remain explicitly represented?
 
 ## Requirements nach Gruppe
 
+Labels preserve the existing vocabulary. The last column states the present interpretation to be evaluated. JSON gap flags and ratings are legacy exploratory annotations, not accepted research results.
+
 ### Epistemisch (10)
 
-| ID | Label | Abgeleitet von | Systemische Lücke? |
+| ID | Label | Candidate property | Interpretation to evaluate |
 |---|---|---|---|
-| R-E1.1 | Unsicherheitsgrade | E1 | Nein |
-| R-E1.2 | Alternativinterpretationen | E1 | Nein |
-| R-E1.3 | Explizite Wissenslücken | E1 | **Ja** (Abwesenheit) |
-| R-E2.1 | Provenienz | E2 | Nein |
-| R-E2.2 | Epistemische Distanz | E2 | Nein |
-| R-E3.1 | Perspektivenkoexistenz | E3 | Nein |
-| R-E3.2 | Perspektivenrelationen | E3 | Nein |
-| R-E4.1 | Interpretationsmetadaten | E4 | Nein |
-| R-E5.1 | Temporale Kategorisierung | E5 | Nein |
-| R-E5.2 | Kategorienprovenienz emic/etic | E5 | **Ja** (Kategorien) |
+| R-E1.1 | Uncertainty Degrees | E1 | Preserve the stated uncertainty form. Graded certainty is required only with defined meaning and evidence. |
+| R-E1.2 | Alternative Interpretations | E1 | Retain competing readings without forced resolution; distinguish exclusion from coexistence. |
+| R-E1.3 | Explicit Knowledge Gaps | E1 | Distinguish known missing, not expected, unknown and not applicable when evidence warrants it. |
+| R-E2.1 | Provenance | E2 | Connect assertions to sources and transformations. |
+| R-E2.2 | Epistemic Distance | E2 | Describe evidentiary/derivation relations; no reliability score follows from path length. |
+| R-E3.1 | Perspective Coexistence | E3 | Attribute different perspectives on a shared referent. |
+| R-E3.2 | Perspective Relations | E3 | Specify agreement, contradiction, subsumption and independence separately from operational dependency. |
+| R-E4.1 | Interpretation Metadata | E4 | Identify the interpreter, time, framework and purpose relevant to the operation. |
+| R-E5.1 | Temporal Categorization | E5 | Distinguish historical category validity from later changes in research classifications. |
+| R-E5.2 | Category Provenance (emic/etic) | E5 | Attribute source categories and analyst categories and preserve their relation. |
 
 ### Medial (6)
 
-| ID | Label | Abgeleitet von | Systemische Lücke? |
+| ID | Label | Candidate property | Interpretation to evaluate |
 |---|---|---|---|
-| R-M1.1 | Quellentyp als Dimension | M1 | Nein |
-| R-M2.1 | Erstellungszweck | M2 | Nein |
-| R-M2.2 | Systematische Auslassungen | M2 | **Ja** (Abwesenheit) |
-| R-M3.1 | Überlieferungslücken | M3 | **Ja** (Abwesenheit) |
-| R-M4.1 | Träger-Inhalt-Separation | M4 | Nein |
-| R-M4.2 | Material als Information | M4 | Nein |
+| R-M1.1 | Source Type as Dimension | M1 | Represent source-type differences where they affect a reading or operation. |
+| R-M2.1 | Creation Purpose | M2 | Separate evidenced historical purpose from later research use. |
+| R-M2.2 | Systematic Omissions | M2 | Record an evidenced exclusion policy and scope; absence alone does not prove one. |
+| R-M3.1 | Transmission Gaps | M3 | Link evidence of former existence, a loss event and its informational consequences. |
+| R-M4.1 | Carrier-Content Separation | M4 | Keep physical carrier and represented content separately describable where the material requires it. |
+| R-M4.2 | Material as Information | M4 | Link a material observation to the interpretation it supports. |
 
 ### Semiotisch (4)
 
-| ID | Label | Abgeleitet von | Systemische Lücke? |
+| ID | Label | Candidate property | Interpretation to evaluate |
 |---|---|---|---|
-| R-S1.1 | Temporale Kontextualisierung | S1 | Nein |
-| R-S1.2 | Historische Referenzsysteme | S1 | Nein |
-| R-S2.1 | Lesarten/Normalisierung | S2 | **Ja** (Normalisierung) |
-| R-S3.1 | Quellenrelationen | S3 | Nein |
+| R-S1.1 | Temporal Contextualization | S1 | Distinguish event, recording, copying and research times when needed. |
+| R-S1.2 | Historical Reference Systems | S1 | Retain historical units/calendars and attributed conversions, including their validity. |
+| R-S2.1 | Readings / Normalization | S2 | Preserve diplomatic and normalized forms and their transformation relationship. |
+| R-S3.1 | Source Relations | S3 | Distinguish copying, translation, commentary and citation from contradiction between assertions. |
 
 ### Strukturell (4)
 
-| ID | Label | Abgeleitet von | Systemische Lücke? |
+| ID | Label | Existing foundation | Interpretation to evaluate |
 |---|---|---|---|
-| R-A1 | Separation of Concerns | Thaller, DEPCHA | Nein |
-| R-A2 | Ereigniszentrierung | Thaller, CIDOC-CRM | Nein |
-| R-A3 | Monotonizität | Thaller | Nein |
-| R-A4 | Assertionsbasierung | Factoid/STAR, Thaller | Nein |
+| R-A1 | Separation of Concerns | Bookkeeping, pp. 100–108 | Distinguish source representation and interpretive assertion while acknowledging that representation itself involves choices. |
+| R-A2 | Event-Centricity | CIDOC-CRM/Bookkeeping discussion, pp. 64–70, 101–103 | An architecture candidate for event-oriented cases, not a proven obligation for every source type. |
+| R-A3 | Monotonicity | Hypergraph extension, pp. 151–154 | Evaluate preservation of earlier evidence separately from logical monotonicity and changing scholarly acceptance. |
+| R-A4 | Assertion-Based | Factoid/STAR, pp. 71–77 | Attribute scholarly assertions without forcing source objects or activities into one assertion wrapper or an undefined confidence scale. |
 
 ## Noch zu leisten
 
-- [ ] Jedes Requirement mit konkretem Fallbeispiel aus einem echten Projekt belegen
-- [ ] Testbedingungen von abstrakt zu evidenzbasiert überarbeiten
-- [ ] Prüfen, ob die Zuordnung zu Eigenschaften korrekt ist
-- [ ] Paradigmenneutralität der Requirements prüfen (Ansatz-Übersicht: [[Approaches-Overview]])
-- [ ] Strukturelle Requirements (R-A1 bis R-A4) methodisch begründen
+The [integrated open questions](https://github.com/DigitalHumanitiesCraft/ivory-kleio/blob/codex/temporal-prototype/knowledge/requirements-integration.md#open-questions-from-the-existing-material) name the remaining semantic issues. [[Evaluation-Framework]] defines how a concrete comparison gains evidence. A fixture or implementation is commissioned from the applicable requirement and operation contract, rather than from the legacy gap flags.
 
 ## Sources
 
-Pollin, C. (2024). *Modelling, Operationalising and Exploring Historical Information.* Dissertation, Universität Graz.
+Pollin, C. (2025). *Modelling, Operationalising and Exploring Historical Information. Using Historical Financial Sources as an Example*. University of Graz. [Published record](https://unipub.uni-graz.at/obvugrhs/12127700). Chapters 1–7 read for the requirements integration.
 
-Thaller, M. (2021). Historical Information and Graph Structures.
-
-Pasin, M. & Bradley, J. (2015). Factoid-based Prosopography.
+Inherited theoretical references are discussed in [[Dissertation-Context]] and [[Thaller-Synthesis]] with their reading limits.
 
 ## Related
 
-- [[Information]] — Informationswissenschaftliches Fundament
-- [[Properties]] — Die elf Eigenschaften, aus denen die Requirements abgeleitet werden
-- [[Dissertation-Context]] — Scholar-Centred Design und RE-Methodik
-- [[Systemic-Gaps]] — Detailanalyse der 5 systemischen Lücken
-- [[Approaches-Overview]] — Repräsentationsansätze nach Paradigmen
-- [[Evaluation-Framework]] — Methodik der Bewertung gegen diese Requirements
-- [[Project-Evidence]] — Evidenz aus DEPCHA, SuGW, M³GIM, ZBZ
+- [[Information]]
+- [[Properties]]
+- [[Dissertation-Context]]
+- [[Systemic-Gaps]]
+- [[Approaches-Overview]]
+- [[Evaluation-Framework]]
+- [[Project-Evidence]]

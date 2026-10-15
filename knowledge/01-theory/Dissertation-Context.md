@@ -1,6 +1,7 @@
 ---
 type: knowledge
 created: 2026-03-22
+updated: 2026-10-15
 tags: [dissertation, bookkeeping-ontology, depcha, historical-information]
 status: draft
 ---
@@ -9,77 +10,98 @@ status: draft
 
 ## Summary
 
-Zentrale Referenz für die Dissertation "Modelling, Operationalising and Exploring Historical Information" (Pollin 2024, Universität Graz). Die Dissertation bildet das empirische und theoretische Fundament dieses Projekts: die fünf Eigenschaften historischer Information, die [[Approaches-Comparison#1.3 Bookkeeping Ontology|Bookkeeping Ontology]], die [[Project-Evidence#DEPCHA|DEPCHA]]-Plattform und das Scholar-Centred Design.
+The dissertation *Modelling, Operationalising and Exploring Historical Information. Using Historical Financial Sources as an Example* provides the theoretical, empirical and methodological foundation of this project (Pollin, 2025). Its title page gives 2025. The previously recorded DOI retains its 2024 identifier.
 
-## Forschungsfragen der Dissertation
+Chapter 3 develops human agency, context sensitivity, multiperspectivity and uncertainty as four factors. The source-veto principle constrains interpretations within the same argument. Chapter 4 already compares historical-information models and financial ontologies, develops scholar-centred requirements and explains the Bookkeeping Ontology. The present work consolidates these results with the later proposals in this repository and the implementation work in ivory-kleio.
 
-**Theme 1: Modellierung** — Essentielle Charakteristika historischer Information und deren Auswirkung auf digitale Repräsentation. Modellierungsansätze für Human Agency, Kontextabhängigkeiten, Unsicherheit, Provenienz und domänenspezifische Semantik. Implementierung und Integration von [[Approaches-Comparison#1.3 Bookkeeping Ontology|Bookkeeping Ontology]], [[Approaches-Comparison#1.1 CIDOC-CRM|CIDOC-CRM]] und TEI.
+## Dissertation research questions
 
-**Theme 2: Operationalisierung** — Transformation historischer Quellen via TEI-XML-Annotation und XSLT-Pipelines zu RDF innerhalb der GAMS-Infrastruktur bei Wahrung der Quellenintegrität.
+- Modelling concerns the characteristics of historical information and their consequences for digital representation, including human agency, context, uncertainty, provenance and domain semantics. The dissertation develops and integrates Bookkeeping, CIDOC-CRM and TEI.
+- Operationalising concerns the transformation of sources through TEI XML annotation and XSLT pipelines into RDF within GAMS, while preserving source integrity.
+- Exploring concerns scholar-centred interfaces informed by collaborative source analysis and historians' research practices, including Collections, Edition and Dashboard views.
+- The LLM theme examines support for modelling, operationalisation and interface development through Promptotyping.
 
-**Theme 3: Exploration** — Scholar-Centred Design durch Deep Dive Sessions mit Historikern. Interface-Implementierungen (Collections View, Edition View, Dashboard View).
+## Four factors and the source-veto principle
 
-**Theme 4: LLMs** — Nachträglich ergänzt. LLM-Unterstützung für Modellierung, Operationalisierung und Interface-Entwicklung durch Promptotyping.
+The dissertation names four factors on p. 35 and develops them in §§3.2.1–3.2.4. Their grounding combines literature, source examples and project experience. This is an articulated account of historical information, rather than an experimentally validated exhaustive taxonomy.
 
-## Fünf Eigenschaften historischer Information
+1. Human agency concerns the interpretive activity through which historical data becomes meaningful information, pp. 35–36.
+2. Context sensitivity concerns the reconstruction of temporal, cultural, social and epistemic conditions, pp. 36–37. Interpreting “bushell corn” in a Massachusetts daybook requires regional agricultural practices, local trading standards and the merchant's bookkeeping conventions.
+3. Multiperspectivity concerns the coexistence of plausible interpretations produced through different methods and source selections, pp. 37–38. The discussion of Baltic timber measurements illustrates such differences.
+4. Uncertainty encompasses vagueness, inconsistency, incompleteness, polyvalence and negation, pp. 38–43. These require distinct treatment. A definite negative statement has a different logical role from a missing value.
 
-Empirisch gesichert durch Quellenanalyse und Literatur (Thaller 2018, Drucker 2011, Koselleck 1977, Beretta 2024):
+The source-veto principle is discussed on p. 33 and included in the definition on p. 55, drawing on Koselleck (1977). Sources may invalidate unsupported interpretations without guaranteeing a final truth. The former repository grouping of “five dissertation properties” placed this principle alongside the four factors. That grouping is a later reconstruction and should be identified as such.
 
-1. **Human Agency** — Information entsteht durch aktive Konstruktion kognitiver Agenten, nicht durch Entdeckung. Der Grad menschlicher Beteiligung steigt mit dem Strukturierungsgrad.
-2. **Context Sensitivity** — Temporale, kulturelle, soziale und epistemische Rahmenbedingungen müssen rekonstruiert werden. "Bushell corn" in einem Massachusetts-Tagebuch der 1840er verlangt Wissen über regionale Agrarpraktiken, lokale Handelsstandards und individuelle Buchführungskonventionen.
-3. **Multiperspectivity** — Multiple gültige Interpretationen derselben Quelle koexistieren. Drei Historiker produzieren mit unterschiedlichen Methoden verschiedene plausible Schätzungen derselben historischen Maßeinheit.
-4. **Uncertainty** — Fünf Dimensionen: Vagueness (Intervall + Skala), Inconsistency (widersprüchliche Datenpunkte), Incompleteness (fehlende essentielle Datenpunkte), Polyvalence (Datentyppolyvalenz + konzeptuelle Variablenpolyvalenz), Negation (explizite Erklärungen, was nicht gilt).
-5. **Vetorecht der Quellen** (Koselleck 1977) — Quellen können falsche Interpretationen invalidieren, nicht Wahrheit garantieren.
+The definition on p. 55 describes historical information as contextualised interpretations of past events, conditions or states, constructed through human agency and critical analysis of fragmentary sources. Its provisional character and evidential constraints remain part of that definition.
+
+## Existing comparison of representation approaches
+
+Chapter 4 already examines CIDOC-CRM and its extensions, including LRMoo/FRBRoo, CRMsci, CRMgeo and SDHSS, alongside Factoid/STAR, PROV-O and the Web Annotation Data Model (§4.5.1, pp. 64–81). It discusses context sensitivity, assertions, source connections, provenance and limitations in uncertainty handling. The examples include source-based assertions, competing interpretations of measurement units and chains of scholarly interpretation.
+
+The financial comparison covers XBRL, REA, FIBO, OCE and COEX (§4.5.2, pp. 81–88). It distinguishes their conceptual foundations and assesses their applicability to historical financial sources. This comparison informs the Bookkeeping Ontology.
+
+The proposed [[Evaluation-Framework]] extends that work through explicit requirement identifiers, traceable evidence and comparison across representation paradigms. Its contribution would be a more reproducible and broader evaluation. Comparison of existing approaches is already part of the dissertation.
 
 ## Bookkeeping Ontology
 
-Kombiniert REA (Resources, Events, Agents) und CIDOC-CRM für historische Finanzquellen. Drei Architekturschichten:
+The ontology combines REA exchange patterns, CIDOC-CRM documentation structures and SKOS classifications. The dissertation describes three architectural layers on p. 100.
 
-- **Schicht 1: Ökonomische Realität** — Transaction und Transfer erben von crm:E7_Activity und rea:EconomicEvent
-- **Schicht 2: Quellendokumentation** — Entry, UnitMentions, AgentMentions bewahren die originale textuelle Repräsentation
-- **Schicht 3: Historische Interpretation** — Konversionssysteme für Währungen und Maßeinheiten
+- Economic reality is represented through transactions and transfers.
+- Source documentation is preserved through Entry, UnitMention and AgentMention, alongside accounting-document structures.
+- Historical context and modern interpretation support measurement and currency interpretation, including conversion relationships.
 
-**Version 1.2** (Pollin, Vogeler 2022): In DEPCHA operativ. Ontologische Unschärfen (Cross-Branch Inheritance bei Services).
+The distinction between unit definitions and historical attestations is developed on pp. 106–108. UnitMention retains the textual expression and documentary context, while Conversion expresses a deterministic transformation between units. This provides an existing point of connection to later requirements concerning source values, interpreted values and operations.
 
-**Version 1.3** (Pollin, Vogeler 2024): Theoretisch vollständig. Präzisere Klassenhierarchie, erweiterte Transaktionstypen, formales TransactionStatus-Konzept. Nicht implementiert.
+Version 1.2 remained in DEPCHA workflows. Its treatment of services combined inheritance from the activity and human-made-thing branches. Version 1.3 introduced a more precise hierarchy, including a distinction between service rights and service delivery, but was not implemented in DEPCHA (pp. 99–100). The dissertation explains the resulting tension between semantic precision and practical complexity in markup, transformation and interfaces.
 
-**Fundamentale Spannung:** Mit zunehmender theoretischer Vollständigkeit steigt die Implementierungskomplexität. Praktische Brauchbarkeit und ontologische Korrektheit stehen in einem Zielkonflikt.
+The model also covers collective economic agents, economic rights and liabilities, hierarchical account categories, subtotals and totals, and historical measurements. These domain structures remain substantive results. Their preservation or replacement in a later implementation requires an explicit mapping.
 
-Scholar-Centred Entwicklung durch Deep-Dive-Sessions (2017–2020) mit Historikern: Tomasek (Wheaton Day Book), Brumfield (Stagville), Kokaze (Burgos Ledger), Stertzer/Cavanaugh (Washington Financial Papers), Morreale (Orphan Accounts), Büchel (Rentrechnung 1718). Zentrale Ontologie-Entscheidungen entstanden direkt aus der Quellenarbeit: Group aus Steuerregistern, Right aus der Rentrechnung, AgentMention aus dem Wheaton Day Book.
+Uncertainty remains incompletely resolved. The dissertation identifies limitations at the levels of ontology, encoded data and data structure, alongside layered contexts and practical feasibility (pp. 109–110).
+
+## Scholar-centred requirements
+
+Scholar-centred design combines user-centred design with requirements engineering (§4.6, pp. 89–98). Deep-dive sessions between 2017 and 2020 combined source analysis, TEI XML annotation exercises, interdisciplinary questions and rapid prototyping. The dissertation documents how this work shaped the model.
+
+- Tax-record analysis motivated collective agents through Group.
+- The Rentrechnung motivated the representation of grazing rights through Right.
+- Daybook entries concerning intermediary participation motivated the by property and AgentMention (p. 92).
+- The social-history use case connects transaction networks with family, gender and institutional relationships (pp. 95–96).
+- The economic-history use case connects hierarchical aggregation, category comparisons and temporal analysis to the Basel accounts (pp. 97–98).
+
+These requirements arise from source structures, explicit research needs and interpretive practices. The repository's [[Requirements]] should connect its proposed abstractions back to this evidence. An unresolved ethical modelling problem concerning records of enslaved people is documented on pp. 92–93. It remains a limitation of the existing work.
 
 ## DEPCHA
 
-Digital Edition Publishing Cooperative for Historical Accounts. Operative Plattform auf GAMS-Infrastruktur (Fedora, Blazegraph Triple Store, Apache Cocoon, IIIF Server). 8+ historische Finanzquellen von mittelalterlichen Steuerregistern bis frühneuzeitlichen Geschäftsbüchern. Drei Interface-Views: Collections View (kartenbasiert), Edition View (Dual-Pane diplomatisch/semantisch), Dashboard View.
+DEPCHA, the Digital Edition Publishing Cooperative for Historical Accounts, provides the implementation context. It uses the GAMS infrastructure with Fedora, a Blazegraph triple store, Apache Cocoon and IIIF. Its source collections span medieval tax records and later accounting records. The Collections, Edition and Dashboard views connect source access, semantic representation and exploration. Further project evidence is maintained in [[Project-Evidence#DEPCHA]].
 
-## Bezug zum aktuellen Projekt
+## Consolidation with the current projects
 
-Die Dissertation liefert die empirische Grundlage (5 Eigenschaften), eine operationalisierte Ontologie (Bookkeeping) und eine getestete Plattform (DEPCHA). Das aktuelle Projekt geht darüber hinaus:
+[[Historical-Information]], [[Primitives]] and [[Properties]] contain later analytical proposals. Their necessity, sufficiency and contribution beyond the dissertation have not been established. The requirement catalogue and its proposed evaluation similarly retain the validation tasks documented in [[Requirements]] and [[Evaluation-Framework]].
 
-- Reduziert die 5 Eigenschaften auf 3 Primitive (Hypothese, [[Historical-Information]])
-- Leitet daraus 24 formale Requirements ab ([[Requirements]])
-- Evaluiert nicht nur die eigene Ontologie, sondern 7 Ansätze systematisch ([[Evaluation-Framework]])
-- Nutzt Projektdaten als Evidenzbasis ([[Project-Evidence]])
+The [shared requirements integration](https://github.com/DigitalHumanitiesCraft/ivory-kleio/blob/codex/temporal-prototype/knowledge/requirements-integration.md) connects dissertation results, the proposals in this repository and ivory-kleio. It is the canonical cross-project mapping. This document supplies the dissertation evidence rather than duplicating that mapping.
 
 ## Sources
 
-Pollin, C. (2024). *Modelling, Operationalising and Exploring Historical Information.* Dissertation, Universität Graz. https://doi.org/10.25364/402.2024.63
+Pollin, C. (2025). *Modelling, Operationalising and Exploring Historical Information. Using Historical Financial Sources as an Example.* Dissertation, University of Graz. Title-page year of the inspected full text. [Published record](https://unipub.uni-graz.at/obvugrhs/12127700), URN `urn:nbn:at:at-ubg:1-220602`.
 
-Pollin, C. & Vogeler, G. (2022). Bookkeeping Ontology Version 1.2. https://gams.uni-graz.at/o:depcha.bookkeeping
+Pollin, C. & Vogeler, G. (2022). *Bookkeeping Ontology Version 1.2.* https://gams.uni-graz.at/o:depcha.bookkeeping.
 
-Pollin, C. & Vogeler, G. (2024). Bookkeeping Ontology Version 1.3.
+Pollin, C. & Vogeler, G. (2024). *Bookkeeping Ontology Version 1.3.*
 
-Thaller, M. (2018). On Information in Historical Sources.
+Thaller, M. (2018). *On Information in Historical Sources.*
 
-Koselleck, R. (1977). Standortbindung und Zeitlichkeit.
+Koselleck, R. (1977). *Standortbindung und Zeitlichkeit.*
 
-Drucker, J. (2011). Humanities Approaches to Graphical Display. *DHQ, 5*(1).
+Drucker, J. (2011). Humanities Approaches to Graphical Display. *Digital Humanities Quarterly, 5*(1).
 
-Beretta, F. (2024). The Pyramid of Historical Knowledge Production.
+Beretta, F. (2024). *The Pyramid of Historical Knowledge Production.*
+
+The dissertation passages cited above were checked in full text. The remaining entries preserve existing research connections. Their original full texts were not rechecked in this consolidation.
 
 ## Related
 
-- [[Historical-Information]] — Zusammenführung 5 Eigenschaften + 3 Primitive
-- [[Properties]] — 11 abgeleitete Eigenschaften
-- [[Approaches-Comparison#1.3 Bookkeeping Ontology|Approaches-Comparison]] — Selbstkritische Bewertung der eigenen Ontologie
-- [[Project-Evidence#DEPCHA|Project-Evidence]] — Echte Modellierungsprobleme aus DEPCHA
-- [[Thaller-Synthesis]] — Konvergenz/Divergenz mit Thaller
+- [[Historical-Information]] connects the dissertation factors with the later analytical proposals.
+- [[Properties]] retains the proposed dimensions and their open relationships.
+- [[Approaches-Comparison]] records the wider comparison and Bookkeeping assessment.
+- [[Project-Evidence#DEPCHA]] connects the account to project material.
+- [[Thaller-Synthesis]] develops the existing comparison with Thaller.

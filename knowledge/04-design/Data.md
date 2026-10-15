@@ -1,34 +1,32 @@
 ---
 type: design-document
 created: 2026-03-21
+updated: 2026-10-15
 tags: [json-schema, data-documentation, validation]
 status: draft
 ---
 
 # Data Documentation
 
-**Version:** 2.0 (M17 — scenario_d.json hinzugefügt)
-**Purpose:** Schema documentation for all JSON data files. Single source of truth for data structure.
+Version 2.0 (M17) records the scenario-based JSON structure. The actual [data directory](../../data/) owns the current values and inventories. The shapes below document the existing interface rather than certify the scientific validity of their content.
 
----
+The [canonical requirements integration](https://github.com/DigitalHumanitiesCraft/ivory-kleio/blob/codex/temporal-prototype/knowledge/requirements-integration.md) relates the dissertation, R-IDs and H-candidates. [[Project-Evidence]] records potential real project material whose case-level extraction remains open.
 
 ## File Overview
 
-| File | Purpose | Key Counts |
-|------|---------|------------|
-| `data/primitives.json` | 3 theoretical primitives | 3 entries |
-| `data/derivation_graph.json` | DAG: P → E/M/S | 15 nodes, 12 edges |
-| `data/requirements.json` | 24 formal requirements | 24 entries, 5 systemic gaps |
-| `data/evaluation_matrix.json` | 7×24 rating matrix | 168 ratings + justifications |
-| `data/examples/scenario_a.json` | Account book scenario | 4 persons, 4 transactions |
-| `data/examples/scenario_b.json` | Prosopographic scenario | 5 sources, 4 persons |
-| `data/examples/scenario_c.json` | Text edition scenario | 4 witnesses, 1 text passage |
-| `data/examples/scenario_d.json` | Guild dispute scenario | 5 sources, 3 categorizations, 1 event |
-| `data/examples/requirement_examples.json` | Requirement → example mapping | 24 entries |
+| File | Function | Evidence boundary |
+|---|---|---|
+| [primitives.json](../../data/primitives.json) | P1/P2/P3 hypothesis statements | Proposed analytical conditions |
+| [derivation_graph.json](../../data/derivation_graph.json) | Proposed primitive/property relations | No validated deductive proof |
+| [requirements.json](../../data/requirements.json) | R-IDs and candidate conditions | Requirement-level validation incomplete |
+| [evaluation_matrix.json](../../data/evaluation_matrix.json) | Stored ratings and justifications | Provisional judgements, no measured coverage |
+| [scenario_a.json](../../data/examples/scenario_a.json) | Account-book teaching case | Synthetic |
+| [scenario_b.json](../../data/examples/scenario_b.json) | Prosopographic teaching case | Synthetic |
+| [scenario_c.json](../../data/examples/scenario_c.json) | Witness/edition teaching case | Synthetic |
+| [scenario_d.json](../../data/examples/scenario_d.json) | Guild-dispute teaching case | Synthetic |
+| [requirement_examples.json](../../data/examples/requirement_examples.json) | Requirement-to-example links | Illustrative mapping |
 
-**Note:** `derivation_graph.json` and `evaluation_matrix.json` sind weiterhin valide Theorie-Daten, werden aber von der aktuellen Website (M17) nicht direkt visualisiert. Sie werden vom DataLoader geladen und stehen für zukünftige Erweiterungen bereit.
-
----
+The DataLoader may load theory and rating files without directly visualising them. JSON integrity and scholarly validation are separate checks.
 
 ## Schema: primitives.json
 
@@ -36,13 +34,13 @@ status: draft
 {
   primitives: [
     {
-      id: string          // "P1", "P2", "P3"
+      id: string                    // "P1", "P2", "P3"
       label_en: string
       label_de: string
-      formal_notation: string   // Predicate logic expression
+      formal_notation: string
       description_en: string
       description_de: string
-      distinctness_test_en: string  // What happens when removing this primitive
+      distinctness_test_en: string
       distinctness_test_de: string
     }
   ],
@@ -54,13 +52,15 @@ status: draft
 }
 ```
 
+The necessity/distinctness texts are hypotheses. In particular, temporal irreversibility is not a validated deduction of uncertainty.
+
 ## Schema: derivation_graph.json
 
 ```
 {
   nodes: [
     {
-      id: string           // "P1"-"P3", "E1"-"E5", "M1"-"M4", "S1"-"S3"
+      id: string                    // P1–P3, E1–E5, M1–M4, S1–S3
       type: "primitive" | "property"
       group: "primitive" | "epistemic" | "medial" | "semiotic"
       label_en: string
@@ -70,7 +70,7 @@ status: draft
   ],
   edges: [
     {
-      source: string | string[]    // Single ID or array for combined derivations
+      source: string | string[]
       target: string
       derivation_type: "single" | "combined"
       label_en: string
@@ -80,11 +80,7 @@ status: draft
 }
 ```
 
-**Invariants:**
-- Exactly 15 nodes (3 primitive + 5 epistemic + 4 medial + 3 semiotic)
-- Exactly 12 edges (10 single + 2 combined)
-- Combined edges: `["P1","P2"] → S3` and `["P2","P3"] → M2`
-- Graph is acyclic (DAG)
+Structural checks require unique node identifiers, valid edge endpoints and acyclicity. The recorded combined edges are `["P1","P2"] → S3` and `["P2","P3"] → M2`. Such a well-formed graph does not prove the proposed philosophical derivations.
 
 ## Schema: requirements.json
 
@@ -92,27 +88,23 @@ status: draft
 {
   requirements: [
     {
-      id: string                    // "R-E1.1" through "R-A4"
+      id: string                    // R-E1.1 through R-A4
       label_en: string
       label_de: string
-      derived_from: string | null   // Property ID (E1, M2, etc.) or null for structural
+      derived_from: string | null
       group: "epistemic" | "medial" | "semiotic" | "structural"
-      test_condition: string        // Formal testable condition
+      test_condition: string
       is_systemic_gap: boolean
       gap_category: null | "absence_modeling" | "category_provenance" | "normalization"
-      scenario_assignments: string[]  // ["A"], ["B"], ["A","B"], etc.
+      scenario_assignments: string[]
     }
   ],
-  systemic_gaps: string[]            // IDs of the 5 systemic gap requirements
-  systemic_gap_analysis: { ... }     // OWA paradox explanation
+  systemic_gaps: string[]
+  systemic_gap_analysis: { ... }
 }
 ```
 
-**Invariants:**
-- Exactly 24 requirements
-- Group distribution: 10 epistemic, 6 medial, 4 semiotic, 4 structural
-- Exactly 5 systemic gaps: R-E1.3, R-E5.2, R-M2.2, R-M3.1, R-S2.1
-- 3 absence-related gaps: R-E1.3, R-M2.2, R-M3.1
+R-IDs must remain unique and references must resolve. The structural candidates R-A1–R-A4 use null `derived_from`. Legacy `is_systemic_gap` and `systemic_gaps` fields record candidate concerns R-E1.3, R-E5.2, R-M2.2, R-M3.1 and R-S2.1. Their names do not make them established cross-system findings.
 
 ## Schema: evaluation_matrix.json
 
@@ -120,7 +112,7 @@ status: draft
 {
   approaches: [
     {
-      id: string           // "thaller", "sdhss", "cidoc_crm", etc.
+      id: string
       label: string
       year: string
       source: string
@@ -140,56 +132,54 @@ status: draft
 }
 ```
 
-**Invariants:**
-- Exactly 7 approaches
-- 168 ratings (7 × 24), each with level + justification
-- Coverage: Thaller 79%, SDHSS 67%, CIDOC-CRM 63%, Bookkeeping 38%, Factoid 33%, STAR 33%, PROV-O 17%
+Approach and requirement references must resolve. Every stored rating has its level and justification. The `coverage` object is legacy provisional assessment data. It is not an empirical performance measure or a completed literature result. [[Evaluation-Framework]] governs evidence needed to adopt an assessment.
 
 ## Schema: scenario_a.json
 
-Account book scenario. Top-level keys: `id`, `title_en/de`, `setting`, `source` (single source object), `persons[]`, `transactions[]`, `reference_systems[]`.
+The synthetic account-book case uses `id`, `title_en/de`, `setting`, `source`, `persons[]`, `transactions[]` and `reference_systems[]`.
 
-Key data modeling decisions:
-- **Fuzzy dates:** `date.value` can be partial ("1480-06" for month-only). `date.certainty` is "high"/"medium"/"low". `date.uncertainty_type` describes the uncertainty.
-- **Value candidates:** `amount.value_candidates: [2000, 2500]` for illegible amounts.
-- **Emic/etic categories:** Both present on person objects: `role_emic` (historical term) and `role_etic` (researcher's term).
-- **Temporal layers:** `temporal_layers` object with `event_time`, `recording_time`, `interpretation_time`.
+- `date.value` can retain partial notation such as `"1480-06"`.
+- `date.certainty` stores the fixture labels `"high"`, `"medium"` and `"low"`. They have no calibrated historical meaning.
+- `date.uncertainty_type` describes the intended uncertainty kind.
+- `amount.value_candidates: [2000, 2500]` is an invented alternative reading.
+- `role_emic` and `role_etic` distinguish source and researcher categories.
+- `temporal_layers` distinguishes `event_time`, `recording_time` and `interpretation_time`.
+
+A partial date, discrete alternatives and graded confidence require different semantics. The fixture does not define a common uncertainty calculus.
 
 ## Schema: scenario_b.json
 
-Prosopographic scenario. Top-level keys: `id`, `title_en/de`, `setting`, `sources[]`, `persons[]`, `epistemic_distance_example`, `cross_references`, `monotonicity_example`.
+The synthetic prosopographic case uses `id`, `title_en/de`, `setting`, `sources[]`, `persons[]`, `epistemic_distance_example`, `cross_references` and `monotonicity_example`.
 
-Key data modeling decisions:
-- **Systematic omissions:** Modeled on source objects: `source.systematic_omission = { excluded_category, reason, requirement }`.
-- **Transmission gaps:** Modeled on source objects: `source.transmission_gap = { cause, known_contents, requirement }`.
-- **Known unknowns:** `person.birth.known_unknown = true` with `reason` explaining why.
-- **Name variants:** `person.name_variants[]` with `form`, `source`, and `type` (diplomatic/normalized).
-- **Identifications:** `person.identifications[]` with researcher, year, framework, confidence, evidence.
-- **Perspective relations:** `person.perspective_relations` with typed relations (tension, independence).
-- **Absence from sources:** `person.absence_from_sources` tracking which sources omit the person and why.
-- **Cross-references:** `cross_references.scenario_d` links Johann Meier's 1702 council appearance to the guild dispute in Scenario D.
+- `source.systematic_omission = { excluded_category, reason, requirement }` records a scenario premise.
+- `source.transmission_gap = { cause, known_contents, requirement }` records the fictional loss event.
+- `person.birth.known_unknown = true` and `reason` expose an explicit gap.
+- `person.name_variants[]` retains `form`, `source` and diplomatic/normalised type.
+- `person.identifications[]` stores researcher, year, framework, confidence and evidence.
+- `person.perspective_relations` stores typed relations.
+- `person.absence_from_sources` stores the fixture's omission descriptions.
+- `cross_references.scenario_d` links the council appearance to the shared synthetic dispute.
+
+Source-chain distance is not a calibrated reliability score. The synthetic editorial example retains distinct diplomatic and normalized forms; source-chain distance carries no automatic reliability value.
 
 ## Schema: scenario_c.json
 
-Text edition scenario. Top-level keys: `id`, `title_en/de`, `setting`, `witnesses[]`, `stemma`, `text_passage`, `carrier_content_separation`.
+The synthetic edition case uses `id`, `title_en/de`, `setting`, `witnesses[]`, `stemma`, `text_passage` and `carrier_content_separation`.
 
-Key data modeling decisions:
-- **Witnesses** include material features with `informational_significance` field.
-- **Stemma** has typed relations: copy, abbreviation, possibly_derived_from, with certainty levels.
-- **Text variants** per witness: `text_diplomatic` and `text_normalized` as parallel strings.
-- **Variant analysis** distinguishes orthographic from substantive variants.
+Witnesses include material features and `informational_significance`. The stemma uses copy, abbreviation and possibly-derived-from relations with fixture certainty labels. Per-witness `text_diplomatic` and `text_normalized` retain parallel readings. Variant analysis separates orthographic and substantive differences. The manuscript descriptions and relations are invented.
 
 ## Schema: scenario_d.json
 
-Guild dispute scenario (NEU in M17). Top-level keys: `id`, `title_en/de`, `setting`, `event`, `sources[]`, `categorizations[]`, `interpretive_chain[]`, `perspective_comparisons[]`, `cross_references`.
+The synthetic dispute case introduced in M17 uses `id`, `title_en/de`, `setting`, `event`, `sources[]`, `categorizations[]`, `interpretive_chain[]`, `perspective_comparisons[]` and `cross_references`.
 
-Key data modeling decisions:
-- **Event as hub:** `event` object with `id`, `label_en/de`, `date`, `place`, `participants[]`, `intersection` (what all sources agree on).
-- **5 Sources spanning 3 centuries:** Each source has `level` (primary/secondary/tertiary), `perspective`, `text_diplomatic`, `text_normalized`, `text_translation`, `event_characterization`, `meier_characterization`, `blind_spots[]`, `temporal_layers`.
-- **Categorizations:** 3 objects showing semantic drift: `label_original`, `framework` (emic/etic), `framework_type`, `connotation`.
-- **Interpretive chain:** 3 levels with `information_dimensions` count and `what_is_preserved`/`what_is_lost`/`what_is_added` arrays.
-- **Perspective comparisons:** Pre-computed comparison objects for source pairs with `agreement`, `unique_to_a`, `unique_to_b`, `contradiction`, `tension`.
-- **Cross-references:** Link to scenario_b (Johann Meier's council appearance is this event).
+- `event` contains `id`, `label_en/de`, `date`, `place`, `participants[]` and `intersection`.
+- Source objects include `level`, `perspective`, `text_diplomatic`, `text_normalized`, `text_translation`, `event_characterization`, `meier_characterization`, `blind_spots[]` and `temporal_layers`.
+- Categories include `label_original`, `framework`, `framework_type` and `connotation`.
+- Interpretive-chain entries contain `information_dimensions` and `what_is_preserved`, `what_is_lost` and `what_is_added`.
+- Comparisons contain `agreement`, `unique_to_a`, `unique_to_b`, `contradiction` and `tension`.
+- Cross-references link the same invented person/event to scenario B.
+
+The dimension values count fields chosen for this teaching case. Later representations depend on earlier ones, so the accounts are not independent evidence. The event note preserves the shared month-level dating and attributes the finer September 15 reading to the council account. Scenario assignments include the existing D examples while retaining the earlier cases.
 
 ## Schema: requirement_examples.json
 
@@ -197,10 +187,10 @@ Key data modeling decisions:
 {
   requirement_examples: [
     {
-      requirement_id: string       // Must exist in requirements.json
+      requirement_id: string
       title_en: string
-      scenario: string             // "scenario_a" | "scenario_b" | "scenario_c" | "scenario_d"
-      data_path: string            // JSON path within scenario file
+      scenario: string
+      data_path: string
       description_en: string
       with_requirement: {
         description: string
@@ -215,16 +205,14 @@ Key data modeling decisions:
 }
 ```
 
-**Invariants:**
-- Exactly 24 entries, one per requirement
-- All `requirement_id` values exist in `requirements.json`
-- All `scenario` values are valid scenario IDs (a, b, c, d)
-- R-A2 (Event-Centricity) and R-E5.1 (Temporal Categorization) reference scenario_d
+Requirement IDs, scenario IDs and data paths must resolve. The example mapping assigns R-A2 and R-E5.1 to scenario D. Their entries in `requirements.json` include D and preserve the earlier assignments as additional examples.
+
+The paired `with_requirement` and `without_requirement` examples are deliberately selected teaching projections. They do not establish what relational databases, spreadsheets or other representation systems can express.
 
 ## Cross-File References
 
 | From | Field | To | Field |
-|------|-------|----|-------|
+|---|---|---|---|
 | requirements.json | `derived_from` | derivation_graph.json | `nodes[].id` |
 | evaluation_matrix.json | `ratings[approach][req]` | requirements.json | `requirements[].id` |
 | requirement_examples.json | `requirement_id` | requirements.json | `requirements[].id` |
@@ -235,6 +223,6 @@ Key data modeling decisions:
 
 ## Related
 
-- [[Design]] — Website-Architektur
-- [[Evaluation-Framework]] — Bewertungsmethodik
-- [[Requirements]] — 24 Requirements als Kernschema
+- [[Design]] — Website architecture and teaching projections
+- [[Evaluation-Framework]] — Evidence requirements
+- [[Requirements]] — Candidate requirement catalogue

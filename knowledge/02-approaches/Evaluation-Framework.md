@@ -1,6 +1,7 @@
 ---
 type: knowledge
 created: 2026-03-21
+updated: 2026-10-15
 tags: [evaluation, methodology, requirements, approaches]
 status: draft
 ---
@@ -9,67 +10,78 @@ status: draft
 
 ## Summary
 
-Methodik zur systematischen Bewertung von Repräsentationsansätzen gegen die [[Requirements|24 Requirements]]. Das Framework muss paradigmenneutral funktionieren — Ontologien, Graphmodelle, Textkodierungsstandards, Archivstandards und Aggregationsmodelle müssen mit denselben Kriterien bewertbar sein.
+The framework evaluates specified representation and operation requirements against declared approaches and versions. [[Requirements]] remains provisional. The [requirements integration](https://github.com/DigitalHumanitiesCraft/ivory-kleio/blob/codex/temporal-prototype/knowledge/requirements-integration.md) owns the connection between this register, the dissertation and Ivory KLEIO. Coverage judgments require evidence for the stated scope.
 
 ## Bewertungsmethodik
 
 ### Evidenzquellen (priorisiert)
 
-1. **Ontologie-/Standard-Spezifikation:** Für jedes Requirement wird in der publizierten Spezifikation des Ansatzes (Ontologie-Dokumentation, TEI-Guidelines, RiC-O-Spec) nach dedizierten Konstrukten gesucht. → Primäre Bewertungsgrundlage.
-2. **Projekterfahrung:** Wo der Ansatz in einem echten Projekt ([[Project-Evidence]]) eingesetzt wird, werden konkrete Modellierungsentscheidungen als Evidenz herangezogen. → Sekundäre Bewertungsgrundlage.
-3. **Expert Judgement:** Wo weder Spezifikation noch Projekterfahrung eine klare Bewertung erlauben, wird begründetes Expertenwissen eingesetzt. → Tertiäre Bewertungsgrundlage, muss als solche markiert werden.
+Published specifications establish a construct's declared semantics. A project implementation supplies evidence about what a particular workflow does. A proposed design supplies a hypothesis for implementation. Record these evidence classes separately because they answer different questions.
+
+Read the relevant source in full before citing it. A record must state the consulted representation, version, inspected passage and limits. Inherited summaries and expert interpretation may guide investigation. Without adequate evidence, assign `unknown` rather than inferring failure.
 
 ### Dreistufige Skala
 
-| Level | Definition | Kriterium |
+The inherited heading retains its navigation target. The original structural/metadata/absent vocabulary now has an explicit unresolved state.
+
+| Judgment | Meaning | Evidence needed |
 |---|---|---|
-| `structural` | Dedizierte Konstrukte, die das Requirement direkt adressieren | Eine benennbare Klasse, Property oder ein Pattern in der Spezifikation, das genau für diesen Zweck existiert |
-| `metadata` | Über generische Mechanismen abbildbar | Freitext-Annotationen, allgemeine Properties, Kommentarfelder — der Ansatz blockiert die Repräsentation nicht, hat aber kein dediziertes Konstrukt |
-| `absent` | Nicht adressiert, kein bekannter Workaround | Das Requirement kann weder durch dedizierte noch durch generische Mechanismen erfüllt werden |
+| `structural` | A dedicated construct or documented pattern meets the stated requirement within scope | Identify its semantics and demonstrate the required distinction or behavior |
+| `metadata` | A generic annotation or extension pattern records relevant information, while part of the required semantics remains application-defined | Provide the concrete encoding and explain what operations can and cannot infer from it |
+| `absent` | The evaluated version or implementation does not supply the specified behavior within the declared configuration | Give a reproducible counterexample, documented boundary or inspected implementation path and limit the finding accordingly |
+| `unknown` | Evidence is missing, incomplete or ambiguous | Record the unresolved question and the source or experiment needed to decide it |
+
+No known workaround is a search result, not proof of impossibility. `absent` must not be assigned solely because a class name is missing. A tested absence in one version or configuration does not establish impossibility for the paradigm.
 
 ### Paradigmenneutrale Anwendung
 
-Die Skala muss für alle Paradigmen funktionieren:
-
-| Paradigma | `structural` Beispiel | `metadata` Beispiel |
+| Paradigm | Inherited comparison example | Behavior to inspect |
 |---|---|---|
-| Ontologie (CIDOC-CRM) | E13 Attribute Assignment für R-E2.1 (Provenienz) | rdfs:comment für R-E4.1 (Interpretationsmetadaten) |
-| Graphmodell (FactGrid) | Widersprüchliche Statements für R-E3.1 | Qualifikator mit Freitext für R-E1.1 |
-| Textkodierung (TEI) | `<choice>/<orig>/<reg>` für R-S2.1 | @cert-Attribut für R-E1.1 |
-| Archivstandard (RiC-O) | rico:Event für R-E2.1 | rico:descriptiveNote für R-E4.1 |
-| Aggregation (EDM) | edm:Agent für Akteur-Modellierung | dc:description für R-E4.1 |
+| Ontology | CIDOC CRM attribute assignment and generic comments | Whether actor, source, assertion and interpretive activity remain distinct |
+| Statement graph | FactGrid statements and qualifiers | Whether competing claims and their dependencies survive the required query |
+| Text encoding | TEI `<choice>/<orig>/<reg>` and `@cert` | Whether the intended reading distinction is explicit and transformations preserve it |
+| Archival standard | RiC-O events and descriptive notes | Whether provenance events and their informational consequences are separately retrievable |
+| Aggregation model | EDM agents and descriptive metadata | Whether the actual requirement and source relationship are represented, rather than a merely related entity |
+
+These examples are evaluation targets, not preassigned scores. A generic qualifier with a documented, machine-actionable contract may satisfy behavior that a free-text comment cannot. Representation, validation, computation and persistence need separate findings.
 
 ### Aggregationsformel
 
-**Abdeckung:** `(structural + metadata) / 24 * 100`
+Use an evidence matrix with the requirement, scope, approach version, concrete encoding, expected behavior, observed behavior, judgment and source locator. Preserve `unknown` entries visibly. No aggregate coverage percentage or weighting is justified while requirements and evidence remain provisional.
 
-Behandelt `structural` und `metadata` als gleichwertig ("adressiert"). Alternative gewichtete Formeln:
-
-- **Gewichtet:** `(structural × 2 + metadata × 1) / 48 × 100` — gibt dedizierten Konstrukten doppeltes Gewicht
-- **Domänenprofil Textuelle Quellen:** Epistemische und semiotische Requirements ×3, mediale ×2, strukturelle ×1
+A later comparison may adopt an explicit aggregation method if its interpretation is justified and the operator requests it. Dedicated constructs and generic metadata should not be treated as equivalent merely because both can store text.
 
 ## Zu bewertende Ansätze
 
-Vollständige Liste in [[Approaches-Comparison]]. Die systematische Bewertung priorisiert die 10 bestehenden Ansätze (CIDOC-CRM, SDHSS, Bookkeeping, Factoid/STAR, PROV-O, Thaller, FactGrid, TEI, RiC-O, EDM). Die 8 neuen Ansätze (2024–2025) werden als ergänzende Perspektiven einbezogen.
+[[Approaches-Comparison]] and [[Approaches-Overview]] route to the inherited candidates, including CIDOC CRM, SDHSS, Bookkeeping Ontology, Factoid/STAR, PROV-O, the Ivory programme, FactGrid, TEI, RiC-O and EDM, together with the supplementary survey leads. Inclusion supplies no ranking or verified coverage judgment.
+
+Evaluate each candidate in the representation actually consulted. Record historical specification versions as such. A later version requires fresh evidence and must not silently replace the evaluated one.
 
 ## Offene methodische Fragen
 
-1. **Intersubjektivität:** Expert Judgement durch eine Person ist nicht reproduzierbar. Ein zweiter Gutachter oder ein formales Codebuch würden die Reproduzierbarkeit erhöhen.
-2. **Granularität:** "structural" vs. "metadata" ist oft Ermessenssache. Richtlinie: Wenn ein Konstrukt *primär für einen anderen Zweck* existiert, aber *auch* für dieses Requirement genutzt werden kann, ist es `metadata`. Wenn es *genau für diesen Zweck* existiert, ist es `structural`.
-3. **Implementierung vs. Spezifikation:** Bewertet wird, was die Spezifikation *erlaubt*, nicht was in der Praxis *implementiert* ist. Ausnahme: Thaller (Design-Level ohne Spezifikation — bewertet nach konzeptuellem Design) und Bookkeeping v1.2 vs. v1.3 (implementiert vs. theoretisch).
-4. **Temporale Aktualität:** CIDOC-CRM v7.3 (2024), RiC-O v1.1 (2025), TEI P5 v4.10.2 (2025) — Bewertungen müssen gegen die aktuelle Version erfolgen, nicht gegen historische.
+1. A review must be reproducible from passage locators, concrete encodings and expected results. Independent review can resolve ambiguous classifications after those records exist.
+2. A requirement may need several constructs. Assess their combined declared behavior before labeling the result structural or metadata. Record application-specific rules explicitly.
+3. A specification's expressive permission, an implemented feature and historical adequacy are different findings. The Ivory design and Bookkeeping implementation must be assessed at the stage actually evidenced.
+4. R-A3 monotonicity requires a declared entailment relation and a test of what happens when premises are added. Retaining earlier research states, keeping competing interpretations and tracing revised results have separate revision and provenance contracts. None alone demonstrates logical monotonicity.
+5. A historical case establishes behavior within its interpreted scope. A synthetic counterexample tests a declared contract and supplies no independent historical validation.
 
 ## Noch zu leisten
 
-- [ ] Für jeden Ansatz × jedes Requirement: konkrete Klasse/Property/Pattern benennen (oder explizit: "kein Konstrukt vorhanden")
-- [ ] Evidenz aus [[Project-Evidence]] einbeziehen, wo verfügbar
-- [ ] Bewertungen von einem zweiten Gutachter prüfen lassen
-- [ ] Gewichtete Aggregation für verschiedene Domänenprofile berechnen
-- [ ] Ergebnisse in [[Approaches-Comparison]] integrieren
+- Link each requirement to a precise dissertation passage or explicit project inference through the canonical integration.
+- Select cases already documented in [[Project-Evidence]] and distinguish their read evidence from proposed examples.
+- Name the construct or pattern and state expected behavior before testing the approach.
+- Keep missing evidence as `unknown` and record the narrow scope of any `absent` judgment.
+- Review the inherited ratings in [[Approaches-Comparison]] against these criteria before using them in a contribution claim.
+
+## Sources
+
+Pollin, C. (2025). *Modelling, Operationalising and Exploring Historical Information. Using Historical Financial Sources as an Example*. Dissertation, University of Graz, chapter 5, pp. 111–172, read in full. It distinguishes RDF representation, query behavior, scoped assumptions and validation, and documents implemented transformation workflows.
+
+The evidence matrix and judgment definitions are project methodology. No additional standard specifications or independent approach evaluations were read for this revision.
 
 ## Related
 
-- [[Requirements]] — Die 24 Requirements als Bewertungsmaßstab
-- [[Approaches-Comparison]] — Vergleich aller Ansätze mit Bewertungen
-- [[Systemic-Gaps]] — Die 5 systemischen Lücken, die kein Ansatz strukturell adressiert
-- [[Project-Evidence]] — Echte Projektdaten als Evidenzquelle
+- [[Requirements]] owns the provisional comparison criteria.
+- [[Approaches-Comparison]] contains inherited judgments awaiting evidence review.
+- [[Systemic-Gaps]] retains candidate problems and their evidence boundaries.
+- [[Project-Evidence]] routes to existing application cases.

@@ -1,6 +1,7 @@
 ---
 type: knowledge
 created: 2026-03-21
+updated: 2026-10-15
 tags: [historical-information, absence-modeling, ontology]
 status: draft
 ---
@@ -9,72 +10,80 @@ status: draft
 
 ## The Core Problem
 
-Three of the five systemic gaps (R-E1.3, R-M2.2, R-M3.1) concern the modeling of absence. Historical research fundamentally depends on representing what is *not* there — not as a bug or limitation, but as an informationally significant fact.
+[[Requirements]] distinguishes known missing information, systematic omissions and transmission gaps. These distinctions are requirement candidates. Their representation and operational consequences need evaluation against explicit cases. A missing triple alone supplies no account of why information is missing, but Open World Assumption (OWA) semantics does not prevent a model from recording search activities, expectations, omissions or destruction events.
+
+The dissertation already discusses scoped open- and closed-world treatment and separates documented assertions from historical reconstruction (Pollin, 2025, pp. 140–144). The [requirements integration](https://github.com/DigitalHumanitiesCraft/ivory-kleio/blob/codex/temporal-prototype/knowledge/requirements-integration.md) connects this existing contribution to the requirement registers and the temporal experiment.
 
 ## Three Types of Absence
 
 ### 1. Known Unknowns (R-E1.3)
-**What:** A piece of information is known to be missing. The data point *must* exist (or must have existed) but is unavailable.
-**Example:** Johann Meier's birth date — he was born, so a birth date exists, but the parish registers were destroyed.
-**Key distinction:** Different from "not applicable" (a corporation has no birth date) and "not recorded" (information was never expected to exist).
 
-### 2. Systematic Omissions (R-M2.2)
-**What:** An entire category of information is absent from a source type due to its creation purpose.
-**Example:** Women absent from guild registers — not because individual entries are lost, but because guild statutes defined membership categories as male.
-**Key distinction:** This is a property of the *source type*, not of individual records. It is not accidental, it is structural.
+Information is expected to have a value but is unavailable. An illustrative case is a person's unknown birth date when the relevant parish registers were destroyed. The birth event, the missing date and the evidence for destruction require separate claims. The expectation that an exact recoverable date existed also needs justification.
+
+This differs from not applicable, such as a corporation's biological birth date, and not recorded, where the source never supplied the expected information. These are illustrative distinctions, not findings about a particular register.
+
+### Systematic Omissions
+
+R-M2.2 concerns a category of information excluded by a source's creation purpose or admission rules. The inherited example concerns a guild register whose membership rules excluded women. In a historical application, the statutes and the actual recording practice must support that interpretation. Absence from one entry alone cannot establish a category-wide exclusion.
+
+The relevant claim concerns the source's selection conditions and their scope. It must remain distinguishable from accidental loss of an individual record.
 
 ### 3. Transmission Gaps (R-M3.1)
-**What:** Sources known to have existed are now lost.
-**Example:** Parish registers 1600–1680 destroyed in the 1681 fire.
-**Key distinction:** The gap is itself a historical fact. The *absence* of the records is informational — it tells us about the conditions of preservation.
 
-## Why Ontologies Fail at Absence
+Sources known to have existed may no longer survive. The illustrative case concerns parish registers covering 1600–1680 destroyed in a fire in 1681. The destruction event and the resulting limits on available evidence are different propositions. Their provenance must identify what supports the claimed loss.
 
-Three structural causes:
+## Representing Absence in Ontologies
 
-1. **Positive bias of knowledge representation.** Ontologies describe what exists. Classes, properties, and instances are all about presence. There is no established pattern for "this class of things should be here but isn't."
+The evaluation must distinguish several questions.
 
-2. **Open World Assumption (OWA).** OWL and RDF operate under OWA: a missing statement means "unknown," not "false" or "informationally significant." Historical research needs OWA (because knowledge is always incomplete) AND the ability to mark specific absences as meaningful. This is a paradox within the standard knowledge representation framework.
+- Can a chosen vocabulary describe the missing item, its expected presence and the evidence for its absence?
+- Can a model represent a completed search with its scope and distinguish it from a search that never occurred?
+- Can operations use these claims without treating every unrecorded statement as false?
+- Can later evidence revise an absence claim while retaining the earlier research state?
 
-3. **Missing formalization tradition.** Philosophy has a rich tradition of discussing negation, absence, and non-being (Heidegger's "Nichts," Sartre's "néant"). But this has not been translated into formal ontology patterns. There is no widely adopted "Lacuna" or "Absence" class in any standard ontology.
+A dedicated absence class is one possible design. Generic event, assertion and provenance patterns may also meet a requirement. Their adequacy depends on the required behavior, not on the presence of a particular class name. No comparative evidence in this document establishes that ontologies generally fail at these tasks.
 
 ## The OWA Paradox (detail)
 
-Historical information systems must simultaneously:
-- Operate under OWA: incomplete knowledge is the norm, and open-world reasoning is correct
-- Treat specific absences as closed: "We know this record existed and was destroyed" is a positive claim about a negative fact
+The inherited phrase names a modelling tension, not a logical impossibility. Under OWA, absence of a statement does not license its negation. Explicit claims about destroyed records or unsuccessful searches can still be represented. Their truth and their implications remain matters of evidence and scoped rules.
 
-Standard OWL cannot do both. SHACL (Shapes Constraint Language) can validate that expected data is present, but it cannot *represent* the informational significance of its absence.
+The dissertation discusses Careful Closed World and local closed-world reasoning, then distinguishes OWL inference from SHACL validation (Pollin, 2025, pp. 140–144). A validation failure identifies nonconformity to a declared shape. It does not by itself explain whether the cause is transmission loss, purposeful omission or incomplete data entry. The open requirement concerns the additional assertions and operations needed for that explanation.
 
 ## Thaller's Approach: Incompleteness Taxonomy
 
-Thaller (2018, 2020) provides the most detailed treatment:
-- **Ex 6.1: Known defaults.** Values that can be inferred from context (e.g., religion in a religiously homogeneous community).
-- **Ex 6.2: Explicit defaults.** Values explicitly declared as default for a dataset.
-- **Ex 6.3: Triggered defaults.** Values computed from rules when data is missing.
+The inherited synthesis distinguishes the following candidate mechanisms.
 
-Thaller's approach treats incompleteness as a system-level concern, not an exception. But it focuses on *filling* gaps (defaults, inference) rather than *representing* gaps as informational.
+- Ex 6.1, known defaults inferred from context, illustrated by an assumed religious affiliation in a homogeneous community.
+- Ex 6.2, defaults explicitly declared for a dataset.
+- Ex 6.3, defaults computed by a rule when information is missing.
+
+These labels and their attribution require passage-level verification. The [Ivory corpus register](https://github.com/DigitalHumanitiesCraft/ivory-kleio/blob/codex/temporal-prototype/research-artefacts/corpus.csv) records the 2018 contribution as identified, the 2020 contribution as partially read and the 2021 presentation as known through secondary material. This revision adds no direct full-text reading of those works.
+
+A default used in computation and a claim documenting a gap serve different purposes. The implementation must state whether a default is an analytical assumption, a source assertion or a substituted computational value.
 
 ## Convergence and Divergence with This Project
 
-**Convergence:** Both Thaller and this project recognize that absence is not merely "missing data" but informationally significant. Both distinguish multiple types of absence.
-
-**Divergence:** This project focuses on *representing* absence explicitly (the Lacuna concept), while Thaller focuses on *managing* absence operationally (defaults and inference). Both are needed — representation for scholarly communication, management for system behavior.
+The inherited comparison associates the Ivory programme with operational management of incomplete information and this project with explicit gap representation. That distinction remains a comparison hypothesis until the primary passages are read. The proposed Lacuna concept remains a project option. Its usefulness should be compared with an explicit combination of existing assertion, event and provenance patterns.
 
 ## Visual Language for Absence
 
-The website's Person Tracer (Station 2: "Tracing") visualizes all three absence types in an interactive person × sources grid:
-1. **Known unknowns:** Hollow circles with dashed borders (the shape exists because the entity existed, but the fill is empty). Johann Meier's birth date at the destroyed parish register row.
-2. **Systematic omissions:** Shaded void regions with dashed borders (a category-level absence, not a point absence). Anna Meier's guild register row marked as "Systematically excluded: women."
-3. **Transmission gaps:** Torn-pattern overlay on the destroyed parish register row (1600–1680). Fire scar at 1681 on the timeline.
+The inherited Person Tracer design uses a person-by-source grid at Station 2, Tracing.
 
-The key interaction: the "Hide Absences" toggle removes all structured absence markers — demonstrating that standard models cannot show what they cannot represent. When toggled off, the data looks complete and the gaps become invisible.
+1. Hollow circles with dashed borders indicate a known unknown, such as the illustrative missing birth date.
+2. Shaded regions with dashed borders indicate a claimed category-level omission, illustrated by exclusion from guild membership.
+3. A torn overlay on the parish-register row and a fire mark at 1681 indicate the illustrative transmission gap.
 
-The Model Mirror (Station 5: "Reflecting") shows the cumulative effect: all absence-related dimensions disappear when moving from the full HI model to a relational database or spreadsheet.
+The Hide Absences control removes these annotations. Such a view can demonstrate the information lost when an export or interface omits absence claims. It cannot establish that a relational database or spreadsheet is incapable of storing them. Likewise, Station 5, Reflecting, should describe the concrete projection used by Model Mirror and which fields it discards. UI implementation and current behavior have not been checked in this revision.
+
+## Sources
+
+Pollin, C. (2025). *Modelling, Operationalising and Exploring Historical Information. Using Historical Financial Sources as an Example*. Dissertation, University of Graz, pp. 140–144. Chapter 5 read in full for this comparison.
+
+The inherited Thaller attributions remain provisional according to the linked corpus register. They supply questions for source analysis and no independently verified coverage finding.
 
 ## Related
 
-- [[Properties]] — Abwesenheit als Konsequenz von M3 Selektivität und P2 Spurenvermitteltheit
-- [[Systemic-Gaps]] — Drei der fünf systemischen Lücken betreffen Abwesenheit
-- [[Requirements]] — R-E1.3, R-M2.2, R-M3.1
-- [[Thaller-Synthesis]] — Thallers Incompleteness-Taxonomie
+- [[Properties]] records the proposed properties behind the absence requirements.
+- [[Systemic-Gaps]] retains the candidate gaps and their evidence limits.
+- [[Requirements]] owns the requirement identifiers.
+- [[Thaller-Synthesis]] retains the provisional comparison with the Ivory programme.

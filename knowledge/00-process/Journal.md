@@ -1,11 +1,22 @@
 ---
 type: knowledge
 created: 2026-03-21
+updated: 2026-10-15
 tags: [process-document, promptotyping, historical-information]
 status: active
 ---
 
 # Journal
+
+## 2026-10-15
+
+### Corrected dissertation and requirement consolidation
+
+The commissioned consolidation connects the dissertation, this theoretical strand and Ivory KLEIO through its requirements-integration.md. The dissertation's four characteristics and source-veto principle, existing comparison, Bookkeeping architecture and scholar-centred workflows are now distinguished from the optional primitive reconstruction. R identifiers, theoretical motifs, example functions and literature leads remain addressable. Unsupported necessity, novelty, universal capability limits and coverage rankings were removed or narrowed to questions supported by the recorded evidence state.
+
+Current theory, comparison, evidence, design, data commentary, manuscript outline, navigation and work plan were reconciled. The shared integration owns the passage-level R/H mapping. The JSON artifacts retain their exploratory status. A synthetic date-note contradiction was corrected by attributing the finer council date while retaining the shared month; D scenario assignments were added without removing earlier cases. Repeated Identity text and the claim of independent derivative accounts were corrected in the teaching overview. No historical source or measured result was changed.
+
+The data validator and targeted R/H coverage, reverse correspondence, knowledge-link/anchor and fixture checks pass. Independent review corrected omitted reverse links and an unverified dissertation DOI association. Historical adequacy, comparative validation and scholarly acceptance remain open. The earlier journal entries remain dated provenance rather than current capability claims.
 
 ## 2026-03-21
 

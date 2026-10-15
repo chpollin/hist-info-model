@@ -1,6 +1,7 @@
 ---
 type: knowledge
 created: 2026-03-22
+updated: 2026-10-15
 tags: [approaches, paradigms, historical-information, evaluation]
 status: draft
 ---
@@ -9,110 +10,102 @@ status: draft
 
 ## Summary
 
-Die Repräsentation historischer Information wird durch ein Spektrum von Ansätzen aus verschiedenen Paradigmen adressiert. Dieses Dokument gruppiert die untersuchten Ansätze nach Paradigmen und beschreibt, was jedes Paradigma zur Modellierung historischer Information beiträgt und wo seine Grenzen liegen. Für die Detailbeschreibung und den Vergleich aller 16 Ansätze siehe [[Approaches-Comparison]].
+Representation models, serialisations, application profiles, platforms and construction methods serve different functions. The grouping below preserves the existing comparison inventory. It supplies review questions rather than a ranking or proof of expressive limits. [[Approaches-Comparison]] retains the associated constructs and reading leads.
 
-## Paradigmen
+The [canonical requirements integration](https://github.com/DigitalHumanitiesCraft/ivory-kleio/blob/codex/temporal-prototype/knowledge/requirements-integration.md) connects the dissertation, R-IDs and H-candidates.
 
-### 1. Ontologien
+## Paradigms
 
-Formale Spezifikationen gemeinsamer Konzeptualisierungen (Gruber 1993). Stärke: semantische Präzision, maschinenlesbare Schlussfolgerungen, Interoperabilität. Schwäche: hohe Modellierungskomplexität, Tendenz zu Vollständigkeitsanspruch, schlechte Handhabung von Unschärfe und Widerspruch.
+### 1. Ontologies
 
-| Ansatz | Scope | Paradigma |
-|--------|-------|-----------|
-| CIDOC-CRM (v7.3, 2024) | ISO 21127, kulturelles Erbe, ereigniszentriert | Referenzontologie |
-| SDHSS | CIDOC-CRM-Erweiterung für Humanities (Beretta 2024) | Domain-Extension |
-| Bookkeeping Ontology | REA + CIDOC-CRM für historische Finanzdaten (Pollin 2024) | Domain-Ontologie |
-| Factoid / STAR | Assertionsbasiert, prosopographisch (Bradley 2015, Andrews 2024) | Assertion-Ontologie |
-| PROV-O | W3C Provenance, general-purpose (2013) | Provenance-Ontologie |
-| **CRMinf** (NEU) | CIDOC-CRM-Extension für Argumentation und Belief | Argumentation-Extension |
+Formal conceptualisations can supply shared classes, relations and inference rules. The relevant modelling effort and treatment of uncertainty depend on the selected ontology, extensions and task.
 
-### 2. Graphmodelle
+| Approach | Recorded scope | Comparison baseline |
+|---|---|---|
+| CIDOC-CRM | Cultural heritage reference ontology | v7.3, 2024, ISO 21127 |
+| SDHSS | Humanities/social science extensions | Beretta 2024 |
+| Bookkeeping Ontology | REA/CIDOC-CRM for historical financial sources | v1.2 implementation and v1.3 design |
+| Factoid / STAR | Source-attributed assertions | Pasin and Bradley 2015, Andrews et al. 2024 |
+| PROV-O | Provenance vocabulary | W3C Recommendation 2013 |
+| CRMinf | Argumentation and belief | Version-specific reading required |
 
-Graphbasierte Repräsentationen, die Flexibilität über formale Axiomatik stellen. Stärke: Darstellung komplexer, provisorischer Beziehungen, Hypergraphen für konkurrierende Hypothesen. Schwäche: geringe Standardisierung, wenige Implementierungen.
+### 2. Graph Models
 
-| Ansatz | Scope | Paradigma |
-|--------|-------|-----------|
-| Thaller (Ivory Stack) | Conceptual Stack, Factlets, Graphoids, Hypergraphen (2018–2021) | Design-Level |
-| FactGrid | Wikibase-Instanz, 1,3M+ Items, widersprüchliche Statements | Property Graph |
-| **Hypergraph-KGs** (NEU) | N-äre Relationen, HySAE, HyperGraphRAG (2024–2025) | Knowledge Hypergraph |
+Graph structures, graph databases and applications are separate comparison objects. Their schemas and constraints determine the meaning of relations.
 
-### 3. Textkodierung
+| Approach | Recorded scope | Review boundary |
+|---|---|---|
+| Thaller (Ivory Stack) | Factlets, co-reference, active systems and hypergraphs | Conceptual designs from 2018–2021 |
+| FactGrid | Wikibase-based historical data | Application conventions and platform patterns |
+| Hypergraph leads | HySAE and HyperGraphRAG | Literature candidates from 2024–2025 |
 
-Standards für die strukturierte Kodierung von Texten. Stärke: quellennahe Modellierung, diplomatische und normalisierte Repräsentation. Schwäche: hierarchische XML-Struktur (Overlapping-Problem), schwer mit Graphmodellen integrierbar.
+### 3. Text Encoding
 
-| Ansatz | Scope | Paradigma |
-|--------|-------|-----------|
-| TEI XML (P5 v4.10.2) | De-facto-Standard für Digital Editions | XML-Schema |
+Text encoding can preserve document structure, variants and editorial annotations. Particular XML pipelines need to be distinguished from TEI's available modelling patterns.
 
-### 4. Archivstandards
+| Approach | Recorded scope | Comparison baseline |
+|---|---|---|
+| TEI XML | Digital scholarly editions | TEI P5 v4.10.2 |
 
-Standards für die Erschließung archivischer Bestände. Stärke: Provenienzprinzip, Multirelationalität. Schwäche: auf Bestandsebene konzipiert, Quelleninhalt nicht modelliert.
+### 4. Archival Standards
 
-| Ansatz | Scope | Paradigma |
-|--------|-------|-----------|
-| RiC-O (v1.1, 2025) | ICA Records in Contexts, graphbasierte Archiverschließung | OWL-2 Ontologie |
+Archival description supplies record context and relationships. The chosen profile and extensions require inspection before a claim about source content or uncertainty can be made.
+
+| Approach | Recorded scope | Comparison baseline |
+|---|---|---|
+| RiC-O | Records in Contexts | v1.1, 2025 |
 
 ### 5. Aggregation
 
-Standards für die Harmonisierung heterogener Metadaten. Stärke: Interoperabilität, institutionsübergreifend. Schwäche: Abstraktion verliert domänenspezifische Semantik.
+Aggregation profiles select information for exchange. A profile's omissions do not establish an expressive limit of its underlying representation technology.
 
-| Ansatz | Scope | Paradigma |
-|--------|-------|-----------|
-| EDM | Europeana Data Model, 50+ Mio. Objekte | RDF-Metadatenmodell |
+| Approach | Recorded scope | Review focus |
+|---|---|---|
+| EDM | Europeana Data Model | Object, digital representation and aggregation |
 
-### 6. Linked Data Profiles (NEU)
+### 6. Linked Data Profiles
 
-Vereinfachte, auf Nutzbarkeit optimierte Profile existierender Ontologien. Stärke: niedrige Einstiegshürde, JSON-LD-basiert, breite Adoption. Schwäche: Vereinfachung kann Ausdrucksstärke reduzieren.
+Application profiles and federated infrastructures can make shared concepts usable in particular workflows. Their functions and assumptions differ.
 
-| Ansatz | Scope | Paradigma |
-|--------|-------|-----------|
-| **Linked Art 1.0** (NEU) | JSON-LD-Profil von CIDOC-CRM, Getty-Vokabulare (Feb 2025) | Application Profile |
-| **MemO / NFDI4Memory** (NEU) | Föderierter KG für historische Forschungsdaten (DE) | Föderierte Infrastruktur |
+| Approach | Recorded scope | Comparison baseline |
+|---|---|---|
+| Linked Art | JSON-LD profile of CIDOC-CRM with Getty vocabularies | 1.0, February 2025 |
+| MemO / NFDI4Memory | Historical research vocabulary and federated infrastructure | Recorded 2025 literature leads |
 
-### 7. Statement-Annotation (NEU)
+### 7. Statement Annotation
 
-Mechanismen für Metadaten auf Aussagen-Ebene. Stärke: effiziente Provenienz-Annotation, kompakt. Schwäche: noch nicht vollständig standardisiert.
+Statement-level metadata concerns attribution and description of claims. Its semantics depend on quotation, assertion and the chosen specification version.
 
-| Ansatz | Scope | Paradigma |
-|--------|-------|-----------|
-| **RDF-star** (NEU) | W3C-Erweiterung für Statement-Level-Metadaten (2024–2025) | RDF-Extension |
-| **CHAD-KG** (NEU) | KG für Digitalisierungs-Paradata, CIDOC-CRM 7.1.3 (2025) | Domain-KG |
+| Approach | Recorded scope | Comparison baseline |
+|---|---|---|
+| RDF-star | Statement-level metadata | Recorded 2024–2025 notes |
+| CHAD-KG | Digitisation paradata and cultural heritage objects | CIDOC-CRM 7.1.3, LRMoo 1.0, CRMdig 4.0 |
 
-### 8. Temporal Knowledge Graphs (NEU)
+### 8. Temporal Knowledge Graphs
 
-Temporales Reasoning über Wissensgraphen. Stärke: formales Reasoning über Zeit, Unsicherheitsmodellierung. Schwäche: wenig Cultural-Heritage-Anwendungen bisher.
+Temporal reasoning must be assessed against the stated operation and evidence. Forecasting or temporal benchmark results do not by themselves establish historical adequacy.
 
-| Ansatz | Scope | Paradigma |
-|--------|-------|-----------|
-| **TKG-Ansätze** (NEU) | Event-basiertes temporales Reasoning (Survey 2024) | KG + Zeit |
-| **ProbFuzzOnto** (NEU) | Fuzzy Bayesian Networks in Ontologien (2024) | Fuzzy Ontologie |
+| Approach | Recorded scope | Review focus |
+|---|---|---|
+| TKG approaches | Temporal graph construction and reasoning | Event time, query semantics and incomplete evidence |
+| ProbFuzzOnto | Fuzzy Bayesian networks in ontologies | Distinguish membership, probability and alternatives |
 
-## Was die Paradigmen-Gruppierung zeigt
+## What the Grouping Supports
 
-1. **Kein Paradigma deckt alles ab.** Ontologien modellieren Semantik, aber nicht Textstruktur. TEI modelliert Textstruktur, aber nicht semantische Beziehungen. Graphmodelle sind flexibel, aber nicht standardisiert.
-2. **Historische Information durchschneidet alle Paradigmen.** Eine Rechnung aus dem 15. Jahrhundert braucht: TEI für die diplomatische Edition, CIDOC-CRM/Bookkeeping für die semantische Modellierung, RiC-O für die archivische Einordnung, und möglicherweise FactGrid für die prosopographische Verknüpfung.
-3. **Die Requirements müssen paradigmenübergreifend formuliert sein.** Wenn ein Requirement nur von Ontologien erfüllt werden kann, ist es zu eng. Die [[Requirements]] müssen neutral gegenüber dem Repräsentationsparadigma sein.
-4. **Neue Paradigmen schließen alte Lücken.** RDF-star adressiert Provenienz-Verbosität, CRMinf adressiert Unsicherheit, Hypergraph-KGs adressieren n-äre Relationen. Keines davon existierte in seiner aktuellen Form, als die ursprüngliche Evaluation durchgeführt wurde.
-5. **LLM-gestützte KG-Konstruktion** (ATR4CH, CIDOC-CRM + GPT) ist kein Datenmodell, aber eine zunehmend relevante *Methode* zur Popuierung von Datenmodellen aus unstrukturierten historischen Texten.
+The existing financial-source examples suggest complementary roles for transcription, domain semantics and archival context. A justified combination depends on the research operation and material. Paradigm-neutral requirements should describe observable behaviour and permit different encodings.
 
-## Gesamtzählung
+[[Examples-Overview]] contains synthetic illustrations. The website's deliberately reduced relational and spreadsheet projections show selected omissions. Neither establishes that a relational database or spreadsheet is incapable of representing the omitted information.
 
-| Paradigma | Bestehend | Neu (2024–2025) | Gesamt |
-|-----------|----------|-----------------|--------|
-| Ontologien | 5 | 1 (CRMinf) | 6 |
-| Graphmodelle | 2 | 1 (Hypergraph-KGs) | 3 |
-| Textkodierung | 1 | 0 | 1 |
-| Archivstandards | 1 | 0 | 1 |
-| Aggregation | 1 | 0 | 1 |
-| Linked Data Profiles | 0 | 2 (Linked Art, MemO) | 2 |
-| Statement-Annotation | 0 | 2 (RDF-star, CHAD-KG) | 2 |
-| Temporal KGs | 0 | 2 (TKGs, ProbFuzzOnto) | 2 |
-| **Gesamt** | **10** | **8** | **18** |
+LLM-supported KG construction remains a population method with its own extraction and validation questions. The H09–H11 connection is limited to the existing agent interpretation case described in the canonical integration.
+
+## Inventory
+
+The named approaches above and the reading leads in [[Approaches-Comparison]] constitute the inventory. [Rating data](../../data/evaluation_matrix.json) preserve the older provisional assessment entries and may have a narrower scope. Inventory size and coverage are not research findings.
 
 ## Related
 
-- [[Approaches-Comparison]] — Detailvergleich aller 16+ Ansätze
-- [[Evaluation-Framework]] — Bewertungsmethodik
-- [[Systemic-Gaps]] — Paradigmenübergreifende Lücken
-- [[Requirements]] — 24 Requirements als Bewertungsmaßstab
-- [[Information]] — Informationswissenschaftliches Fundament
+- [[Approaches-Comparison]] — Working comparison notes
+- [[Evaluation-Framework]] — Evidence requirements
+- [[Systemic-Gaps]] — Candidate concerns
+- [[Requirements]] — Candidate requirement catalogue
+- [[Information]] — Information-science foundations

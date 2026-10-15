@@ -1,6 +1,7 @@
 ---
 type: knowledge
 created: 2026-03-22
+updated: 2026-10-15
 tags: [information-science, epistemology, foundations]
 status: draft
 ---
@@ -9,60 +10,82 @@ status: draft
 
 ## Summary
 
-Bevor historische Information definiert werden kann, muss der zugrunde liegende Informationsbegriff geklärt werden. Dieses Dokument legt das informationswissenschaftliche Fundament: Was ist Information? Wie unterscheidet sie sich von Daten und Wissen? Welche Informationstheorie ist für historische Forschung tragfähig?
+The dissertation examines information as the result of interpretation and contextualisation within historical research. Its account of data, information, knowledge and information-seeking behaviour supplies the existing foundation for [[Historical-Information]] (Pollin, 2025, chapter 3).
 
-## Von Daten zu Information
+The research connections retained here concern selected data, interpretive knowledge, communication time and iterative inquiry. Their possible relation to P1–P3 is a later project interpretation, developed in [[Primitives]]. Those proposals do not replace the dissertation's account.
 
-Historische Daten sind Signale, die ihren ursprünglichen kommunikativen Zweck in der Vergangenheit erfüllten. Drucker (2011) argumentiert für den Begriff "capta" statt "data": Geisteswissenschaftliche Daten sind nicht gegeben (*data*, lateinisch: das Gegebene), sondern aktiv gesammelt und selektiert (*capta*, lateinisch: das Genommene). Schöch (2013) definiert Humanities Data als "a selectively constructed, machine-actionable abstraction that represents some aspects of a given object of humanistic inquiry". Die Transformation von Daten zu Information erfordert Analyse, Interpretation und Kontextualisierung — ein Prozess, bei dem Historiker sowohl den direkten Inhalt als Daten in der Gegenwart verstehen als auch die Bedeutung im ursprünglichen historischen Kontext rekonstruieren müssen.
+## Data and information
 
-## DIKW-Hierarchie und ihre Grenzen
+The inherited connection to Drucker (2011) distinguishes capta, actively selected material, from the idea of data simply given to a researcher. Schöch (2013) characterises humanities data through selective, machine-actionable abstraction. These connections support examining how selection and representation shape the material available for inquiry.
 
-Die Data-Information-Knowledge-Wisdom-Hierarchie bietet einen Rahmen für die Transformation von Rohdaten zu Wissen. Für historische Forschung stößt sie an Grenzen: Ihre statische, lineare Struktur übersieht die Interdependenzen, Feedback-Loops und externen Einflüsse, die reale Informationsprozesse charakterisieren. Die visuelle Metapher der Pyramide verstärkt diese reduktionistische Perspektive. Historische Forschung arbeitet nicht linear von Daten zu Weisheit, sondern iterativ — neue Quellenanalyse verändert bestehendes Wissen, das wiederum neue Dateninterpretation ermöglicht.
+The dissertation discusses how analysis, interpretation and contextualisation transform historical data into information (pp. 32–36). Researchers examine source content in the present while reconstructing its historical meaning. A source may preserve an intended message as well as information that becomes relevant only to later questions. Its transmitted form and subsequent interpretation must therefore be distinguishable.
 
-## Langefors' infologische Gleichung
+## DIKW hierarchy and its limits
 
-Langefors' infologische Gleichung `I = i(D, S, t)` erfasst den Prozess besser: Information (I) entsteht als Funktion verfügbarer Daten (D), existierender Wissensstrukturen des Interpreten (S) und temporaler Bedingungen (t). Für historische Information ist jeder Parameter signifikant:
+The Data–Information–Knowledge–Wisdom hierarchy provides a framework for distinguishing forms of informational organisation. A strictly linear reading gives an inadequate account of iterative historical inquiry. Existing knowledge affects the interpretation of sources, while new source analysis can revise that knowledge.
 
-- **D (Daten)** — Die Spur (Quelle, Artefakt, Überlieferung). Nicht gegeben, sondern durch Selektion konstituiert (Druckers "capta").
-- **S (Wissensstrukturen)** — Das Vorwissen, die Methodik, die Perspektive des Interpreten. Standortgebunden im Sinne Kosellecks (1977): jeder Interpret bringt historisch bedingte Vorannahmen mit.
-- **t (temporale Bedingungen)** — Nicht nur der Zeitpunkt der Interpretation, sondern die temporale Distanz zwischen Quelle und Interpret. Diese Distanz ist bei historischer Information konstitutiv: sie kann nicht reduziert werden.
+The dissertation discusses these limitations alongside other frameworks for knowledge production. Its criticism concerns a linear or static representation of the process. It does not establish that every use of a hierarchy must deny feedback or interpretation.
 
-Die Gleichung macht explizit, was die DIKW-Pyramide verbirgt: Dieselben Daten (D) erzeugen bei verschiedenen Interpreten (S₁, S₂) verschiedene, gleichermaßen gültige Informationen — der formale Kern von Multiperspektivität.
+## Langefors' infological equation
 
-## Berettas Pyramide der historischen Wissensproduktion
+The dissertation discusses `I = i(D, S, t)` as an abstract account of information generated through interpretation (p. 54). It refers to Langefors (1980) through Kettinger and Li (2010).
 
-Beretta (2024) modelliert den Aufstieg von Spuren der Welt (Primärquellen) über Factoide und Factual Information zu Narration, Strukturanalyse, dynamischer Modellierung, kausaler Untersuchung und Prognose. Der Aufstieg repräsentiert und interpretiert die Welt gleichzeitig — Repräsentation durch konzeptuelle Modelle und kritische Methoden, Interpretation durch Datenanalysemodelle und Theorie.
+- D denotes the available data.
+- S denotes existing knowledge structures or interpretive contexts.
+- t denotes temporal constraints on communication.
 
-Im Unterschied zur DIKW-Pyramide ist Berettas Modell domänenspezifisch (historische Forschung), nicht-linear (Feedback zwischen Ebenen) und macht die epistemische Arbeit auf jeder Ebene explizit. Die unteren Ebenen (Spuren → Factoide) entsprechen P2 Spurenvermitteltheit, die oberen (Interpretation → Narration) P3 Interpretative Konstitution.
+The earlier repository account substituted historical distance between source and interpreter for t. That substitution is unsupported by the dissertation's definition. The time conditions of communication and interpretation must remain distinct from the historical distance between an event, its recording and later research.
 
-## Information ist kein Ding
+As a project interpretation, D can be connected with the source material made available through selection and transmission. S can be connected with the interpreter's prior knowledge, methods and situated assumptions. Historical distance may influence the contexts that need reconstruction, but it is not an alternative definition of t.
 
-Kuhlen et al. (2023) betonen: Information ist kein ontologisches Ding, sondern ein Konstrukt, materialisiert durch Interpretation existierender Informationsobjekte in spezifischen soziokulturellen Kontexten. Diese Position konvergiert mit P3 (Interpretative Konstitution): Information existiert nicht unabhängig von Interpretation.
+The equation helps formulate how the same data may produce different information through different interpretive resources. It does not establish that all resulting interpretations are equally valid. Their plausibility still depends on evidence and method, including the source-veto principle discussed in [[Dissertation-Context#Four factors and the source-veto principle]].
 
-Thaller (2018) formuliert es für den historischen Kontext: Historische Information ist prozedural und fuzzy — sie entsteht durch die Interpretation von Signalen, die einst zwischen historischen Akteuren in inzwischen verlorenen Kontexten ausgetauscht wurden. Das "fuzzy" bezieht sich nicht auf Ungenauigkeit als Defekt, sondern auf Unschärfe als Systemeigenschaft.
+The dissertation also states that the equation is an abstract model rather than a practical database implementation. Requirements for storing an interpreting agent or tracking transformations require an additional design argument.
 
-## Information-Seeking Behaviour
+## Beretta's pyramid of historical knowledge production
 
-Historiker arbeiten nach dem Prinzip "I don't know what I'm looking for; I'll know it when I find it" (Vallet, Cantador, Jose 2010). Vier komplementäre Modelle beschreiben dieses Verhalten:
+The dissertation discusses Beretta's account of traces, factoids and factual information leading to narration, structural analysis, dynamic modelling, causal inquiry and prediction (pp. 53–54). Representation and interpretation operate throughout this account through conceptual models, critical methods, analysis and theory.
 
-- **Wilson** — Zyklisches Modell: iterative Prozesse von Bedarfserkennung, Suche und Nutzung unter Einfluss kontextueller Faktoren.
-- **Ellis** — Behavioural Model: starting, linking, browsing, differentiating, monitoring, extracting. Flexibel, nicht-sequentiell.
-- **Kuhlthau** — Information Search Process: sechs Stadien mit kognitiver und affektiver Dimension, von initialer Unsicherheit zu wachsender Klarheit.
-- **Bates** — Berrypicking: dynamische Anpassung von Suchstrategien basierend auf gesammelter Information.
+The dissertation observes that upward arrows suggest a linear progression. It proposes feedback to represent how work at different levels affects subsequent inquiry. The earlier repository statement that the pyramid already incorporated this non-linearity misrepresented that discussion.
 
-Alle Modelle teilen drei Gemeinsamkeiten: Nicht-Linearität, Adaptivität und Nutzerzentriertheit — Eigenschaften, die [[Dissertation-Context|Scholar-Centred Design]] direkt informieren.
+As a later project reading, source-related levels may be connected with P2, and interpretive activities with P3. This correspondence does not demonstrate that the pyramid reduces to those proposals or that its levels are successive phases in every research process.
 
-## Konsequenzen für die Modellierung
+## Information and interpretation
 
-Aus dem informationswissenschaftlichen Fundament folgt:
+The dissertation uses information-science arguments to explain the role of the cognitive agent in transforming data into information (pp. 35–36). Its discussion of Kuhlen and colleagues connects information with action and interpretation in sociocultural contexts.
 
-1. Ein Datenmodell für historische Information muss **den Interpreten mitmodellieren** (S in Langefors' Gleichung) — nicht nur die Daten.
-2. **Multiperspektivität ist kein Defekt**, sondern eine Konsequenz der Gleichung: verschiedene S erzeugen verschiedene I.
-3. **Temporale Bedingungen sind konstitutiv**: die Distanz t zwischen Quelle und Interpret verändert die Information fundamental.
-4. **Lineare Transformationsmodelle** (DIKW) sind inadäquat — historische Wissensproduktion ist zyklisch und rückgekoppelt.
-5. **Information als Prozess**, nicht als Ding — jedes statische Datenmodell bildet nur einen Ausschnitt der prozeduralen Realität ab.
+The existing connection to Thaller (2018) concerns historical information's procedural and fuzzy character. In the dissertation's discussion, historians interpret signals once exchanged in historical contexts that must now be reconstructed (p. 54). Fuzziness is relevant to system design, rather than merely an error to eliminate.
+
+This motivates the project proposal P3. It does not settle the ontological status of every information object or validate the universal formula in [[Primitives]].
+
+## Information-seeking behaviour
+
+The dissertation examines iterative discovery and changing research needs in its discussion of historians' information-seeking behaviour (Pollin, 2025, pp. 46–49). The inherited references connect this discussion with several complementary models.
+
+- Wilson's model (1999), as discussed in the dissertation, concerns cycles of need, searching and use under contextual influences.
+- Ellis's behavioural account (1997), as discussed in the dissertation, includes activities such as starting, linking, browsing, differentiating, monitoring and extracting.
+- Kuhlthau's Information Search Process (1999), as discussed in the dissertation, connects stages of inquiry with cognitive and affective changes.
+- Bates's berrypicking (1989), as discussed in the dissertation, describes how gathered information changes the direction and strategy of searching.
+
+These connections support examining non-linearity, adaptation and user context. The previously quoted expression about recognising an unknown target when it is found remains a research connection to Vallet, Cantador and Jose (2010), rather than a general law of historians' behaviour.
+
+[[Dissertation-Context#Scholar-centred requirements]] connects the methodological argument to documented source-analysis sessions, user stories and interface work. Requirements arise through those practices and require validation in their intended operations.
+
+## Consequences for modelling
+
+The existing foundation motivates the following design questions.
+
+1. Which interpretive acts, agents, assumptions and contexts must be recoverable for a given claim or operation?
+2. How can competing interpretations coexist while their evidence and differing validity remain inspectable?
+3. Which temporal roles belong to events, source recording, communication and later research?
+4. How can representations support revision and feedback between source examination, modelling and analysis?
+5. Which parts of a process must be recorded when a static data structure represents only a selected state?
+
+These questions connect existing knowledge to requirements. Their answers should be developed through the dissertation's cases and the implementation evidence in the [shared requirements integration](https://github.com/DigitalHumanitiesCraft/ivory-kleio/blob/codex/temporal-prototype/knowledge/requirements-integration.md).
 
 ## Sources
+
+Pollin, C. (2025). *Modelling, Operationalising and Exploring Historical Information. Using Historical Financial Sources as an Example.* Dissertation, University of Graz, chapter 3, especially pp. 32–36, 53–55.
 
 Langefors, B. (1966). *Theoretical Analysis of Information Systems.* Studentlitteratur.
 
@@ -70,19 +93,21 @@ Drucker, J. (2011). Humanities Approaches to Graphical Display. *Digital Humanit
 
 Schöch, C. (2013). Big? Smart? Clean? Messy? Data in the Humanities. *Journal of Digital Humanities, 2*(3).
 
-Beretta, F. (2024). The Pyramid of Historical Knowledge Production.
+Beretta, F. (2024). *The Pyramid of Historical Knowledge Production.*
 
-Kuhlen, R. et al. (2023). *Grundlagen der Informationswissenschaft.* 7. Auflage. De Gruyter Saur.
+Kuhlen, R. et al. (2023). *Grundlagen der Informationswissenschaft.* 7th edition. De Gruyter Saur.
 
-Thaller, M. (2018). On Information in Historical Sources.
+Thaller, M. (2018). *On Information in Historical Sources.*
 
-Koselleck, R. (1977). Standortbindung und Zeitlichkeit.
+Koselleck, R. (1977). *Standortbindung und Zeitlichkeit.*
 
-Vallet, D., Cantador, I. & Jose, J. (2010). Personalising Access to Digital Cultural Heritage.
+Vallet, D., Cantador, I. & Jose, J. (2010). *Personalising Access to Digital Cultural Heritage.*
+
+The dissertation is the checked source for the corrections to the infological equation and the discussion of the pyramid. It cites Langefors (1980) through Kettinger and Li (2010). The existing bibliography's Langefors (1966) entry is retained as a research connection without attributing the checked parameter definition to that book. Other original sources and the information-seeking models were not independently rechecked in this consolidation.
 
 ## Related
 
-- [[Historical-Information]] — Fünf Eigenschaften + drei Primitive als Konsequenz
-- [[Primitives]] — P2 (Spurenvermitteltheit) und P3 (Interpretative Konstitution) als formale Entsprechung
-- [[Dissertation-Context]] — Informationswissenschaftlicher Rahmen der Dissertation
-- [[Properties]] — Unsicherheit als Eigenschaft korrespondiert mit Langefors' S-Parameter
+- [[Historical-Information]] connects the information-science account with historical interpretation.
+- [[Primitives]] records the later analytical proposals.
+- [[Dissertation-Context]] supplies the dissertation evidence and scholar-centred method.
+- [[Properties]] preserves proposed conceptual dimensions for requirements work.
