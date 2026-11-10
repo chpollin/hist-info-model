@@ -14,6 +14,7 @@ The static teaching prototype uses invented scenarios. Comparative ratings and g
 - `knowledge/04-design/` describes the teaching interface and JSON structures.
 - `knowledge/05-paper/` contains the existing manuscript outline.
 - `knowledge/00-process/Journal.md` records integrated transitions.
+- `knowledge/handoff.md` holds incoming deltas until they are integrated into their owning document.
 - `data/` contains the exploratory JSON artifacts.
 - `site/` contains static HTML/CSS/JavaScript and locally supplied D3 visualizations.
 - `scripts/` contains structural validators.

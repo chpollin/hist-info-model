@@ -30,6 +30,10 @@ The static website source lives in `site/`, JSON artifacts in `data/`, and their
 
 Serve the repository root with `python -m http.server 8081`, then open `http://localhost:8081/site/index.html`. Run `python scripts/validate_data.py` for JSON structure and references. Structural validation does not validate the research claims or the historical authenticity of the synthetic scenarios.
 
+## Licensing
+
+Original text and data use [CC BY 4.0](LICENSE). Code uses [MIT](LICENSE-CODE). Third-party material, including the bundled D3 library, retains its own terms.
+
 ## Source
 
 Pollin, C. (2025). *Modelling, Operationalising and Exploring Historical Information. Using Historical Financial Sources as an Example*. University of Graz. [Published record](https://unipub.uni-graz.at/obvugrhs/12127700), URN `urn:nbn:at:at-ubg:1-220602`. The integration contains passage-level evidence and the consulted PDF identity. Other literature remains routed through the knowledge documents with its recorded reading state.

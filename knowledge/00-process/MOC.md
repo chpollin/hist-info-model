@@ -1,7 +1,7 @@
 ---
 type: knowledge
 created: 2026-03-22
-updated: 2026-10-15
+updated: 2026-11-10
 tags: [moc, navigation, vault-structure]
 status: draft
 ---
@@ -47,3 +47,4 @@ The theoretical strand connects the dissertation's foundation with representatio
 
 - [[Journal]] records integrated transitions.
 - [Work plan](../../PLAN.md) carries future work.
+- [Handoff](../handoff.md) holds incoming deltas awaiting integration.

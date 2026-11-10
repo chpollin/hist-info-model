@@ -1,12 +1,20 @@
 ---
 type: knowledge
 created: 2026-03-21
-updated: 2026-10-15
+updated: 2026-11-10
 tags: [process-document, promptotyping, historical-information]
 status: active
 ---
 
 # Journal
+
+## 2026-11-10
+
+### Repository state review
+
+The owner commissioned a maintenance review of the active repositories. The working tree was clean and `main` matched its remote. The repository has no GitHub Pages site. The links to the shared requirements integration point to the Ivory KLEIO branch `codex/temporal-prototype`, which exists on the remote, while that repository's `main` does not yet contain the integration.
+
+The repository gained `knowledge/handoff.md` with an empty inbox, routed from the action layer and the knowledge map. PLAN.md, the journal and the existing theory documents already carry plan, provenance and project scope, so no further core documents were added. A CC BY 4.0 licence for original text and data and an MIT licence for code were added according to the owner's general licensing rule, since the repository had recorded no other decision. The data validator and the quick validator pass, and every wikilink outside the dated journal entries resolves.
 
 ## 2026-10-15
 
