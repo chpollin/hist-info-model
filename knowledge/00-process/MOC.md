@@ -45,6 +45,5 @@ The theoretical strand connects the dissertation's foundation with representatio
 
 ## Process (00-process/)
 
-- [[Journal]] records integrated transitions.
+- [[Journal]] opens with incoming deltas awaiting integration under Open and records integrated transitions.
 - [Work plan](../../PLAN.md) carries future work.
-- [Handoff](../handoff.md) holds incoming deltas awaiting integration.

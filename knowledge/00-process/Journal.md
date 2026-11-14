@@ -1,12 +1,22 @@
 ---
 type: knowledge
 created: 2026-03-21
-updated: 2026-11-10
+updated: 2026-11-14
 tags: [process-document, promptotyping, historical-information]
 status: active
 ---
 
 # Journal
+
+## Open
+
+Nothing open.
+
+## 2026-11-14
+
+### Handoff dissolved into the journal
+
+By the operator's decision of 2026-11-14 a Promptotyping repository no longer keeps `knowledge/handoff.md`, and the journal opens with what is open. The handoff inbox created on 2026-11-10 held no open item, so nothing was carried over. Plan work stays in PLAN.md. The action layer and the knowledge map now point to Open, and the entry of 2026-11-10 keeps its mention of the inbox as provenance.
 
 ## 2026-11-10
 
